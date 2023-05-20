@@ -7,7 +7,7 @@ class AppDecoration {
 
   static BoxDecoration cardDecoration() {
     return BoxDecoration(
-      color: AppColors.black.withOpacity(0.05),
+      color: AppColors.primaryColor.withOpacity(0.05),
       border: Border(
         bottom: BorderSide(color: Get.theme.primaryColor, width: 3.5),
         left: BorderSide(color: Get.theme.primaryColor, width: 1),
@@ -16,4 +16,17 @@ class AppDecoration {
       ),
     );
   }
+
+  static get backroundDecoration => BoxDecoration(
+        color: Get.theme.scaffoldBackgroundColor,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          stops: const [0.5, 0.9],
+          colors: [
+            Get.theme.scaffoldBackgroundColor,
+            Get.theme.hintColor.withOpacity(0.1),
+          ],
+        ),
+      );
 }

@@ -1,6 +1,10 @@
 class AppString {
-  static String appname = 'WpDirect';
-  static String dashBoard = 'DashBoard';
+  static String appname = 'Ai Writing';
+
+
+
+  
+  static String hello = 'Hello';
   static String service = 'Service We Offer';
   static String note =
       'Rain Infotech has certification for compliance with ISO 9001-2015; ISO 27001-2013; ISO/IEC 27701:2019 certified on Hyperledger cross-industry blockchain consultancy services, Decentralized cryptocurrency asset management services, Website, Mobile & Blockchain development services, Information technology consulting, Support and Hosting services.';

@@ -13,7 +13,7 @@ class NetworkCheckScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child: Image.asset(AssetsPathString.noInternet, width: AppDimen.dimen300)),
+            Center(child: Image.asset(AppImages.noInternet, width: AppDimen.dimen300)),
             SizedBox(height: AppDimen.dimen18),
             Text(
               AppString.noInternet,

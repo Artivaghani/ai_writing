@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       title: AppString.appname,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      // initialBinding: HomeBinding(),
       themeMode: StorageHelper().getTheme == null
           ? ThemeMode.system
           : (StorageHelper().getTheme ?? Get.isDarkMode)

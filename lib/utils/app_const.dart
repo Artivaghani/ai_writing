@@ -1,6 +1,4 @@
 class AppConst {
-  static const fill = 0.1;
-  static const sheet = 0.4;
-
-  
+  static const double elevation = 2;
+  static const double cardRadius = 14;
 }

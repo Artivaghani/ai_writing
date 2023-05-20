@@ -8,41 +8,87 @@ class Appdrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).backgroundColor,
-      child: Padding(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      child: Container(
         padding: EdgeInsets.all(AppDimen.dimen20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        decoration: AppDecoration.backroundDecoration,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: AppDimen.dimen20),
+                      child: Row(
+                        children: [
+                          AppCommonWidgets.roundImg(radius: 20),
+                          SizedBox(
+                            width: AppDimen.dimen10,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Arti Vaghani',
+                                style: Get.theme.textTheme.headlineSmall,
+                              ),
+                              Text(
+                                'Abc@gmail.com',
+                                style: Get.theme.textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 1,
+                      color: Get.theme.dividerColor,
+                    ),
+                    SizedBox(
+                      height: AppDimen.dimen20,
+                    ),
+                    getListView('Home', Icons.home, onTap: () {}),
+                    getListView('credits histery', Icons.history),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: AppDimen.dimen10),
+                child: Text(
+                  'Version : 1.0',
+                  style: Get.theme.textTheme.bodySmall,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  getListView(String title, IconData icon, {Function? onTap}) {
+    return InkWell(
+      onTap: () {
+        Get.back();
+        if (onTap != null) {
+          onTap.call();
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: AppDimen.dimen8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image(image: AssetImage(AssetsPathString.rainLogo2)),
-            Container(
-              child: Text(AppString.myAc, style: Get.theme.textTheme.caption),
-              padding: EdgeInsets.all(AppDimen.dimen12),
-              margin: EdgeInsets.only(bottom: AppDimen.dimen12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                      color: Theme.of(context).colorScheme.onPrimary)),
+            Icon(icon),
+            SizedBox(
+              width: AppDimen.dimen10,
             ),
             Text(
-              homeController.isLoading
-                  ? ''
-                  : 'Name: ${homeController.getData!.name ?? ''}',
-              style: Get.theme.textTheme.caption,
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Text(
-                      '${AppString.theme}:',
-                      style: Get.theme.textTheme.caption,
-                    ),
-                  ),
-                ],
-              ),
+              title,
+              style: Get.theme.textTheme.headlineMedium,
             ),
           ],
         ),

@@ -17,10 +17,10 @@ class AppDialog {
   static successSnackBar(String msg) {
     return ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: AppColors.greenColor,
           content: Text(
             msg,
-            style: TextStyle(fontSize: FontDimen.dimen14, color: AppColors.white),
+            style: TextStyle(fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
           )),
     );
   }
@@ -31,7 +31,7 @@ class AppDialog {
           backgroundColor: AppColors.redColor,
           content: Text(
             msg,
-            style: TextStyle(fontSize: FontDimen.dimen14, color: AppColors.white),
+            style: TextStyle(fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
           )),
     );
   }

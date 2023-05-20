@@ -20,11 +20,13 @@ class AppCommonWidgets {
         children: [
           Text(
             'oops!',
-            style: Get.theme.textTheme.subtitle1!.copyWith(color: AppColors.greyColor),
+            style: Get.theme.textTheme.subtitle1!
+                .copyWith(color: AppColors.greyColor),
           ),
           Text(
             "No Data Found!",
-            style: Get.theme.textTheme.subtitle1!.copyWith(color: AppColors.greyColor),
+            style: Get.theme.textTheme.subtitle1!
+                .copyWith(color: AppColors.greyColor),
           ),
         ],
       ),
@@ -49,7 +51,46 @@ class AppCommonWidgets {
     if (value) {
       return true;
     }
-    Get.offUntil(GetPageRoute(page: () => NetworkCheckScreen(isSplash: isSplash)), (route) => false);
+    Get.offUntil(
+        GetPageRoute(page: () => NetworkCheckScreen(isSplash: isSplash)),
+        (route) => false);
     throw '';
+  }
+
+  static roundShapBtn({double? size, Widget? child}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Get.theme.primaryColor.withOpacity(0.1),
+        shape: BoxShape.circle,
+      ),
+      width: size ?? AppDimen.dimen60,
+      height: size ?? AppDimen.dimen60,
+      child: Center(
+        child: child ??
+            Icon(
+              Icons.arrow_back_ios_rounded,
+              size: AppDimen.dimen20,
+            ),
+      ),
+    );
+  }
+
+  static roundImg({double? radius}) {
+    return CircleAvatar(
+      radius: radius ?? 26,
+      backgroundImage: NetworkImage('https://picsum.photos/id/237/200/300'),
+    );
+  }
+
+  static networkImg(String url,
+      {double? radius, double? width, double? height}) {
+    return Container(
+      width: width ?? AppDimen.dimen60,
+      height: height ?? AppDimen.dimen60,
+      decoration: BoxDecoration(
+          color: Get.theme.primaryColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(radius ?? 0),
+          image: DecorationImage(image: NetworkImage(url))),
+    );
   }
 }

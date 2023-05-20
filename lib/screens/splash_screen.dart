@@ -2,7 +2,7 @@ import '../../utils/config_packages.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
-
+ 
   Future<double> whenNotZero(Stream<double> source) async {
     await for (double value in source) {
       if (value > 0) {
@@ -42,8 +42,7 @@ class SplashScreen extends StatelessWidget {
         body: Container(
           height: AppDimen.screenHeight,
           width: AppDimen.screenWidth,
-          decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(AssetsPathString.bg))),
+          decoration: AppDecoration.backroundDecoration,
           child: Center(
             child: Padding(
               padding: EdgeInsets.all(AppDimen.dimen80),
@@ -51,7 +50,7 @@ class SplashScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    AssetsPathString.rainLogo,
+                    AppImages.logo,
                   ),
                   SizedBox(height: AppDimen.dimen20),
                   Text(AppString.appname,
