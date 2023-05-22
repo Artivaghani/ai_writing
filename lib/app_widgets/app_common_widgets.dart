@@ -40,7 +40,7 @@ class AppCommonWidgets {
     } else if (connectivityResult == ConnectivityResult.wifi) {
       return true;
     } else if (isShowMsg) {
-      AppDialog.errorSnackBar(AppString.networkMsg);
+      AppDialog.errorSnackBar(AppString.checkConnection);
     }
 
     return false;

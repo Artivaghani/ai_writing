@@ -1,3 +1,4 @@
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class Appdrawer extends StatelessWidget {
@@ -51,7 +52,9 @@ class Appdrawer extends StatelessWidget {
                       height: AppDimen.dimen20,
                     ),
                     getListView('Home', Icons.home, onTap: () {}),
-                    getListView('credits histery', Icons.history),
+                    getListView('credits histery', Icons.history,onTap: (){
+                      Get.to(LoginScreen());
+                    }),
                   ],
                 ),
               ),

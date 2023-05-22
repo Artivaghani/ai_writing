@@ -6,6 +6,7 @@ class AppDimen {
 
   static double dimen2 = Get.height * 0.002;
   static double dimen4 = Get.height * 0.004;
+  static double dimen6 = Get.height * 0.006;
   static double dimen8 = Get.height * 0.008;
   static double dimen10 = Get.height * 0.010;
   static double dimen12 = Get.height * 0.012;

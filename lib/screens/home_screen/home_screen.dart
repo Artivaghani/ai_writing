@@ -53,18 +53,14 @@ class HomeScreen extends StatelessWidget {
                             ? AppCommonWidgets.datanotfoundtext()
                             : GridView.builder(
                                 gridDelegate:
-                                     SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 200,
-                                  childAspectRatio: 1.1,
-                                  crossAxisSpacing:AppDimen.dimen10,
-                                  mainAxisSpacing: AppDimen.dimen10
-                                ),
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 200,
+                                        childAspectRatio: 1.1,
+                                        crossAxisSpacing: AppDimen.dimen10,
+                                        mainAxisSpacing: AppDimen.dimen10),
                                 itemCount: controller.getData!.list!.length,
                                 itemBuilder: (BuildContext ctx, index) {
-                                  return HomeCardWidget(
-                                      dataList:
-                                          controller.getData!.list![index],
-                                      index: index);
+                                  return const HomeCardWidget();
                                 }),
                   ),
                 ),

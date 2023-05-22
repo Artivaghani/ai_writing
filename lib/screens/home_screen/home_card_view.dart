@@ -1,11 +1,9 @@
 import 'package:ai_writing/utils/config_packages.dart';
 
 class HomeCardWidget extends StatelessWidget {
-  HomeCardWidget({Key? key, required this.dataList, required this.index})
+  const HomeCardWidget({Key? key, })
       : super(key: key);
-  final ListElement dataList;
-  int index;
-
+ 
   @override
   Widget build(BuildContext context) {
     return Card(
