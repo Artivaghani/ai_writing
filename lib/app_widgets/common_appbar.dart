@@ -1,32 +1,32 @@
-import '../utils/config_packages.dart';
+import 'package:ai_writing/utils/config_packages.dart';
 
-class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CommonAppBar({Key? key, this.title, this.leading, this.elevation = 0.0, this.refresh, this.isRefresh = true}) : super(key: key);
-
-  final Widget? title;
-  final Widget? leading;
-  final double elevation;
-  final VoidCallback? refresh;
-  final bool isRefresh;
+class CommonAppBar extends StatelessWidget {
+  final String title;
+  const CommonAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        leading: leading,
-        // GestureDetector(
-        //     onTap: () => Get.back(),
-        //     child: Icon(
-        //       Icons.arrow_back,
-        //       color: Theme.of(context).iconTheme.color,
-        //     )),
-        title: title,
-        centerTitle: true,
-        titleTextStyle: Theme.of(context).textTheme.headline1,
-       );
+    return Padding(
+      padding: EdgeInsets.all(AppDimen.dimen14),
+      child: Row(
+        children: [
+          InkWell(
+            onTap: () => Get.back(),
+            child: AppCommonWidgets.roundShapBtn(
+              size: AppDimen.dimen50,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppDimen.dimen20),
+              child: Text(
+                title,
+                style: Get.theme.textTheme.labelMedium,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

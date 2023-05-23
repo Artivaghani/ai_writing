@@ -24,7 +24,7 @@ class AppTheme {
               fontWeight: FontWeight.w500),
           labelLarge: getTextStyle(AppColors.primaryColor, FontDimen.dimen18,
               fontWeight: FontWeight.w600),
-          labelMedium: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w500),
+          labelMedium: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w700),
           labelSmall: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w400),
           titleLarge: getTextStyle(AppColors.secondaryColor, FontDimen.dimen18, fontWeight: FontWeight.w500),
           titleMedium: getTextStyle(AppColors.secondaryColor, FontDimen.dimen16, fontWeight: FontWeight.w500),

@@ -8,6 +8,8 @@ class AppString {
   static String loginWarning = 'You accept our';
   static String loginWarning1 = 'by clicking the "Login with Google" button.';
   static String termAndCon = 'Terms and Conditions';
+  static String freeEmail = 'Free Emails';
+  static String yourEmails = 'Your Emails';
 
   static String requesttimeout = "Your request timeout, Please try again later";
   static String changeTheme = 'Change Theme';

@@ -1,3 +1,4 @@
+import 'package:ai_writing/screens/writing_screen/writing_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 // ignore: must_be_immutable
@@ -60,7 +61,8 @@ class HomeScreen extends StatelessWidget {
                                         mainAxisSpacing: AppDimen.dimen10),
                                 itemCount: controller.getData!.list!.length,
                                 itemBuilder: (BuildContext ctx, index) {
-                                  return const HomeCardWidget();
+                                  return InkWell(onTap:()=> Get.to(WritingScreen()),
+                                    child: const HomeCardWidget());
                                 }),
                   ),
                 ),
