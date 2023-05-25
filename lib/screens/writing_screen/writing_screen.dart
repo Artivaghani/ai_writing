@@ -1,4 +1,5 @@
 import 'package:ai_writing/app_widgets/btn_view.dart';
+import 'package:ai_writing/screens/generate_screen.dart/generate_screen.dart';
 import 'package:ai_writing/screens/writing_screen/email_view.dart';
 import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
@@ -20,7 +21,7 @@ class WritingScreen extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                CommonAppBar(title: 'Email writing'),
+                const CommonAppBar(title: 'Email writing'),
                 TabBar(
                   indicatorColor: Get.theme.primaryColor,
                   labelStyle: Get.theme.textTheme.headlineMedium,
@@ -43,10 +44,18 @@ class WritingScreen extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton:  ButtonView(
-          title: 'Ai Email',
-          height: AppDimen.dimen60,
-          width: AppDimen.dimen150,
+        floatingActionButton: GestureDetector(
+          onTap: () => Get.to(GenerateScreen()),
+          child: ButtonView(
+            title: AppString.aiemail,
+            height: AppDimen.dimen60,
+            width: AppDimen.dimen150,
+            icon: Icon(
+              Icons.edit,
+              size: AppDimen.dimen20,
+              color: Get.theme.cardColor,
+            ),
+          ),
         ),
       ),
     );

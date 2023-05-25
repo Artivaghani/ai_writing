@@ -15,9 +15,9 @@ class HomeScreen extends StatelessWidget {
         body: Container(
           decoration: AppDecoration.backroundDecoration,
           padding: EdgeInsets.all(AppDimen.dimen22),
+          height: AppDimen.screenHeight,
           child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,26 +45,27 @@ class HomeScreen extends StatelessWidget {
                     style: Get.theme.textTheme.headlineLarge,
                   ),
                 ),
-                Expanded(
-                  child: GetBuilder<HomeController>(
-                    builder: (controller) => controller.isLoading
-                        ? AppCommonWidgets.processIntegrator
-                        : controller.getData == null ||
-                                controller.getData!.list!.isEmpty
-                            ? AppCommonWidgets.datanotfoundtext()
-                            : GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 200,
-                                        childAspectRatio: 1.1,
-                                        crossAxisSpacing: AppDimen.dimen10,
-                                        mainAxisSpacing: AppDimen.dimen10),
-                                itemCount: controller.getData!.list!.length,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return InkWell(onTap:()=> Get.to(WritingScreen()),
+                GetBuilder<HomeController>(
+                  builder: (controller) => controller.isLoading
+                      ? AppCommonWidgets.processIntegrator
+                      : controller.getData == null ||
+                              controller.getData!.list!.isEmpty
+                          ? AppCommonWidgets.datanotfoundtext()
+                          : GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate:
+                                  SliverGridDelegateWithMaxCrossAxisExtent(
+                                      maxCrossAxisExtent: 200,
+                                      childAspectRatio: 1.1,
+                                      crossAxisSpacing: AppDimen.dimen10,
+                                      mainAxisSpacing: AppDimen.dimen10),
+                              itemCount: controller.getData!.list!.length,
+                              itemBuilder: (BuildContext ctx, index) {
+                                return InkWell(
+                                    onTap: () => Get.to(WritingScreen()),
                                     child: const HomeCardWidget());
-                                }),
-                  ),
+                              }),
                 ),
               ],
             ),

@@ -1,6 +1,6 @@
 // import 'package:aismarttonemail/utils/config_packages.dart';
 
-// class LocalizationHelper {
+class LocalizationHelper {
 //   static loadTranslations() async {
 //     List<LanguageModel> languageList = StorageHelper().getLanguageData;
 //     Map<String, Map<String, String>> langauges = {};
@@ -101,48 +101,48 @@
 //     },
 //   ];
 
-//   static List<Map> emailGenLang = [
-//     {
-//       "code": "en",
-//       "assetpath": "assets/locale/english_en.json",
-//       "name": "English",
-//       "flagpath": "assets/flags/English.png",
-//     },
-//     {
-//       "code": "de",
-//       "assetpath": "assets/locale/german_de.json",
-//       "name": "German",
-//       "flagpath": "assets/flags/German.png",
-//     },
-//     {
-//       "code": "es",
-//       "assetpath": "assets/locale/spanish_es.json",
-//       "name": "Spanish",
-//       "flagpath": "assets/flags/spanish.png",
-//     },
-//     {
-//       "code": "fr",
-//       "assetpath": "assets/locale/french_fr.json",
-//       "name": "French",
-//       "flagpath": "assets/flags/French.png",
-//     },
-//     {
-//       "code": "it",
-//       "assetpath": "assets/locale/italian_it.json",
-//       "name": "Italian",
-//       "flagpath": "assets/flags/Italian.png",
-//     },
-//     {
-//       "code": "pl",
-//       "assetpath": "assets/locale/polish_pl.json",
-//       "name": "Polish",
-//       "flagpath": "assets/flags/Polish.png",
-//     },
-//     {
-//       "code": "nl",
-//       "assetpath": "assets/locale/dutch_nl.json",
-//       "name": "Dutch",
-//       "flagpath": "assets/flags/Dutch.png",
-//     }
-//   ];
-// }
+  static List<Map> emailGenLang = [
+    {
+      "code": "en",
+      "assetpath": "assets/locale/english_en.json",
+      "name": "English",
+      "flagpath": "assets/flags/English.png",
+    },
+    {
+      "code": "de",
+      "assetpath": "assets/locale/german_de.json",
+      "name": "German",
+      "flagpath": "assets/flags/German.png",
+    },
+    {
+      "code": "es",
+      "assetpath": "assets/locale/spanish_es.json",
+      "name": "Spanish",
+      "flagpath": "assets/flags/spanish.png",
+    },
+    {
+      "code": "fr",
+      "assetpath": "assets/locale/french_fr.json",
+      "name": "French",
+      "flagpath": "assets/flags/French.png",
+    },
+    {
+      "code": "it",
+      "assetpath": "assets/locale/italian_it.json",
+      "name": "Italian",
+      "flagpath": "assets/flags/Italian.png",
+    },
+    {
+      "code": "pl",
+      "assetpath": "assets/locale/polish_pl.json",
+      "name": "Polish",
+      "flagpath": "assets/flags/Polish.png",
+    },
+    {
+      "code": "nl",
+      "assetpath": "assets/locale/dutch_nl.json",
+      "name": "Dutch",
+      "flagpath": "assets/flags/Dutch.png",
+    }
+  ];
+}

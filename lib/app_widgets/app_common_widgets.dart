@@ -93,4 +93,14 @@ class AppCommonWidgets {
           image: DecorationImage(image: NetworkImage(url))),
     );
   }
+
+  static commonCard(Widget child) {
+    return Card(
+      elevation: AppConst.elevation,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppConst.cardRadius),
+      ),
+      child: child,
+    );
+  }
 }
