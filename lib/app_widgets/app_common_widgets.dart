@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../screens/network_screen.dart';
 
@@ -103,4 +104,46 @@ class AppCommonWidgets {
       child: child,
     );
   }
+
+  static getLenthOfMail(value,{Function(dynamic)? onChanged}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+         Padding(
+                padding: EdgeInsets.only(
+                    top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+                child: Text(AppString.selectLength),
+              ),
+        Row(
+          children: [
+            Expanded(
+              child: getText(AppString.short),
+            ),
+            Expanded(
+                child: getText(AppString.medium, textAlign: TextAlign.center)),
+            Expanded(child: getText(AppString.long, textAlign: TextAlign.end)),
+          ],
+        ),
+        SfSlider(
+          min: 0.0,
+          max: 2,
+          value: value,
+          interval: 2,
+          activeColor: Get.theme.primaryColor,
+          inactiveColor: Get.theme.hintColor,
+          enableTooltip: true,
+          minorTicksPerInterval: 1,
+          onChanged: onChanged,
+        )
+      ],
+    );
+  }
+
+ static getText(String title, {TextAlign? textAlign}) => Text(
+        title,
+        textAlign: textAlign ?? TextAlign.start,
+        style: Get.theme.textTheme.headlineSmall,
+      );
+
+  
 }

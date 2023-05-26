@@ -3,6 +3,7 @@ import 'package:ai_writing/app_widgets/common_text_field.dart';
 import 'package:ai_writing/helper/localization.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class GenerateScreen extends StatelessWidget {
   GenerateScreen({super.key});
@@ -14,7 +15,7 @@ class GenerateScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: AppDecoration.backroundDecoration,
-        padding: EdgeInsets.all(AppDimen.dimen16),
+        padding: EdgeInsets.all(AppDimen.dimen20),
         width: double.infinity,
         child: SafeArea(
           child: ListView(
@@ -42,8 +43,39 @@ class GenerateScreen extends StatelessWidget {
                 hintText: 'Write your thought here',
                 maxLength: 250,
               ),
+              AppCommonWidgets.getLenthOfMail(1),
+              getCriativityLevel(),
+              Row(
+                children: [
+                  Obx(
+                    () => SizedBox(
+                      width: AppDimen.dimen26,
+                      height: AppDimen.dimen26,
+                      child: Checkbox(
+                        checkColor: Get.theme.secondaryHeaderColor,
+                        focusColor: Get.theme.primaryColor,
+                        activeColor: Get.theme.primaryColor,
+                        value: controller.isChecked.value,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2)),
+                        onChanged: (bool? value) {
+                          controller.isChecked.value = value!;
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppDimen.dimen10,
+                  ),
+                  Expanded(
+                      child: Text(
+                    AppString.addEmoji,
+                    style: Get.theme.textTheme.headlineSmall,
+                  ))
+                ],
+              ),
               SizedBox(
-                height: AppDimen.dimen20,
+                height: AppDimen.dimen30,
               ),
               Align(
                 alignment: Alignment.center,
@@ -88,5 +120,42 @@ class GenerateScreen extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  getCriativityLevel() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding:
+              EdgeInsets.only(top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+          child: Text(AppString.creativityLevel),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: AppCommonWidgets.getText(AppString.short),
+            ),
+            Expanded(
+                child: AppCommonWidgets.getText(AppString.medium,
+                    textAlign: TextAlign.center)),
+            Expanded(
+                child: AppCommonWidgets.getText(AppString.long,
+                    textAlign: TextAlign.end)),
+          ],
+        ),
+        SfSlider(
+          min: 0.0,
+          max: 2,
+          value: 1,
+          interval: 2,
+          activeColor: Get.theme.primaryColor,
+          inactiveColor: Get.theme.hintColor,
+          enableTooltip: true,
+          minorTicksPerInterval: 1,
+          onChanged: (value) {},
+        )
+      ],
+    );
   }
 }

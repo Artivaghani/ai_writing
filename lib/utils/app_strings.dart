@@ -13,9 +13,15 @@ class AppString {
   static String aiemail = 'Ai Email';
   static String selectPurpose = 'Select Purpose';
   static String selectLang = 'Select Language';
+  static String selectLength = 'Select Length';
+  static String creativityLevel = 'Creativity Level';
   static String selectTone = 'Select Tone';
   static String keyPoint = 'Key Point';
   static String generate = 'Generate';
+  static String addEmoji = 'Add Emoji';
+  static String short = 'Short';
+  static String medium = 'Medium';
+  static String long = 'Long';
 
   static String requesttimeout = "Your request timeout, Please try again later";
   static String changeTheme = 'Change Theme';

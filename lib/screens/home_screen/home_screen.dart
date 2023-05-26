@@ -1,3 +1,4 @@
+import 'package:ai_writing/screens/correction_screen.dart/correction_screen.dart';
 import 'package:ai_writing/screens/writing_screen/writing_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -63,7 +64,13 @@ class HomeScreen extends StatelessWidget {
                               itemCount: controller.getData!.list!.length,
                               itemBuilder: (BuildContext ctx, index) {
                                 return InkWell(
-                                    onTap: () => Get.to(WritingScreen()),
+                                    onTap: () {
+                                      if (index == 0) {
+                                        Get.to(WritingScreen());
+                                      } else {
+                                        Get.to(CorrectionScreen());
+                                      }
+                                    },
                                     child: const HomeCardWidget());
                               }),
                 ),
