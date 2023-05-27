@@ -22,6 +22,9 @@ class AppString {
   static String short = 'Short';
   static String medium = 'Medium';
   static String long = 'Long';
+  static String creditHistory = 'Credit History';
+  static String buyHistory = 'Buy History';
+  static String aboutUs = 'About US';
 
   static String requesttimeout = "Your request timeout, Please try again later";
   static String changeTheme = 'Change Theme';

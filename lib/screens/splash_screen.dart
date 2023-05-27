@@ -1,3 +1,5 @@
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
+
 import '../../utils/config_packages.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -26,7 +28,7 @@ class SplashScreen extends StatelessWidget {
               // print(AppDimen.screenHeight);
               Future.delayed(
                 const Duration(seconds: 3),
-                () => Get.off(HomeScreen()),
+                () => Get.off(LoginScreen()),
               );
               return splashData();
             } else {

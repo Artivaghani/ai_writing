@@ -70,14 +70,19 @@ class LoginScreen extends StatelessWidget {
                         SizedBox(
                           height: AppDimen.dimen30,
                         ),
-                        ButtonView(
-                          title: AppString.loginWidGoogle,
-                          height: AppDimen.dimen70,
-                          icon: Image.asset(
-                            AppImages.google,
-                            width: AppDimen.dimen26,
-                            height: AppDimen.dimen26,
-                            color: Get.theme.cardColor,
+                        InkWell(
+                          onTap: () {
+                            Get.offAll(HomeScreen());
+                          },
+                          child: ButtonView(
+                            title: AppString.loginWidGoogle,
+                            height: AppDimen.dimen70,
+                            icon: Image.asset(
+                              AppImages.google,
+                              width: AppDimen.dimen26,
+                              height: AppDimen.dimen26,
+                              color: Get.theme.cardColor,
+                            ),
                           ),
                         ),
                         SizedBox(

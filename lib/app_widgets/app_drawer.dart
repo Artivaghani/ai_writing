@@ -1,3 +1,7 @@
+import 'package:ai_writing/screens/about_us_screen/about_us_screen.dart';
+import 'package:ai_writing/screens/buy_history_screen/buy_history_controller.dart';
+import 'package:ai_writing/screens/buy_history_screen/buy_history_screen.dart';
+import 'package:ai_writing/screens/credit_history_screen/credit_history_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -51,10 +55,13 @@ class Appdrawer extends StatelessWidget {
                     SizedBox(
                       height: AppDimen.dimen20,
                     ),
-                    getListView('Home', Icons.home, onTap: () {}),
-                    getListView('credits histery', Icons.history,onTap: (){
-                      Get.to(LoginScreen());
-                    }),
+                    getListView(
+                        AppString.creditHistory, Icons.history_edu_sharp,
+                        onTap: () => Get.to(CreditHistoryScreen())),
+                    getListView(AppString.buyHistory, Icons.history_rounded,
+                        onTap: () => Get.to(BuyHistoryScreen())),
+                    getListView(AppString.aboutUs, Icons.abc,
+                        onTap: () => Get.to(AboutUsScreen())),
                   ],
                 ),
               ),
@@ -81,7 +88,7 @@ class Appdrawer extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: AppDimen.dimen8),
+        padding: EdgeInsets.symmetric(vertical: AppDimen.dimen10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

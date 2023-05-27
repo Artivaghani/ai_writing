@@ -6,7 +6,7 @@ import 'package:ai_writing/utils/config_packages.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  HomeController controller = Get.put(HomeController());
+  HomeController controller = Get.put(HomeController(),permanent: true);
 
   @override
   Widget build(BuildContext context) {
