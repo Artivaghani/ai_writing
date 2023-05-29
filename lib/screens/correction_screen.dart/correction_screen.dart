@@ -37,7 +37,7 @@ class CorrectionScreen extends StatelessWidget {
                       width: AppDimen.dimen26,
                       height: AppDimen.dimen26,
                       child: Checkbox(
-                        checkColor: Get.theme.secondaryHeaderColor,
+                        checkColor: Get.theme.hintColor,
                         focusColor: Get.theme.primaryColor,
                         activeColor: Get.theme.primaryColor,
                         value: controller.isChecked.value,
@@ -66,13 +66,10 @@ class CorrectionScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: ButtonView(
                   title: AppString.generate,
-                  height: AppDimen.dimen60,
-                  width: AppDimen.dimen200,
-                  icon: Icon(
-                    Icons.money,
-                    size: AppDimen.dimen20,
-                    color: Get.theme.cardColor,
-                  ),
+                  height: AppDimen.dimen70,
+                  width: AppDimen.dimen250,
+                   icon:AppCommonWidgets.roundAssetImg(AppImages.credit,
+                              radius: 10),
                   subtitle: '1',
                 ),
               )

@@ -17,10 +17,14 @@ class EmailView extends StatelessWidget {
           children: <Widget>[
             AppCommonWidgets.roundShapBtn(
                 size: AppDimen.dimen50,
-                child: AppCommonWidgets.roundImg(radius: 10)),
-                 SizedBox(
-                  width: AppDimen.dimen10,
-                ),
+                child: Image.asset(
+                  AppConst.toneList[0].assetpath.toString(),
+                  width: AppDimen.dimen30,
+                  height: AppDimen.dimen30,
+                )),
+            SizedBox(
+              width: AppDimen.dimen10,
+            ),
             Expanded(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

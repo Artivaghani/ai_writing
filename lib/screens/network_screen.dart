@@ -26,7 +26,7 @@ class NetworkCheckScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
                 child: Text(AppString.retry, style: Theme.of(context).textTheme.headline1),
                 onPressed: () {
-                  AppCommonWidgets.checkInternet(isShowMsg: false).then((value) {
+                  AppFunctions.checkInternet(isShowMsg: false).then((value) {
                     if (value) {
                       if (isSplash ?? false) {
                         Get.offAll(SplashScreen());

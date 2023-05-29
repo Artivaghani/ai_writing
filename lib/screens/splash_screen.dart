@@ -4,7 +4,7 @@ import '../../utils/config_packages.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
- 
+
   Future<double> whenNotZero(Stream<double> source) async {
     await for (double value in source) {
       if (value > 0) {
@@ -24,11 +24,16 @@ class SplashScreen extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data! > 0) {
-              // print(snapshot.data.toString());
-              // print(AppDimen.screenHeight);
               Future.delayed(
                 const Duration(seconds: 3),
-                () => Get.off(LoginScreen()),
+                () {
+                  if (StorageHelper().isLoggedIn) {
+                    Get.offUntil(GetPageRoute(page: () => HomeScreen()),
+                        (route) => false);
+                  } else {
+                    Get.off(LoginScreen());
+                  }
+                },
               );
               return splashData();
             } else {

@@ -1,5 +1,3 @@
-import 'package:ai_writing/app_widgets/btn_view.dart';
-import 'package:ai_writing/app_widgets/common_text_field.dart';
 import 'package:ai_writing/screens/credit_history_screen/credit_View.dart';
 import 'package:ai_writing/screens/credit_history_screen/credit_history_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';

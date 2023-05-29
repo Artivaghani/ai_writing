@@ -23,6 +23,13 @@ dependencies:
   connectivity_plus: ^4.0.1
   syncfusion_flutter_sliders: ^21.2.6
   font_awesome_flutter: ^10.4.0
+  google_sign_in: ^6.1.2
+  firebase_core: ^2.13.0
+  firebase_auth: ^4.6.1
+  firebase_messaging: ^14.6.1
+  share_plus: ^7.0.1
+  url_launcher: ^6.1.11
+  clipboard: ^0.1.3
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +46,8 @@ flutter:
     - assets/logos/
     - assets/gif/
     - assets/icons/
+    - assets/tone/
+    - assets/flags/
 
   
   fonts:

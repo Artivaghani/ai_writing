@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "484500304504",
+    "project_id": "ai-writing-6ac8f",
+    "storage_bucket": "ai-writing-6ac8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484500304504:android:46522eda824d5c7396338d",
+        "android_client_info": {
+          "package_name": "com.avcodes.ai_writing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484500304504-ac717lnsbeooais3no7so9ote24qgrgj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avcodes.ai_writing",
+            "certificate_hash": "eff4e5b02b870caa9a9817e78b0fdfca55843cda"
+          }
+        },
+        {
+          "client_id": "484500304504-1pjc2cuqo51suq7ondk5bhsgutljm2f5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLcJiogkn8HPi9uw2IpMOK-wHIOeDLS5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484500304504-1pjc2cuqo51suq7ondk5bhsgutljm2f5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

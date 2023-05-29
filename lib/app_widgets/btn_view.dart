@@ -7,6 +7,7 @@ class ButtonView extends StatelessWidget {
   final double? height;
   final double? width;
   final Color? color;
+  final bool isBorder;
   const ButtonView(
       {super.key,
       this.title,
@@ -14,6 +15,7 @@ class ButtonView extends StatelessWidget {
       this.subtitle,
       this.height,
       this.color,
+      this.isBorder = false,
       this.width});
 
   @override
@@ -23,17 +25,21 @@ class ButtonView extends StatelessWidget {
       height: height,
       child: Card(
         elevation: AppConst.elevation,
-        color:color?? Get.theme.primaryColor,
+        color: color ?? Get.theme.primaryColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConst.btnRadius),
-        ),
+            borderRadius: BorderRadius.circular(AppConst.btnRadius),
+            side: isBorder
+                ? BorderSide(color: Get.theme.primaryColor, width: 1)
+                : BorderSide.none),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             if (title != null)
               Text(
                 title!,
-                style: Get.theme.textTheme.titleMedium,
+                style: isBorder
+                    ? Get.theme.textTheme.headlineMedium
+                    : Get.theme.textTheme.titleMedium,
                 maxLines: 2,
               ),
             if (icon != null)
@@ -46,7 +52,9 @@ class ButtonView extends StatelessWidget {
                 padding: EdgeInsets.only(left: AppDimen.dimen14),
                 child: Text(
                   subtitle!,
-                  style: Get.theme.textTheme.titleMedium,
+                  style: isBorder
+                      ? Get.theme.textTheme.headlineMedium
+                      : Get.theme.textTheme.titleMedium,
                   maxLines: 2,
                 ),
               ),

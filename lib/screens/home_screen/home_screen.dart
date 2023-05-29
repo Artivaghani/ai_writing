@@ -6,7 +6,7 @@ import 'package:ai_writing/utils/config_packages.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  HomeController controller = Get.put(HomeController(),permanent: true);
+  HomeController controller = Get.put(HomeController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -29,29 +29,41 @@ class HomeScreen extends StatelessWidget {
                       child: AppCommonWidgets.roundShapBtn(
                           child: Icon(
                         Icons.menu_sharp,
-                        size: AppDimen.dimen26,
+                        size: AppDimen.dimen22,
                       )),
                     ),
-                    InkWell(
-                      onTap: () =>
-                          controller.scaffoldKey.currentState!.openDrawer(),
-                      child: AppCommonWidgets.roundImg(),
+                    Row(
+                      children: [
+                        Text('20',style: Get.theme.textTheme.headlineLarge,),
+                        SizedBox(width: AppDimen.dimen8,),
+                        InkWell(
+                          onTap: () =>
+                              controller.scaffoldKey.currentState!.openDrawer(),
+                          child: AppCommonWidgets.roundAssetImg(AppImages.credit,
+                              radius: 16),
+                        ),
+                      ],
                     ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: AppDimen.dimen26),
                   child: Text(
-                    '${AppString.hello},\nArti Vaghani',
+                    '${AppString.hello},\n${StorageHelper().loginData.name}',
                     style: Get.theme.textTheme.headlineLarge,
                   ),
                 ),
                 GetBuilder<HomeController>(
                   builder: (controller) => controller.isLoading
-                      ? AppCommonWidgets.processIntegrator
-                      : controller.getData == null ||
-                              controller.getData!.list!.isEmpty
-                          ? AppCommonWidgets.datanotfoundtext()
+                      ? Padding(
+                          padding: EdgeInsets.only(top: AppDimen.dimen100),
+                          child: AppCommonWidgets.processIntegrator(),
+                        )
+                      : controller.categoryData.isEmpty
+                          ? Padding(
+                              padding: EdgeInsets.only(top: AppDimen.dimen100),
+                              child: AppCommonWidgets.datanotfoundtext(),
+                            )
                           : GridView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -61,17 +73,24 @@ class HomeScreen extends StatelessWidget {
                                       childAspectRatio: 1.1,
                                       crossAxisSpacing: AppDimen.dimen10,
                                       mainAxisSpacing: AppDimen.dimen10),
-                              itemCount: controller.getData!.list!.length,
+                              itemCount: controller.categoryData.length,
                               itemBuilder: (BuildContext ctx, index) {
                                 return InkWell(
                                     onTap: () {
-                                      if (index == 0) {
-                                        Get.to(WritingScreen());
+                                      if (controller.categoryData[index].slug ==
+                                              Slug.email ||
+                                          controller.categoryData[index].slug ==
+                                              Slug.proposal) {
+                                        Get.to(WritingScreen(
+                                            categoryData: controller
+                                                .categoryData[index]));
                                       } else {
                                         Get.to(CorrectionScreen());
                                       }
                                     },
-                                    child: const HomeCardWidget());
+                                    child: HomeCardWidget(
+                                        categoryData:
+                                            controller.categoryData[index]));
                               }),
                 ),
               ],

@@ -12,7 +12,10 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         body: Container(
       decoration: AppDecoration.backroundDecoration,
-      padding: EdgeInsets.all(AppDimen.dimen16),
+      padding: EdgeInsets.only(
+          top: AppDimen.dimen16,
+          left: AppDimen.dimen16,
+          right: AppDimen.dimen16),
       width: double.infinity,
       child: SafeArea(
         child: Column(
@@ -63,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                           height: AppDimen.dimen14,
                         ),
                         Text(
-                          'AI is indeed moving from the research lab into business, industrial, and professional applications',
+                          AppString.loginMsg,
                           style: Get.theme.textTheme.bodySmall,
                           maxLines: 2,
                         ),
@@ -71,12 +74,10 @@ class LoginScreen extends StatelessWidget {
                           height: AppDimen.dimen30,
                         ),
                         InkWell(
-                          onTap: () {
-                            Get.offAll(HomeScreen());
-                          },
+                          onTap: () => controller.login(),
                           child: ButtonView(
                             title: AppString.loginWidGoogle,
-                            height: AppDimen.dimen70,
+                            height: AppDimen.dimen80,
                             icon: Image.asset(
                               AppImages.google,
                               width: AppDimen.dimen26,

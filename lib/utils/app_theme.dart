@@ -24,17 +24,17 @@ class AppTheme {
               fontWeight: FontWeight.w500),
           labelLarge: getTextStyle(AppColors.primaryColor, FontDimen.dimen18,
               fontWeight: FontWeight.w600),
-          labelMedium: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w700),
-          labelSmall: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w400),
+          labelMedium: getTextStyle(AppColors.primaryColor, FontDimen.dimen16, fontWeight: FontWeight.w500),
+          labelSmall: getTextStyle(AppColors.primaryColor, FontDimen.dimen14, fontWeight: FontWeight.w500),
           titleLarge: getTextStyle(AppColors.secondaryColor, FontDimen.dimen18, fontWeight: FontWeight.w500),
           titleMedium: getTextStyle(AppColors.secondaryColor, FontDimen.dimen16, fontWeight: FontWeight.w500),
           titleSmall: getTextStyle(AppColors.secondaryColor, FontDimen.dimen14, fontWeight: FontWeight.w500)));
 
   static final dark = ThemeData.dark().copyWith(
       primaryColor: AppColors.primaryColor,
-      scaffoldBackgroundColor: AppColors.terneryColor,
+      scaffoldBackgroundColor: AppColors.secondaryColor,
       iconTheme: const IconThemeData(color: AppColors.primaryColor),
-      cardColor: AppColors.secondaryColor.withOpacity(0.5),
+      cardColor: AppColors.secondaryColor,
       hintColor: AppColors.terneryColor,
       dividerColor: AppColors.deviderColor,
       textTheme: TextTheme(
@@ -52,11 +52,11 @@ class AppTheme {
           bodySmall: getTextStyle(AppColors.greyColor, FontDimen.dimen12,
               fontWeight: FontWeight.w500),
           labelLarge: getTextStyle(AppColors.primaryColor, FontDimen.dimen18,
-              fontWeight: FontWeight.w600),
-          labelMedium: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w500),
-          labelSmall: getTextStyle(AppColors.primaryColor, FontDimen.dimen18, fontWeight: FontWeight.w400),
+              fontWeight: FontWeight.w700),
+          labelMedium: getTextStyle(AppColors.primaryColor, FontDimen.dimen16, fontWeight: FontWeight.w500),
+          labelSmall: getTextStyle(AppColors.primaryColor, FontDimen.dimen14, fontWeight: FontWeight.w500),
           titleLarge: getTextStyle(AppColors.secondaryColor, FontDimen.dimen18, fontWeight: FontWeight.w500),
-          titleMedium: getTextStyle(AppColors.secondaryColor, FontDimen.dimen16, fontWeight: FontWeight.w500),
+          titleMedium: getTextStyle(AppColors.secondaryColor, FontDimen.dimen16, fontWeight: FontWeight.w600),
           titleSmall: getTextStyle(AppColors.secondaryColor, FontDimen.dimen14, fontWeight: FontWeight.w500)));
 }
 
@@ -65,4 +65,6 @@ TextStyle getTextStyle(Color color, double size, {FontWeight? fontWeight}) =>
         color: color,
         fontSize: size,
         fontWeight: fontWeight,
+        letterSpacing: 0.3,
+        height: 1.2,
         fontFamily: 'regular');

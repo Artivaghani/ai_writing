@@ -8,7 +8,11 @@ class AppDialog {
           child: AlertDialog(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            content: Container(width: 30, height: 30, child: AppCommonWidgets.processIntegrator),
+            content: Container(
+                width: 30,
+                height: 30,
+                child: AppCommonWidgets.processIntegrator(
+                    color: AppColors.secondaryColor)),
           )),
       barrierDismissible: false,
     );
@@ -20,7 +24,8 @@ class AppDialog {
           backgroundColor: AppColors.greenColor,
           content: Text(
             msg,
-            style: TextStyle(fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
+            style: TextStyle(
+                fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
           )),
     );
   }
@@ -31,7 +36,8 @@ class AppDialog {
           backgroundColor: AppColors.redColor,
           content: Text(
             msg,
-            style: TextStyle(fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
+            style: TextStyle(
+                fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
           )),
     );
   }

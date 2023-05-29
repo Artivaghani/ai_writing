@@ -21,7 +21,7 @@ class CommonAppBar extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: AppDimen.dimen20),
               child: Text(
                 title,
-                style: Get.theme.textTheme.labelMedium,
+                style: Get.theme.textTheme.labelLarge,
               ),
             ),
           ),

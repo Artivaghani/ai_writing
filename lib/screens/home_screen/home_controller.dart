@@ -1,10 +1,11 @@
+import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class HomeController extends GetxController {
   bool isLoading = true;
   bool status = false;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  Data? getData;
+  List<CategoryData> categoryData = [];
 
   @override
   void onInit() {
@@ -14,19 +15,20 @@ class HomeController extends GetxController {
   }
 
   initData() {
-    AppCommonWidgets.commonCheckInternetNavigate().then((value) {
-      callApi();
+    AppFunctions.commonCheckInternetNavigate().then((value) {
+      getCategory();
     });
   }
 
-  callApi() {
+  getCategory() {
     isLoading = true;
     update();
-    ApiManager.callPost(
-      ApiUtils.postsURL,
-      body: {ApiParam.name: 'jinal', ApiParam.token: 'abc'},
+    ApiManager.callGet(
+      ApiUtils.baseUrl + ApiUtils.category,
+      headers: ApiParam.header,
     ).then((value) {
-      getData = AllData.fromJson(value).data;
+      CategoryModel data = CategoryModel.fromJson(value);
+      categoryData = data.data ?? [];
 
       isLoading = false;
       update();
