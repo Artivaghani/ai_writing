@@ -1,11 +1,17 @@
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 
 class HomeController extends GetxController {
   bool isLoading = true;
   bool status = false;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   List<CategoryData> categoryData = [];
+
+  final newVersion = NewVersionPlus(
+    iOSId: 'com.disney.disneyplus',
+    androidId: 'com.avcodes.ai_writing',
+  );
 
   @override
   void onInit() {
@@ -17,6 +23,12 @@ class HomeController extends GetxController {
   initData() {
     AppFunctions.commonCheckInternetNavigate().then((value) {
       getCategory();
+    });
+  }
+
+  versionCheckFun() {
+    newVersion.getVersionStatus().then((status) {
+      print(' local v ${status!.localVersion}');
     });
   }
 
@@ -32,6 +44,7 @@ class HomeController extends GetxController {
 
       isLoading = false;
       update();
+      versionCheckFun();
     }).onError((error, stackTrace) {
       isLoading = false;
       update();

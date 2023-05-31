@@ -11,7 +11,7 @@ class CreditHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: AppDecoration.backroundDecoration,
+        decoration: AppDecoration.backroundDecoration(),
         padding: EdgeInsets.all(AppDimen.dimen20),
         width: double.infinity,
         child: SafeArea(

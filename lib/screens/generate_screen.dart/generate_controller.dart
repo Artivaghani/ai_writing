@@ -9,6 +9,7 @@ class GenerateController extends GetxController {
 
   LanguageModel selectedLang = LocalizationHelper.langList[0];
   ToneModel selectedTone = AppConst.toneList[0];
+  TextEditingController keyPointController=TextEditingController();
 
   @override
   void onInit() {

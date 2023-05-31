@@ -42,6 +42,12 @@ class AppString {
   static String logout = 'Logout';
   static String reviewAndSend = 'Review And Send';
   static String copy = 'Copy';
+  static String exit = 'Exit';
+  static String yes = 'Yes';
+  static String no = 'No';
+  static String  stop = 'Stop';
+  static String  listerning = 'Listening...';
+  static String exitMsg = 'Are you sure, you want to exit to this application?';
   static String loginMsg =
       'Artificial intelligence is the future, and the future is here.';
   static String shareText =

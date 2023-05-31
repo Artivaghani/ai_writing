@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      decoration: AppDecoration.backroundDecoration,
+      decoration: AppDecoration.backroundDecoration(),
       padding: EdgeInsets.only(
           top: AppDimen.dimen16,
           left: AppDimen.dimen16,

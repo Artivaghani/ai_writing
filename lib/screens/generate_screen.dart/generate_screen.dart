@@ -1,3 +1,5 @@
+import 'package:ai_writing/app_dialogs/micro_screen/micro_controller.dart';
+import 'package:ai_writing/app_dialogs/micro_screen/mictro_screen.dart';
 import 'package:ai_writing/app_widgets/btn_view.dart';
 import 'package:ai_writing/app_widgets/common_text_field.dart';
 import 'package:ai_writing/helper/localization.dart';
@@ -16,7 +18,7 @@ class GenerateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: AppDecoration.backroundDecoration,
+        decoration: AppDecoration.backroundDecoration(),
         padding: EdgeInsets.all(AppDimen.dimen20),
         width: double.infinity,
         child: SafeArea(
@@ -40,10 +42,33 @@ class GenerateScreen extends StatelessWidget {
                     top: AppDimen.dimen20, bottom: AppDimen.dimen10),
                 child: Text(AppString.keyPoint),
               ),
-              CommonTextField(
-                maxLines: 5,
-                hintText: 'Write your thought here',
-                maxLength: 250,
+              Stack(
+                children: [
+                  CommonTextField(
+                    controller: controller.keyPointController,
+                    maxLines: 5,
+                    hintText: 'Write your thought here',
+                    maxLength: 250,
+                  ),
+                  Positioned(
+                      bottom: 2,
+                      left: 2,
+                      child: IconButton(
+                          onPressed: () {
+                            Get.delete<MicroController>();
+                            showModalBottomSheet<void>(
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (BuildContext context) => MictroScreen(
+                                onTap: (String text) {
+                                  controller.keyPointController.text;
+                                  
+                                },
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.mic)))
+                ],
               ),
               Obx(
                 () => AppCommonWidgets.getLenthOfMail(
@@ -94,8 +119,8 @@ class GenerateScreen extends StatelessWidget {
                     title: AppString.generate,
                     height: AppDimen.dimen70,
                     width: AppDimen.dimen250,
-                    icon:AppCommonWidgets.roundAssetImg(AppImages.credit,
-                              radius: 10) ,
+                    icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
+                        radius: 10),
                     subtitle: '1',
                   ),
                 ),
@@ -115,6 +140,7 @@ class GenerateScreen extends StatelessWidget {
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             dropdownColor: Get.theme.cardColor,
+            iconEnabledColor: Get.theme.primaryColor,
             items: LocalizationHelper.langList
                 .map((item) => DropdownMenuItem<LanguageModel>(
                       value: item,
@@ -155,6 +181,7 @@ class GenerateScreen extends StatelessWidget {
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             dropdownColor: Get.theme.cardColor,
+            iconEnabledColor: Get.theme.primaryColor,
             items: AppConst.toneList
                 .map((item) => DropdownMenuItem<ToneModel>(
                       value: item,
@@ -168,7 +195,7 @@ class GenerateScreen extends StatelessWidget {
                               height: AppDimen.dimen30,
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             width: AppDimen.dimen8,
                           ),
                           Text(

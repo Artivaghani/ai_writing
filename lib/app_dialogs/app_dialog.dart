@@ -1,3 +1,4 @@
+import 'package:ai_writing/app_widgets/btn_view.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class AppDialog {
@@ -39,6 +40,78 @@ class AppDialog {
             style: TextStyle(
                 fontSize: FontDimen.dimen14, color: AppColors.secondaryColor),
           )),
+    );
+  }
+
+  static showCommonDialog(
+      {String? title,
+      required String subTitle,
+      String? btnTitle1,
+      required String btnTitle2,
+      required Function calbback}) {
+    showDialog(
+      barrierDismissible: false,
+      context: Get.context!,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0)), //this right here
+          child: Container(
+            decoration: AppDecoration.dialogBackroundDecoration(
+                borderRadius: BorderRadius.circular(15)),
+            padding: EdgeInsets.all(AppDimen.dimen20),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Text(
+                  title.toString(),
+                  style: Get.theme.textTheme.headlineMedium,
+                ),
+                SizedBox(
+                  height: AppDimen.dimen10,
+                ),
+                Text(
+                  subTitle.toString(),
+                ),
+                SizedBox(
+                  height: AppDimen.dimen30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: ButtonView(
+                              title: btnTitle1,
+                              height: AppDimen.dimen50,
+                              isBorder: true,
+                              color: Get.theme.scaffoldBackgroundColor)),
+                    ),
+                    SizedBox(
+                      width: AppDimen.dimen10,
+                    ),
+                    Expanded(
+                      child: InkWell(
+                          onTap: () {
+                            Get.back();
+                            calbback.call();
+                          },
+                          child: ButtonView(
+                              title: btnTitle2,
+                              height: AppDimen.dimen50,
+                              color: Get.theme.primaryColor)),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

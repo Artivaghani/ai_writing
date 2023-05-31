@@ -16,7 +16,7 @@ class WritingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: AppDecoration.backroundDecoration,
+        decoration: AppDecoration.backroundDecoration(),
         padding: EdgeInsets.all(AppDimen.dimen16),
         width: double.infinity,
         child: SafeArea(

@@ -16,7 +16,7 @@ class Appdrawer extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: Container(
         padding: EdgeInsets.all(AppDimen.dimen20),
-        decoration: AppDecoration.backroundDecoration,
+        decoration: AppDecoration.backroundDecoration(),
         child: SafeArea(
           child: Column(
             children: [

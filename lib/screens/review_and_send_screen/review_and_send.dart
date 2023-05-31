@@ -11,7 +11,7 @@ class ReviewAndSendScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: AppDecoration.backroundDecoration,
+        decoration: AppDecoration.backroundDecoration(),
         padding: EdgeInsets.all(AppDimen.dimen20),
         width: double.infinity,
         child: SafeArea(
@@ -92,8 +92,8 @@ class ReviewAndSendScreen extends StatelessWidget {
                       title: AppString.reGenerate,
                       height: AppDimen.dimen70,
                       isBorder: true,
-                      icon:AppCommonWidgets.roundAssetImg(AppImages.credit,
-                              radius: 10) ,
+                      icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
+                          radius: 10),
                       subtitle: '1',
                     ),
                   ),
@@ -107,7 +107,7 @@ class ReviewAndSendScreen extends StatelessWidget {
                             'body': 'Example Subject & Symbols are allowed!',
                           }),
                         );
-                  
+
                         launchUrl(emailLaunchUri);
                       },
                       child: ButtonView(

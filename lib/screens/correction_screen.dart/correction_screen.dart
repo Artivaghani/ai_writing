@@ -12,7 +12,7 @@ class CorrectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: AppDecoration.backroundDecoration,
+        decoration: AppDecoration.backroundDecoration(),
         padding: EdgeInsets.all(AppDimen.dimen20),
         width: double.infinity,
         child: SafeArea(
@@ -24,10 +24,22 @@ class CorrectionScreen extends StatelessWidget {
                     top: AppDimen.dimen20, bottom: AppDimen.dimen10),
                 child: Text(AppString.keyPoint),
               ),
-              CommonTextField(
-                maxLines: 15,
-                hintText: 'Write your thought here',
-                maxLength: 250,
+              Stack(
+                children: [
+                  CommonTextField(
+                    maxLines: 15,
+                    hintText: 'Write your thought here',
+                    maxLength: 250,
+                  ),
+                   Positioned(
+                      bottom: 2,
+                      left: 2,
+                      child: IconButton(
+                          onPressed: () {
+                            print('testing');
+                          },
+                          icon: const Icon(Icons.mic)))
+                ],
               ),
               AppCommonWidgets.getLenthOfMail(0),
               Row(

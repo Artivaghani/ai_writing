@@ -49,7 +49,7 @@ class SplashScreen extends StatelessWidget {
         body: Container(
           height: AppDimen.screenHeight,
           width: AppDimen.screenWidth,
-          decoration: AppDecoration.backroundDecoration,
+          decoration: AppDecoration.backroundDecoration(),
           child: Center(
             child: Padding(
               padding: EdgeInsets.all(AppDimen.dimen80),
