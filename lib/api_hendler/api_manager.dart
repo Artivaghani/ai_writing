@@ -17,9 +17,9 @@ class ApiManager {
             throw AppString.requesttimeout;
           },
         );
-        if (response.statusCode == 401) {
-          await AppFunctions.logout();
-        }
+        // if (response.statusCode == 401) {
+        //   await AppFunctions.logout();
+        // }
         finalresponse = checkResponse(response);
         return finalresponse;
       } on SocketException catch (_) {
@@ -38,9 +38,9 @@ class ApiManager {
         Map<String, dynamic> finalresponse;
         http.Response response =
             await http.post(Uri.parse(url), headers: headers, body: body);
-        if (response.statusCode == 401) {
-          await AppFunctions.logout();
-        }
+        // if (response.statusCode == 401) {
+        //   await AppFunctions.logout();
+        // }
         finalresponse = checkResponse(response);
         return finalresponse;
       } on SocketException catch (_) {

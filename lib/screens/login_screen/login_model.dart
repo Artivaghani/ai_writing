@@ -35,7 +35,7 @@ class LoginData {
   String? provider;
   String? profile;
   String? deviceToken;
-  int? deviceType;
+  String? deviceType;
   String? authtoken;
 
   LoginData(

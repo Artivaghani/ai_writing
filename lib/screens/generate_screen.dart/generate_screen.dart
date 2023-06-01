@@ -1,7 +1,7 @@
-import 'package:ai_writing/app_dialogs/micro_screen/micro_controller.dart';
-import 'package:ai_writing/app_dialogs/micro_screen/mictro_screen.dart';
-import 'package:ai_writing/app_widgets/btn_view.dart';
-import 'package:ai_writing/app_widgets/common_text_field.dart';
+import 'package:ai_writing/common_dialogs/micro_screen/micro_controller.dart';
+import 'package:ai_writing/common_dialogs/micro_screen/mictro_screen.dart';
+import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/helper/localization.dart';
 import 'package:ai_writing/helper/localization_model.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
@@ -62,7 +62,6 @@ class GenerateScreen extends StatelessWidget {
                               builder: (BuildContext context) => MictroScreen(
                                 onTap: (String text) {
                                   controller.keyPointController.text;
-                                  
                                 },
                               ),
                             );

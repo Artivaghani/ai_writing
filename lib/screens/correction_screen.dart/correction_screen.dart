@@ -1,5 +1,5 @@
-import 'package:ai_writing/app_widgets/btn_view.dart';
-import 'package:ai_writing/app_widgets/common_text_field.dart';
+import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/screens/correction_screen.dart/correction_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -31,7 +31,7 @@ class CorrectionScreen extends StatelessWidget {
                     hintText: 'Write your thought here',
                     maxLength: 250,
                   ),
-                   Positioned(
+                  Positioned(
                       bottom: 2,
                       left: 2,
                       child: IconButton(
@@ -80,8 +80,8 @@ class CorrectionScreen extends StatelessWidget {
                   title: AppString.generate,
                   height: AppDimen.dimen70,
                   width: AppDimen.dimen250,
-                   icon:AppCommonWidgets.roundAssetImg(AppImages.credit,
-                              radius: 10),
+                  icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
+                      radius: 10),
                   subtitle: '1',
                 ),
               )

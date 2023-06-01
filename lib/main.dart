@@ -1,3 +1,4 @@
+import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
 import 'utils/config_packages.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
             child: child!);
       },
-      home: const SplashScreen(),
+      home: const SubscriptionScreen(),
     );
   }
 }

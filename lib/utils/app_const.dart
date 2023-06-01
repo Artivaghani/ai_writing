@@ -6,6 +6,21 @@ class AppConst {
   static const double cardRadius = 14;
   static const double btnRadius = 10;
 
+//Test net
+  static const String androidBannerId =
+      'ca-app-pub-3940256099942544/6300978111';
+  static const String androidInterstrialId =
+      'ca-app-pub-3940256099942544/1033173712';
+  static const String androidRevordeId =
+      'ca-app-pub-3940256099942544/5224354917';
+  static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
+
+//Live
+  // static const String androidBannerId = 'ca-app-pub-7484057413460570/8690020296';
+  // static const String androidInterstrialId = '';
+  // static const String androidRevordeId = '';
+  // static const String androidOpenId = '';
+
   static const String androidClientID =
       '484500304504-1pjc2cuqo51suq7ondk5bhsgutljm2f5.apps.googleusercontent.com';
   static const String iosClientID = '';

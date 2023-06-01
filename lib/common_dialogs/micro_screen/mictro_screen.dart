@@ -1,5 +1,5 @@
-import 'package:ai_writing/app_dialogs/micro_screen/micro_controller.dart';
-import 'package:ai_writing/app_widgets/btn_view.dart';
+import 'package:ai_writing/common_dialogs/micro_screen/micro_controller.dart';
+import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class MictroScreen extends StatelessWidget {

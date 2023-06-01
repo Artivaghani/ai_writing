@@ -46,6 +46,8 @@ class AppString {
   static String yes = 'Yes';
   static String no = 'No';
   static String  stop = 'Stop';
+  static String  amazing = 'Amazing';
+  static String  pro = 'Pro';
   static String  listerning = 'Listening...';
   static String exitMsg = 'Are you sure, you want to exit to this application?';
   static String loginMsg =

@@ -1,4 +1,4 @@
-import 'package:ai_writing/app_widgets/btn_view.dart';
+import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';

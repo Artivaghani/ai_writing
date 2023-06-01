@@ -77,10 +77,11 @@ class AppCommonWidgets {
     );
   }
 
-  static commonCard(Widget child) {
+  static commonCard(Widget child,{BorderSide side = BorderSide.none}) {
     return Card(
       elevation: AppConst.elevation,
       shape: RoundedRectangleBorder(
+        side:side,
         borderRadius: BorderRadius.circular(AppConst.cardRadius),
       ),
       child: child,

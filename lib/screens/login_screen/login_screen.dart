@@ -1,4 +1,4 @@
-import 'package:ai_writing/app_widgets/btn_view.dart';
+import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/screens/login_screen/login_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
