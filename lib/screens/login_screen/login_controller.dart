@@ -24,8 +24,6 @@ class LoginController extends GetxController {
               accessToken: googleSignInAuthentication.accessToken);
           auth.signInWithCredential(authCredential).then((result) {
             user = result.user!;
-            debugPrint(
-                "User ::::: === ${user.email} ${user.uid} ${user.photoURL} ${user.displayName}}");
 
             FirebaseMessaging.instance
                 .getToken()
@@ -63,6 +61,7 @@ class LoginController extends GetxController {
       LoginModel response = LoginModel.fromJson(value);
       StorageHelper().loginData = response.data!;
       StorageHelper().isLoggedIn = true;
+      print('Auth token ${StorageHelper().loginData.authtoken}');
       Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
     }).onError((error, stackTrace) {
       Get.back();

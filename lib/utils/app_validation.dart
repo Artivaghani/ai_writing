@@ -4,7 +4,7 @@ class FieldValidator {
   static bool validatesPassword(String value) {
     String pattern =
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp =  RegExp(pattern);
     return regExp.hasMatch(value);
   }
 

@@ -1,12 +1,10 @@
-
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-
 class AppCommonWidgets {
   static Widget processIntegrator({Color? color}) => Center(
-          child: SpinKitThreeBounce(
-        size: AppDimen.dimen30,
+          child: SpinKitDoubleBounce(
+        size: AppDimen.dimen50,
         color: color ?? Get.theme.primaryColor,
       ));
 
@@ -19,13 +17,13 @@ class AppCommonWidgets {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'oops!',
-            style: Get.theme.textTheme.subtitle1!
+            'Sorry!!!',
+            style: Get.theme.textTheme.bodyLarge!
                 .copyWith(color: AppColors.greyColor),
           ),
           Text(
-            "No Data Found!",
-            style: Get.theme.textTheme.subtitle1!
+            "Results not found",
+            style: Get.theme.textTheme.bodyMedium!
                 .copyWith(color: AppColors.greyColor),
           ),
         ],
@@ -77,11 +75,11 @@ class AppCommonWidgets {
     );
   }
 
-  static commonCard(Widget child,{BorderSide side = BorderSide.none}) {
+  static commonCard(Widget child, {BorderSide side = BorderSide.none}) {
     return Card(
       elevation: AppConst.elevation,
       shape: RoundedRectangleBorder(
-        side:side,
+        side: side,
         borderRadius: BorderRadius.circular(AppConst.cardRadius),
       ),
       child: child,

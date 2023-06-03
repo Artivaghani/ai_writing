@@ -1,11 +1,11 @@
-import 'package:ai_writing/screens/credit_history_screen/credit_View.dart';
-import 'package:ai_writing/screens/credit_history_screen/credit_history_controller.dart';
+import 'package:ai_writing/screens/history_screen/buy_history_controller.dart';
+import 'package:ai_writing/screens/history_screen/credit_View.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
-class CreditHistoryScreen extends StatelessWidget {
-  CreditHistoryScreen({super.key});
+class HistoryScreen extends StatelessWidget {
+  HistoryScreen({super.key});
 
-  CreditHistoryController controller = Get.put(CreditHistoryController());
+  HistoryController controller = Get.put(HistoryController());
 
   @override
   Widget build(BuildContext context) {

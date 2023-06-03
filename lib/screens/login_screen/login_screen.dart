@@ -52,59 +52,74 @@ class LoginScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(AppDimen.dimen20),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: AppDimen.dimen20,
-                        ),
-                        Text(
-                          AppString.login,
-                          style: Get.theme.textTheme.headlineLarge,
-                        ),
-                        SizedBox(
-                          height: AppDimen.dimen14,
-                        ),
-                        Text(
-                          AppString.loginMsg,
-                          style: Get.theme.textTheme.bodySmall,
-                          maxLines: 2,
-                        ),
-                        SizedBox(
-                          height: AppDimen.dimen30,
-                        ),
-                        InkWell(
-                          onTap: () => controller.login(),
-                          child: ButtonView(
-                            title: AppString.loginWidGoogle,
-                            height: AppDimen.dimen80,
-                            icon: Image.asset(
-                              AppImages.google,
-                              width: AppDimen.dimen26,
-                              height: AppDimen.dimen26,
-                              color: Get.theme.cardColor,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: AppDimen.dimen30,
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            text: AppString.loginWarning,
-                            style: Get.theme.textTheme.bodySmall,
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: ' ${AppString.termAndCon}',
-                                style: Get.theme.textTheme.bodySmall!.copyWith(
-                                    color: Get.theme.primaryColor,
-                                    fontWeight: FontWeight.bold),
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              SizedBox(
+                                height: AppDimen.dimen20,
                               ),
-                              TextSpan(
-                                text: ' ${AppString.loginWarning1}',
-                                style: Get.theme.textTheme.bodySmall!,
+                              Text(
+                                AppString.login,
+                                style: Get.theme.textTheme.headlineLarge,
+                              ),
+                              SizedBox(
+                                height: AppDimen.dimen14,
+                              ),
+                              Text(
+                                AppString.loginMsg,
+                                style: Get.theme.textTheme.bodySmall,
+                                maxLines: 2,
+                              ),
+                              SizedBox(
+                                height: AppDimen.dimen30,
+                              ),
+                              InkWell(
+                                onTap: () => controller.login(),
+                                child: ButtonView(
+                                  title: AppString.loginWidGoogle,
+                                  height: AppDimen.dimen80,
+                                  icon: Image.asset(
+                                    AppImages.google,
+                                    width: AppDimen.dimen26,
+                                    height: AppDimen.dimen26,
+                                    color: Get.theme.cardColor,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: AppDimen.dimen30,
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: AppString.loginWarning,
+                                  style: Get.theme.textTheme.bodySmall,
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: ' ${AppString.termAndCon}',
+                                      style: Get.theme.textTheme.bodySmall!
+                                          .copyWith(
+                                              color: Get.theme.primaryColor,
+                                              fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                      text: ' ${AppString.loginWarning1}',
+                                      style: Get.theme.textTheme.bodySmall!,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => Get.offAll(HomeScreen()),
+                          child: Text(
+                            AppString.loginAsGuestUser,
+                            style: Get.theme.textTheme.headlineSmall!
+                                .copyWith(decoration: TextDecoration.underline),
                           ),
                         ),
                       ],

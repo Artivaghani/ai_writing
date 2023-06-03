@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:new_version_plus/new_version_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
   bool isLoading = true;
@@ -23,12 +26,7 @@ class HomeController extends GetxController {
   initData() {
     AppFunctions.commonCheckInternetNavigate().then((value) {
       getCategory();
-    });
-  }
-
-  versionCheckFun() {
-    newVersion.getVersionStatus().then((status) {
-      print(' local v ${status!.localVersion}');
+      checkVersion();
     });
   }
 
@@ -37,18 +35,48 @@ class HomeController extends GetxController {
     update();
     ApiManager.callGet(
       ApiUtils.baseUrl + ApiUtils.category,
-      headers: ApiParam.header,
+      // headers: ApiParam.header,
     ).then((value) {
       CategoryModel data = CategoryModel.fromJson(value);
       categoryData = data.data ?? [];
 
       isLoading = false;
       update();
-      versionCheckFun();
     }).onError((error, stackTrace) {
       isLoading = false;
       update();
       AppDialog.errorSnackBar(error.toString());
     });
+  }
+
+  void checkVersion() {
+    ApiManager.callGet(
+      '${ApiUtils.baseUrl}${ApiUtils.generalApi}?type=${ApiParam.appversion}',
+    ).then((value) {
+      print(' local v ${value['data']['play_store_version']}');
+
+      newVersion.getVersionStatus().then((status) {
+        double localVersion =
+            double.parse(status!.localVersion.toString().replaceAll('.', ''));
+        double appStroreVersion = double.parse(
+            value['data']['app_store_version'].toString().replaceAll('.', ''));
+        double playStroreVersion = double.parse(
+            value['data']['play_store_version'].toString().replaceAll('.', ''));
+        if ((Platform.isAndroid && (localVersion >= playStroreVersion)) ||
+            (Platform.isIOS && (localVersion >= appStroreVersion))) {
+          AppDialog.showCommonDialog(
+              title: AppString.updateavailable,
+              subTitle: AppString.updateMsg,
+              btnTitle2: AppString.update,
+              calbback: () {
+                if (Platform.isAndroid) {
+                  launch(AppConst.playStoreLink);
+                } else {
+                  launch(AppConst.appStoreLink);
+                }
+              });
+        }
+      });
+    }).onError((error, stackTrace) {});
   }
 }

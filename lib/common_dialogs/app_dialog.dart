@@ -44,7 +44,7 @@ class AppDialog {
   }
 
   static showCommonDialog(
-      {String? title,
+      {required String? title,
       required String subTitle,
       String? btnTitle1,
       required String btnTitle2,
@@ -53,61 +53,88 @@ class AppDialog {
       barrierDismissible: false,
       context: Get.context!,
       builder: (BuildContext context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0)), //this right here
-          child: Container(
-            decoration: AppDecoration.dialogBackroundDecoration(
-                borderRadius: BorderRadius.circular(15)),
-            padding: EdgeInsets.all(AppDimen.dimen20),
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                Text(
-                  title.toString(),
-                  style: Get.theme.textTheme.headlineMedium,
-                ),
-                SizedBox(
-                  height: AppDimen.dimen10,
-                ),
-                Text(
-                  subTitle.toString(),
-                ),
-                SizedBox(
-                  height: AppDimen.dimen30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: ButtonView(
-                              title: btnTitle1,
-                              height: AppDimen.dimen50,
-                              isBorder: true,
-                              color: Get.theme.scaffoldBackgroundColor)),
-                    ),
-                    SizedBox(
-                      width: AppDimen.dimen10,
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          onTap: () {
-                            Get.back();
-                            calbback.call();
-                          },
-                          child: ButtonView(
-                              title: btnTitle2,
-                              height: AppDimen.dimen50,
-                              color: Get.theme.primaryColor)),
-                    ),
-                  ],
-                )
-              ],
+        return WillPopScope(
+          onWillPop: () async {
+            return Future.value(false);
+          },
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)), //this right here
+            child: Container(
+              decoration: AppDecoration.dialogBackroundDecoration(
+                  borderRadius: BorderRadius.circular(15)),
+              padding: EdgeInsets.all(AppDimen.dimen20),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Text(
+                    title.toString(),
+                    style: Get.theme.textTheme.headlineMedium,
+                  ),
+                  SizedBox(
+                    height: AppDimen.dimen10,
+                  ),
+                  Text(
+                    subTitle.toString(),
+                  ),
+                  SizedBox(
+                    height: AppDimen.dimen30,
+                  ),
+                  btnTitle1 != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: ButtonView(
+                                      title: btnTitle1,
+                                      height: AppDimen.dimen60,
+                                      isBorder: true,
+                                      color:
+                                          Get.theme.scaffoldBackgroundColor)),
+                            ),
+                            SizedBox(
+                              width: AppDimen.dimen10,
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                    calbback.call();
+                                  },
+                                  child: ButtonView(
+                                      title: btnTitle2,
+                                      height: AppDimen.dimen60,
+                                      color: Get.theme.primaryColor)),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            const Expanded(flex: 1, child: Spacer()),
+                            Expanded(
+                              flex: 2,
+                              child: InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                    calbback.call();
+                                  },
+                                  child: ButtonView(
+                                      title: btnTitle2,
+                                      height: AppDimen.dimen60,
+                                      color: Get.theme.primaryColor)),
+                            ),
+                            const Expanded(flex: 1, child: Spacer()),
+                          ],
+                        ),
+                ],
+              ),
             ),
           ),
         );

@@ -1,6 +1,7 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_screen.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/screens/review_and_send_screen/review_and_send.dart';
 import 'package:ai_writing/screens/writing_screen/email_view.dart';
 import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
@@ -10,10 +11,20 @@ class WritingScreen extends StatelessWidget {
   final CategoryData categoryData;
   WritingScreen({super.key, required this.categoryData});
 
-  WritingController controller = Get.put(WritingController());
+  WritingController writingController = Get.put(WritingController());
+
+  @override
+  StatelessElement createElement() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      writingController.getTempList(categoryData.slug);
+      writingController.getYourList(categoryData.slug);
+    });
+    return super.createElement();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('token ${StorageHelper().loginData.authtoken}');
     return Scaffold(
       body: Container(
         decoration: AppDecoration.backroundDecoration(),
@@ -46,29 +57,105 @@ class WritingScreen extends StatelessWidget {
                             ? AppString.yourEmails
                             : AppString.yourProposal)),
                   ],
-                  onTap: (value) {},
+                  onTap: (value) {
+                    writingController.selectTab = value;
+                    writingController.update();
+                  },
                 ),
                 Expanded(
-                    child: Obx(() => controller.selectTab.value == 0
-                        ? ListView.builder(
-                            itemCount: 10,
-                            itemBuilder: (context, index) => InkWell(
-                                onTap: () =>
-                                    Get.to(const ReviewAndSendScreen()),
-                                child: EmailView()),
-                          )
-                        : Container()))
+                    child: GetBuilder<WritingController>(
+                        builder: (controller) => writingController.selectTab ==
+                                0
+                            ? writingController.isTempLoad
+                                ? AppCommonWidgets.processIntegrator()
+                                : writingController.tempList.isEmpty
+                                    ? AppCommonWidgets.datanotfoundtext()
+                                    : ListView.builder(
+                                        itemCount:
+                                            writingController.tempList.length,
+                                        itemBuilder: (context, index) =>
+                                            InkWell(
+                                                onTap: () =>
+                                                    Get.to(ReviewAndSendScreen(
+                                                      subject: writingController
+                                                              .tempList[index]
+                                                              .title ??
+                                                          '',
+                                                      email: writingController
+                                                              .tempList[index]
+                                                              .content ??
+                                                          '',
+                                                    )),
+                                                child: EmailView(
+                                                  title: writingController
+                                                          .tempList[index]
+                                                          .title ??
+                                                      '',
+                                                  image: ApiUtils.baseUrl +
+                                                      (categoryData.image ??
+                                                          ''),
+                                                )),
+                                      )
+                            : writingController.isLoad
+                                ? AppCommonWidgets.processIntegrator()
+                                : writingController.yourList.isEmpty
+                                    ? AppCommonWidgets.datanotfoundtext()
+                                    : ListView.builder(
+                                        itemCount:
+                                            writingController.yourList.length,
+                                        itemBuilder: (context, index) =>
+                                            InkWell(
+                                                onTap: () =>
+                                                    Get.to(ReviewAndSendScreen(
+                                                      subject: writingController
+                                                              .yourList[index]
+                                                              .prompt ??
+                                                          '',
+                                                      email: writingController
+                                                              .yourList[index]
+                                                              .result!
+                                                              .choices?[0]
+                                                              .text ??
+                                                          '',
+                                                    )),
+                                                child: EmailView(
+                                                  title: writingController
+                                                          .yourList[index]
+                                                          .tone ??
+                                                      '',
+                                                  subTitle: writingController
+                                                          .yourList[index]
+                                                          .prompt ??
+                                                      '',
+                                                  id: writingController
+                                                          .yourList[index].id ??
+                                                      0,
+                                                  isFree: false,
+                                                )),
+                                      )))
               ],
             ),
           ),
         ),
       ),
       floatingActionButton: GestureDetector(
-        onTap: () => Get.to(GenerateScreen()),
+        onTap: () {
+          if (StorageHelper().isLoggedIn) {
+            Get.to(GenerateScreen(
+              slug: categoryData.slug ?? '',
+            ));
+          } else {
+            Get.to(LoginScreen());
+          }
+        },
         child: ButtonView(
-          title: AppString.aiemail,
+          title: categoryData.slug.toString() == Slug.email
+              ? AppString.aiemail
+              : AppString.aiProposal,
           height: AppDimen.dimen70,
-          width: AppDimen.dimen180,
+          width: categoryData.slug.toString() == Slug.email
+              ? AppDimen.dimen180
+              : AppDimen.dimen210,
           icon: Icon(
             Icons.edit,
             size: AppDimen.dimen20,

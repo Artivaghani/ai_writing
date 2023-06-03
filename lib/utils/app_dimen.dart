@@ -32,6 +32,7 @@ class AppDimen {
   static double dimen150 = Get.height * 0.15;
   static double dimen100 = Get.height * 0.1;
   static double dimen200 = Get.height * 0.2;
+  static double dimen210 = Get.height * 0.21;
   static double dimen250 = Get.height * 0.25;
   static double dimen300 = Get.height * 0.3;
   static double dimen350 = Get.height * 0.35;

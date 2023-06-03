@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
             child: child!);
       },
-      home: const SubscriptionScreen(),
+      home: const SplashScreen(),
     );
   }
 }

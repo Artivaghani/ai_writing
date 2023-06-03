@@ -1,4 +1,7 @@
 import 'package:ai_writing/screens/correction_screen.dart/correction_screen.dart';
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
+import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
+import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/screens/writing_screen/writing_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:flutter/services.dart';
@@ -45,30 +48,39 @@ class HomeScreen extends StatelessWidget {
                           size: AppDimen.dimen22,
                         )),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            '20',
-                            style: Get.theme.textTheme.headlineLarge,
-                          ),
-                          SizedBox(
-                            width: AppDimen.dimen8,
-                          ),
-                          InkWell(
-                            onTap: () => controller.scaffoldKey.currentState!
-                                .openDrawer(),
-                            child: AppCommonWidgets.roundAssetImg(
-                                AppImages.credit,
-                                radius: 16),
-                          ),
-                        ],
+                      InkWell(
+                        onTap: () {
+                          if (StorageHelper().isLoggedIn) {
+                            Get.to(SubscriptionScreen());
+                          } else {
+                            Get.to(LoginScreen());
+                          }
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              StorageHelper().isLoggedIn ? '20' : '0',
+                              style: Get.theme.textTheme.headlineLarge,
+                            ),
+                            SizedBox(
+                              width: AppDimen.dimen8,
+                            ),
+                            InkWell(
+                              onTap: () => controller.scaffoldKey.currentState!
+                                  .openDrawer(),
+                              child: AppCommonWidgets.roundAssetImg(
+                                  AppImages.credit,
+                                  radius: 16),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: AppDimen.dimen26),
                     child: Text(
-                      '${AppString.hello},\n${StorageHelper().loginData.name}',
+                      '${AppString.hello},\n${StorageHelper().isLoggedIn ? StorageHelper().loginData.name : AppString.guestUser}',
                       style: Get.theme.textTheme.headlineLarge,
                     ),
                   ),
@@ -103,11 +115,16 @@ class HomeScreen extends StatelessWidget {
                                             controller
                                                     .categoryData[index].slug ==
                                                 Slug.proposal) {
+                                          Get.delete<WritingController>();
                                           Get.to(WritingScreen(
                                               categoryData: controller
                                                   .categoryData[index]));
                                         } else {
-                                          Get.to(CorrectionScreen());
+                                          if (StorageHelper().isLoggedIn) {
+                                            Get.to(CorrectionScreen());
+                                          } else {
+                                            Get.to(LoginScreen());
+                                          }
                                         }
                                       },
                                       child: HomeCardWidget(

@@ -35,7 +35,7 @@ class LoginData {
   String? provider;
   String? profile;
   String? deviceToken;
-  String? deviceType;
+  int? deviceType;
   String? authtoken;
 
   LoginData(
@@ -58,7 +58,7 @@ class LoginData {
     profile = json['profile'];
     deviceToken = json['device_token'];
     deviceType = json['device_type'];
-    authtoken = json['authtoken'];
+    authtoken = json['authToken'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,7 +71,7 @@ class LoginData {
     data['profile'] = profile;
     data['device_token'] = deviceToken;
     data['device_type'] = deviceType;
-    data['authtoken'] = authtoken;
+    data['authToken'] = authtoken;
     return data;
   }
 }

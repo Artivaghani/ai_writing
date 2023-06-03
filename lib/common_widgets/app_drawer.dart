@@ -1,13 +1,13 @@
+import 'package:ai_writing/screens/about_us_screen/about_us_controller.dart';
 import 'package:ai_writing/screens/about_us_screen/about_us_screen.dart';
-import 'package:ai_writing/screens/buy_history_screen/buy_history_screen.dart';
-import 'package:ai_writing/screens/credit_history_screen/credit_history_screen.dart';
+import 'package:ai_writing/screens/history_screen/buy_history_screen.dart';
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Appdrawer extends StatelessWidget {
   Appdrawer({super.key});
-
   HomeController homeController = Get.find<HomeController>();
 
   @override
@@ -27,9 +27,11 @@ class Appdrawer extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: AppDimen.dimen20),
                       child: Row(
                         children: [
-                          AppCommonWidgets.roundNetworkImg(
-                              StorageHelper().loginData.profile.toString(),
-                              radius: 20),
+                          Visibility(
+                              visible: StorageHelper().isLoggedIn,
+                              child: AppCommonWidgets.roundNetworkImg(
+                                  StorageHelper().loginData.profile.toString(),
+                                  radius: 20)),
                           SizedBox(
                             width: AppDimen.dimen10,
                           ),
@@ -37,12 +39,17 @@ class Appdrawer extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                StorageHelper().loginData.name.toString(),
+                                StorageHelper().isLoggedIn
+                                    ? StorageHelper().loginData.name.toString()
+                                    : AppString.guestUser,
                                 style: Get.theme.textTheme.headlineSmall,
                               ),
-                              Text(
-                                StorageHelper().loginData.email.toString(),
-                                style: Get.theme.textTheme.bodySmall,
+                              Visibility(
+                                visible: StorageHelper().isLoggedIn,
+                                child: Text(
+                                  StorageHelper().loginData.email.toString(),
+                                  style: Get.theme.textTheme.bodySmall,
+                                ),
                               ),
                             ],
                           ),
@@ -58,12 +65,21 @@ class Appdrawer extends StatelessWidget {
                       height: AppDimen.dimen20,
                     ),
                     getListView(AppString.aboutUs, Icons.info_outline,
-                        onTap: () => Get.to(AboutUsScreen())),
-                    getListView(
-                        AppString.creditHistory, Icons.history_edu_sharp,
-                        onTap: () => Get.to(CreditHistoryScreen())),
-                    getListView(AppString.buyHistory, Icons.history_rounded,
-                        onTap: () => Get.to(BuyHistoryScreen())),
+                        onTap: () {
+                      Get.delete<AboutUsController>();
+                      Get.to(AboutUsScreen(
+                        title: AppString.aboutUs,
+                        slug: ApiParam.about,
+                      ));
+                    }),
+                    getListView(AppString.creditHistory, Icons.history_rounded,
+                        onTap: () {
+                      if (StorageHelper().isLoggedIn) {
+                        Get.to(HistoryScreen());
+                      } else {
+                        Get.to(LoginScreen());
+                      }
+                    }),
                     getListView(AppString.contactus, Icons.call, onTap: () {
                       final Uri emailLaunchUri = Uri(
                         scheme: 'mailto',
@@ -73,12 +89,32 @@ class Appdrawer extends StatelessWidget {
                     }),
                     getListView(
                         AppString.privacyPolicy, Icons.privacy_tip_rounded,
-                        onTap: () => Get.to(AboutUsScreen())),
+                        onTap: () {
+                      Get.delete<AboutUsController>();
+
+                      Get.to(AboutUsScreen(
+                        title: AppString.privacyPolicy,
+                        slug: ApiParam.privacypolicy,
+                      ));
+                    }),
                     getListView(
                         AppString.termAndCon, Icons.description_outlined,
-                        onTap: () => Get.to(AboutUsScreen())),
+                        onTap: () {
+                      Get.delete<AboutUsController>();
+                      Get.to(AboutUsScreen(
+                        title: AppString.termAndCon,
+                        slug: ApiParam.termconditions,
+                      ));
+                    }),
                     getListView(AppString.refundPolicy, Icons.repeat_rounded,
-                        onTap: () => Get.to(AboutUsScreen())),
+                        onTap: () {
+                      Get.delete<AboutUsController>();
+
+                      Get.to(AboutUsScreen(
+                        title: AppString.refundPolicy,
+                        slug: ApiParam.refundpolicy,
+                      ));
+                    }),
                     getListView(AppString.shareThisApp, Icons.share, onTap: () {
                       Share.share(
                           '${AppString.shareText} ${AppConst.playStoreLink}');
@@ -86,8 +122,11 @@ class Appdrawer extends StatelessWidget {
                     getListView(AppString.rateThisApp, Icons.star, onTap: () {
                       launch(AppConst.playStoreLink);
                     }),
-                    getListView(AppString.logout, Icons.logout_rounded,
-                        onTap: () => AppFunctions.logout()),
+                    Visibility(
+                        visible: StorageHelper().isLoggedIn,
+                        child: getListView(
+                            AppString.logout, Icons.logout_rounded,
+                            onTap: () => AppFunctions.logout())),
                   ],
                 ),
               ),

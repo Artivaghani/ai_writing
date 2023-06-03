@@ -14,11 +14,12 @@ class AppString {
   static String yourProposal = 'Your Proposals';
   static String email = 'Email';
   static String aiemail = 'Ai Email';
+  static String aiProposal = 'Ai Proposal';
   static String selectPurpose = 'Select Purpose';
-  static String selectLang = 'Select Language';
-  static String selectLength = 'Select Length';
+  static String selectLang = 'Language';
+  static String selectLength = 'Text Length';
   static String creativityLevel = 'Creativity Level';
-  static String selectTone = 'Select Tone';
+  static String selectTone = 'Writing Tone';
   static String keyPoint = 'Key Point';
   static String generate = 'Generate';
   static String reGenerate = 'Re-Generate';
@@ -32,7 +33,6 @@ class AppString {
   static String send = 'Send';
   static String subject = 'Subject';
   static String creditHistory = 'Credit History';
-  static String buyHistory = 'Buy History';
   static String aboutUs = 'About Us';
   static String contactus = 'Contact Us';
   static String privacyPolicy = 'Privacy Policy';
@@ -45,20 +45,30 @@ class AppString {
   static String exit = 'Exit';
   static String yes = 'Yes';
   static String no = 'No';
-  static String  stop = 'Stop';
-  static String  amazing = 'Amazing';
-  static String  pro = 'Pro';
-  static String  listerning = 'Listening...';
+  static String stop = 'Stop';
+  static String updateavailable = 'Update Available';
+  static String update = 'Update';
+  static String updateMsg = 'To continue using the app and enjoy additional features, please upgrade.';
+  static String amazing = 'Amazing';
+  static String pro = 'Pro';
+  static String loginAsGuestUser = 'Login As Guest User';
+  static String listerning = 'Listening...';
   static String exitMsg = 'Are you sure, you want to exit to this application?';
   static String loginMsg =
       'Artificial intelligence is the future, and the future is here.';
   static String shareText =
       'Hey there! I wanted to share this amazing app I discovered called AI Writing. It\'s a game-changer when it comes to crafting perfect emails and proposal with the help of AI. With this app, you can save a ton of time and effortlessly impress your recipients. Give it a try and experience the power of AI in your email communication!';
-
   static String requesttimeout = "Your request timeout, Please try again later";
   static String changeTheme = 'Change Theme';
   static String checkConnection = 'Please check your internet connection';
   static String somethingWrong = 'Something went wrong';
   static String noInternet = 'Check your internet';
   static String retry = 'Retry!';
+  static String guestUser = 'Hi, Guest User';
+
+  static String keyPointRequired = 'Key points are required';
+  static String keyPonitHint =
+      'Write your key points here \n\nEx. Hi Paras, Let\'s have a quick call and discuss our idea in detail.';
+  static String keyPonitHintProposal =
+      'Write your key points here \n\nEx. I have 5 year of experience in flutter and developed lost of app like ai writing etc.';
 }
