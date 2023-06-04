@@ -57,22 +57,25 @@ class GenerateScreen extends StatelessWidget {
                       maxLength: 250,
                     ),
                     Positioned(
-                        bottom: 2,
-                        left: 2,
-                        child: IconButton(
-                            onPressed: () {
-                              Get.delete<MicroController>();
-                              showModalBottomSheet<void>(
-                                context: context,
-                                backgroundColor: Colors.transparent,
-                                builder: (BuildContext context) => MicroView(
-                                  onTap: (String text) {
-                                    controller.keyPointController.text;
-                                  },
-                                ),
-                              );
-                            },
-                            icon: const Icon(Icons.mic)))
+                        bottom: 8,
+                        left: 8,
+                        child: InkWell(
+                          onTap: () {
+                            Get.delete<MicroController>();
+                            showModalBottomSheet<void>(
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (BuildContext context) => MicroView(
+                                onTap: (String text) {
+                                  controller.keyPointController.text;
+                                },
+                              ),
+                            );
+                          },
+                          child: AppCommonWidgets.roundShapBtn(
+                              size: AppDimen.dimen40,
+                              child: Icon(Icons.mic, size: AppDimen.dimen26)),
+                        ))
                   ],
                 ),
                 Obx(
@@ -116,25 +119,27 @@ class GenerateScreen extends StatelessWidget {
                 SizedBox(
                   height: AppDimen.dimen30,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () => controller.callGenerateApi(slug),
-                    child: ButtonView(
-                      title: AppString.generate,
-                      height: AppDimen.dimen70,
-                      width: AppDimen.dimen250,
-                      icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
-                          radius: 10),
-                      subtitle: '1',
-                    ),
-                  ),
-                )
+                Obx(() => Align(
+                      alignment: Alignment.center,
+                      child: InkWell(
+                        onTap: () => controller.callGenerateApi(slug),
+                        child: ButtonView(
+                          title: AppString.generate,
+                          height: AppDimen.dimen70,
+                          width: AppDimen.dimen250,
+                          icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
+                              radius: 10),
+                          subtitle: (controller.selectedLengh.value.toInt() + 1)
+                              .toString(),
+                        ),
+                      ),
+                    ))
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: AdHelper.bannerWidget(),
     );
   }
 

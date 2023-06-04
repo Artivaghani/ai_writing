@@ -16,12 +16,14 @@ class AppString {
   static String aiemail = 'Ai Email';
   static String aiProposal = 'Ai Proposal';
   static String selectPurpose = 'Select Purpose';
+  static String textRevision = 'Text Revision';
   static String selectLang = 'Language';
   static String selectLength = 'Text Length';
   static String creativityLevel = 'Creativity Level';
   static String selectTone = 'Writing Tone';
   static String keyPoint = 'Key Point';
   static String generate = 'Generate';
+  static String paste = 'Paste';
   static String reGenerate = 'Re-Generate';
   static String addEmoji = 'Add Emoji';
   static String short = 'Short';
@@ -46,14 +48,19 @@ class AppString {
   static String yes = 'Yes';
   static String no = 'No';
   static String stop = 'Stop';
+  static String revise = 'Revise';
+  static String reviewText = 'Revise Text';
+  static String correctionHint = 'To rewrite text, enter or paste it here';
   static String updateavailable = 'Update Available';
   static String update = 'Update';
-  static String updateMsg = 'To continue using the app and enjoy additional features, please upgrade.';
+  static String updateMsg =
+      'To continue using the app and enjoy additional features, please upgrade.';
   static String amazing = 'Amazing';
   static String pro = 'Pro';
   static String loginAsGuestUser = 'Login As Guest User';
   static String listerning = 'Listening...';
   static String exitMsg = 'Are you sure, you want to exit to this application?';
+  static String screenExitMsg = 'Are you sure, you want to exit to this screen?';
   static String loginMsg =
       'Artificial intelligence is the future, and the future is here.';
   static String shareText =
@@ -65,6 +72,7 @@ class AppString {
   static String noInternet = 'Check your internet';
   static String retry = 'Retry!';
   static String guestUser = 'Hi, Guest User';
+  static String adsErrorMsg = 'Ads are currently not functioning properly. Please try again later.';
 
   static String keyPointRequired = 'Key points are required';
   static String keyPonitHint =

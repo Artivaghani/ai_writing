@@ -1,4 +1,5 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/helper/ads_helper.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_screen.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
@@ -39,9 +40,10 @@ class WritingScreen extends StatelessWidget {
                 CommonAppBar(title: categoryData.title.toString()),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+                      top: AppDimen.dimen20, bottom: AppDimen.dimen15),
                   child: Text(categoryData.description.toString()),
                 ),
+                AdHelper.bannerWidget(),
                 TabBar(
                   indicatorColor: Get.theme.primaryColor,
                   labelStyle: Get.theme.textTheme.headlineMedium,
@@ -76,16 +78,22 @@ class WritingScreen extends StatelessWidget {
                                         itemBuilder: (context, index) =>
                                             InkWell(
                                                 onTap: () =>
-                                                    Get.to(ReviewAndSendScreen(
-                                                      subject: writingController
-                                                              .tempList[index]
-                                                              .title ??
-                                                          '',
-                                                      email: writingController
-                                                              .tempList[index]
-                                                              .content ??
-                                                          '',
-                                                    )),
+                                                    AdHelper.showInterStitialAd(
+                                                        afterAd: () {
+                                                      Get.to(
+                                                          ReviewAndSendScreen(
+                                                        subject:
+                                                            writingController
+                                                                    .tempList[
+                                                                        index]
+                                                                    .title ??
+                                                                '',
+                                                        email: writingController
+                                                                .tempList[index]
+                                                                .content ??
+                                                            '',
+                                                      ));
+                                                    }),
                                                 child: EmailView(
                                                   title: writingController
                                                           .tempList[index]
@@ -106,18 +114,24 @@ class WritingScreen extends StatelessWidget {
                                         itemBuilder: (context, index) =>
                                             InkWell(
                                                 onTap: () =>
-                                                    Get.to(ReviewAndSendScreen(
-                                                      subject: writingController
-                                                              .yourList[index]
-                                                              .prompt ??
-                                                          '',
-                                                      email: writingController
-                                                              .yourList[index]
-                                                              .result!
-                                                              .choices?[0]
-                                                              .text ??
-                                                          '',
-                                                    )),
+                                                    AdHelper.showInterStitialAd(
+                                                        afterAd: () {
+                                                      Get.to(
+                                                          ReviewAndSendScreen(
+                                                        subject:
+                                                            writingController
+                                                                    .yourList[
+                                                                        index]
+                                                                    .prompt ??
+                                                                '',
+                                                        email: writingController
+                                                                .yourList[index]
+                                                                .result!
+                                                                .choices?[0]
+                                                                .text ??
+                                                            '',
+                                                      ));
+                                                    }),
                                                 child: EmailView(
                                                   title: writingController
                                                           .yourList[index]
@@ -131,6 +145,7 @@ class WritingScreen extends StatelessWidget {
                                                           .yourList[index].id ??
                                                       0,
                                                   isFree: false,
+                                                  slug: categoryData.slug ?? '',
                                                 )),
                                       )))
               ],
@@ -140,13 +155,15 @@ class WritingScreen extends StatelessWidget {
       ),
       floatingActionButton: GestureDetector(
         onTap: () {
-          if (StorageHelper().isLoggedIn) {
-            Get.to(GenerateScreen(
-              slug: categoryData.slug ?? '',
-            ));
-          } else {
-            Get.to(LoginScreen());
-          }
+          AdHelper.showInterStitialAd(afterAd: () {
+            if (StorageHelper().isLoggedIn) {
+              Get.to(GenerateScreen(
+                slug: categoryData.slug ?? '',
+              ));
+            } else {
+              Get.to(LoginScreen());
+            }
+          });
         },
         child: ButtonView(
           title: categoryData.slug.toString() == Slug.email

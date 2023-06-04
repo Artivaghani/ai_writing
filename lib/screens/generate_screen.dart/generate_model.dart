@@ -35,15 +35,14 @@ class GenerateData {
   int? created;
   String? model;
   List<Choices>? choices;
-  Usage? usage;
 
-  GenerateData(
-      {this.id,
-      this.object,
-      this.created,
-      this.model,
-      this.choices,
-      this.usage});
+  GenerateData({
+    this.id,
+    this.object,
+    this.created,
+    this.model,
+    this.choices,
+  });
 
   GenerateData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -56,7 +55,6 @@ class GenerateData {
         choices!.add(Choices.fromJson(v));
       });
     }
-    usage = json['usage'] != null ? Usage.fromJson(json['usage']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -68,56 +66,27 @@ class GenerateData {
     if (choices != null) {
       data['choices'] = choices!.map((v) => v.toJson()).toList();
     }
-    if (usage != null) {
-      data['usage'] = usage!.toJson();
-    }
+
     return data;
   }
 }
 
 class Choices {
   String? text;
-  int? index;
   String? subject;
-  String? finishReason;
 
-  Choices({this.text, this.index, this.subject, this.finishReason});
+  Choices({this.text, this.subject});
 
   Choices.fromJson(Map<String, dynamic> json) {
     text = json['text'];
-    index = json['index'];
     subject = json['subject'];
-    finishReason = json['finish_reason'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['text'] = text;
-    data['index'] = index;
     data['subject'] = subject;
-    data['finish_reason'] = finishReason;
-    return data;
-  }
-}
 
-class Usage {
-  int? promptTokens;
-  int? completionTokens;
-  int? totalTokens;
-
-  Usage({this.promptTokens, this.completionTokens, this.totalTokens});
-
-  Usage.fromJson(Map<String, dynamic> json) {
-    promptTokens = json['prompt_tokens'];
-    completionTokens = json['completion_tokens'];
-    totalTokens = json['total_tokens'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['prompt_tokens'] = promptTokens;
-    data['completion_tokens'] = completionTokens;
-    data['total_tokens'] = totalTokens;
     return data;
   }
 }

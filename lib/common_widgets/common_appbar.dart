@@ -2,7 +2,8 @@ import 'package:ai_writing/utils/config_packages.dart';
 
 class CommonAppBar extends StatelessWidget {
   final String title;
-  const CommonAppBar({super.key, required this.title});
+  final Function()? callBack;
+  const CommonAppBar({super.key, required this.title, this.callBack});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class CommonAppBar extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: () => Get.back(),
+            onTap: callBack ?? () =>  Get.back(),
             child: AppCommonWidgets.roundShapBtn(
               size: AppDimen.dimen50,
             ),

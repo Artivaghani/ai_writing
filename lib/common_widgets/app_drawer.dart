@@ -1,6 +1,7 @@
 import 'package:ai_writing/screens/about_us_screen/about_us_controller.dart';
 import 'package:ai_writing/screens/about_us_screen/about_us_screen.dart';
-import 'package:ai_writing/screens/history_screen/buy_history_screen.dart';
+import 'package:ai_writing/screens/cred_history_screen/history_controller.dart';
+import 'package:ai_writing/screens/cred_history_screen/history_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:share_plus/share_plus.dart';
@@ -67,60 +68,76 @@ class Appdrawer extends StatelessWidget {
                     getListView(AppString.aboutUs, Icons.info_outline,
                         onTap: () {
                       Get.delete<AboutUsController>();
-                      Get.to(AboutUsScreen(
-                        title: AppString.aboutUs,
-                        slug: ApiParam.about,
-                      ));
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        Get.to(AboutUsScreen(
+                          title: AppString.aboutUs,
+                          slug: ApiParam.about,
+                        ));
+                      });
                     }),
                     getListView(AppString.creditHistory, Icons.history_rounded,
                         onTap: () {
-                      if (StorageHelper().isLoggedIn) {
-                        Get.to(HistoryScreen());
-                      } else {
-                        Get.to(LoginScreen());
-                      }
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        if (StorageHelper().isLoggedIn) {
+                          Get.delete<HistoryController>();
+                          Get.to(const HistoryScreen());
+                        } else {
+                          Get.to(LoginScreen());
+                        }
+                      });
                     }),
                     getListView(AppString.contactus, Icons.call, onTap: () {
-                      final Uri emailLaunchUri = Uri(
-                        scheme: 'mailto',
-                        path: 'info@codeinfluencer.com',
-                      );
-                      launchUrl(emailLaunchUri);
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        final Uri emailLaunchUri = Uri(
+                          scheme: 'mailto',
+                          path: 'info@codeinfluencer.com',
+                        );
+                        launchUrl(emailLaunchUri);
+                      });
                     }),
                     getListView(
                         AppString.privacyPolicy, Icons.privacy_tip_rounded,
                         onTap: () {
-                      Get.delete<AboutUsController>();
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        Get.delete<AboutUsController>();
 
-                      Get.to(AboutUsScreen(
-                        title: AppString.privacyPolicy,
-                        slug: ApiParam.privacypolicy,
-                      ));
+                        Get.to(AboutUsScreen(
+                          title: AppString.privacyPolicy,
+                          slug: ApiParam.privacypolicy,
+                        ));
+                      });
                     }),
                     getListView(
                         AppString.termAndCon, Icons.description_outlined,
                         onTap: () {
-                      Get.delete<AboutUsController>();
-                      Get.to(AboutUsScreen(
-                        title: AppString.termAndCon,
-                        slug: ApiParam.termconditions,
-                      ));
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        Get.delete<AboutUsController>();
+                        Get.to(AboutUsScreen(
+                          title: AppString.termAndCon,
+                          slug: ApiParam.termconditions,
+                        ));
+                      });
                     }),
                     getListView(AppString.refundPolicy, Icons.repeat_rounded,
                         onTap: () {
-                      Get.delete<AboutUsController>();
-
-                      Get.to(AboutUsScreen(
-                        title: AppString.refundPolicy,
-                        slug: ApiParam.refundpolicy,
-                      ));
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        Get.delete<AboutUsController>();
+                        Get.to(AboutUsScreen(
+                          title: AppString.refundPolicy,
+                          slug: ApiParam.refundpolicy,
+                        ));
+                      });
                     }),
                     getListView(AppString.shareThisApp, Icons.share, onTap: () {
-                      Share.share(
-                          '${AppString.shareText} ${AppConst.playStoreLink}');
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        Share.share(
+                            '${AppString.shareText} ${AppConst.playStoreLink}');
+                      });
                     }),
                     getListView(AppString.rateThisApp, Icons.star, onTap: () {
-                      launch(AppConst.playStoreLink);
+                      AdHelper.showInterStitialAd(afterAd: () {
+                        launch(AppConst.playStoreLink);
+                      });
                     }),
                     Visibility(
                         visible: StorageHelper().isLoggedIn,

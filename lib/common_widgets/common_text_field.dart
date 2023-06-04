@@ -1,4 +1,5 @@
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:flutter/services.dart';
 
 class CommonTextField extends StatelessWidget {
   TextEditingController? controller;
@@ -7,6 +8,8 @@ class CommonTextField extends StatelessWidget {
   String? hintText;
   int? maxLines;
   int? maxLength;
+  List<TextInputFormatter>? inputFormatters;
+  TextStyle? style;
   CommonTextField(
       {super.key,
       this.controller,
@@ -14,6 +17,8 @@ class CommonTextField extends StatelessWidget {
       this.onChanged,
       this.maxLines,
       this.maxLength,
+      this.inputFormatters,
+      this.style,
       this.hintText});
 
   @override
@@ -26,8 +31,9 @@ class CommonTextField extends StatelessWidget {
         validator: validator,
         onChanged: onChanged,
         maxLines: maxLines,
-        style: Get.theme.textTheme.headlineSmall,
-       maxLength: maxLength,
+        inputFormatters: inputFormatters,
+        style: style ?? Get.theme.textTheme.headlineSmall,
+        maxLength: maxLength,
         decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,

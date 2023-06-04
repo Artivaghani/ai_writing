@@ -30,6 +30,33 @@ class ApiManager {
     }
   }
 
+  static Future<Map<String, dynamic>> callDelete(String url,
+      {Map<String, String>? headers, Map<String, String>? body}) async {
+    bool isNet = await AppFunctions.checkInternet(isShowMsg: false);
+    if (isNet) {
+      try {
+        Map<String, dynamic> finalresponse;
+        http.Response response = await http
+            .delete(Uri.parse(url), headers: headers, body: body)
+            .timeout(
+          const Duration(seconds: 10),
+          onTimeout: () {
+            throw AppString.requesttimeout;
+          },
+        );
+        if (response.statusCode == 401) {
+          await AppFunctions.logout();
+        }
+        finalresponse = checkResponse(response);
+        return finalresponse;
+      } on SocketException catch (_) {
+        throw AppString.checkConnection;
+      }
+    } else {
+      throw AppString.checkConnection;
+    }
+  }
+
   static Future<Map<String, dynamic>> callPost(String url,
       {Map<String, String>? headers, Map<String, String>? body}) async {
     bool isNet = await AppFunctions.checkInternet(isShowMsg: false);

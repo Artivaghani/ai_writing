@@ -1,3 +1,4 @@
+import 'package:ai_writing/helper/ads_helper.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 
 import '../../utils/config_packages.dart';
@@ -27,12 +28,14 @@ class SplashScreen extends StatelessWidget {
               Future.delayed(
                 const Duration(seconds: 3),
                 () {
-                  if (StorageHelper().isLoggedIn) {
-                    Get.offUntil(GetPageRoute(page: () => HomeScreen()),
-                        (route) => false);
-                  } else {
-                    Get.off(LoginScreen());
-                  }
+                  AdHelper.loadOpenapp(callback: () {
+                    if (StorageHelper().isLoggedIn) {
+                      Get.offUntil(GetPageRoute(page: () => HomeScreen()),
+                          (route) => false);
+                    } else {
+                      Get.off(LoginScreen());
+                    }
+                  });
                 },
               );
               return splashData();

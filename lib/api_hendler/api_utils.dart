@@ -7,4 +7,7 @@ class ApiUtils {
   static String generalApi = "api/v1/general";
   static String templateList = "api/v1/getDefaultTemplates";
   static String yourList = "api/v1/getUsersHistory";
+  static String credit = "api/v1/getCredits";
+  static String deleteItem = "api/v1/deleteTemplate";
+  static String creditHistory = "api/v1/credit-history";
 }

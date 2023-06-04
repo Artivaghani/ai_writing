@@ -54,6 +54,7 @@ class AboutUsScreen extends StatelessWidget {
           ),
         ),
       ),
+    bottomNavigationBar: AdHelper.bannerWidget(),
     );
   }
 }

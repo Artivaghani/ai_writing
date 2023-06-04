@@ -1,13 +1,16 @@
 import 'dart:io';
 
 import 'package:ai_writing/screens/home_screen/category_model.dart';
+import 'package:ai_writing/screens/home_screen/credit_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:http/http.dart';
 import 'package:new_version_plus/new_version_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
   bool isLoading = true;
   bool status = false;
+  RxInt credit = 0.obs;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   List<CategoryData> categoryData = [];
 
@@ -26,6 +29,7 @@ class HomeController extends GetxController {
   initData() {
     AppFunctions.commonCheckInternetNavigate().then((value) {
       getCategory();
+      getCredit();
       checkVersion();
     });
   }
@@ -45,6 +49,20 @@ class HomeController extends GetxController {
     }).onError((error, stackTrace) {
       isLoading = false;
       update();
+      AppDialog.errorSnackBar(error.toString());
+    });
+  }
+
+  getCredit() {
+    ApiManager.callGet(
+      ApiUtils.baseUrl + ApiUtils.credit,
+      headers: ApiParam.header,
+    ).then((value) {
+      CreditModel data = CreditModel.fromJson(value);
+      credit.value = data.data!.totalCredit ?? 0;
+      print('credits :${credit.value}');
+    }).onError((error, stackTrace) {
+      print('error in credit :${error.toString()}');
       AppDialog.errorSnackBar(error.toString());
     });
   }

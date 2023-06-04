@@ -2,6 +2,7 @@ import 'package:ai_writing/helper/localization_model.dart';
 import 'package:ai_writing/utils/app_strings.dart';
 
 class AppConst {
+  static bool isAdShow = true;
   static const double elevation = 2;
   static const double cardRadius = 14;
   static const double btnRadius = 10;
@@ -14,6 +15,13 @@ class AppConst {
   static const String androidRevordeId =
       'ca-app-pub-3940256099942544/5224354917';
   static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
+
+//Test net
+  static const String iosBannerId = 'ca-app-pub-3940256099942544/6300978111';
+  static const String iosInterstrialId =
+      'ca-app-pub-3940256099942544/1033173712';
+  static const String iosRevordeId = 'ca-app-pub-3940256099942544/5224354917';
+  static const String iosOpenId = 'ca-app-pub-3940256099942544/3419835294';
 
 //Live
   // static const String androidBannerId = 'ca-app-pub-7484057413460570/8690020296';
@@ -39,6 +47,8 @@ class AppConst {
     AppString.optimal,
     AppString.high
   ];
+
+  static List<int> lengthText = [250, 500, 750];
 
   static List<ToneModel> toneList = [
     ToneModel(name: 'Appreciative', assetpath: 'assets/tone/ico_2.png'),

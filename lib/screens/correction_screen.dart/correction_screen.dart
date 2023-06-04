@@ -1,93 +1,186 @@
+import 'dart:math';
+
+import 'package:ai_writing/common_dialogs/micro_view/micro_controller.dart';
+import 'package:ai_writing/common_dialogs/micro_view/mictro_view.dart';
 import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/screens/correction_screen.dart/correction_controller.dart';
+import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:flutter/services.dart';
 
 class CorrectionScreen extends StatelessWidget {
-  CorrectionScreen({super.key});
+  final CategoryData categoryData;
 
+  CorrectionScreen({super.key, required this.categoryData});
   CorrectionController controller = Get.put(CorrectionController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: AppDecoration.backroundDecoration(),
-        padding: EdgeInsets.all(AppDimen.dimen20),
-        width: double.infinity,
-        child: SafeArea(
-          child: ListView(
-            children: [
-              CommonAppBar(title: AppString.selectPurpose),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: AppDimen.dimen20, bottom: AppDimen.dimen10),
-                child: Text(AppString.keyPoint),
-              ),
-              Stack(
+    return WillPopScope(
+      onWillPop: () async {
+        if (controller.correctionText.isNotEmpty) {
+          return controller.showExitDialog();
+        }
+        return Future.value(true);
+      },
+      child: Scaffold(
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Container(
+            decoration: AppDecoration.backroundDecoration(),
+            padding: EdgeInsets.all(AppDimen.dimen20),
+            width: double.infinity,
+            child: SafeArea(
+              child: ListView(
                 children: [
-                  CommonTextField(
-                    maxLines: 15,
-                    hintText: 'Write your thought here',
-                    maxLength: 250,
+                  CommonAppBar(
+                    title: AppString.textRevision,
+                    callBack: () {
+                      if (controller.correctionText.isNotEmpty) {
+                        controller.showExitDialog();
+                      } else {
+                        Get.back();
+                      }
+                    },
                   ),
-                  Positioned(
-                      bottom: 2,
-                      left: 2,
-                      child: IconButton(
-                          onPressed: () {
-                            print('testing');
-                          },
-                          icon: const Icon(Icons.mic)))
-                ],
-              ),
-              AppCommonWidgets.getLenthOfMail(0),
-              Row(
-                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: AppDimen.dimen20,
+                        bottom: AppDimen.dimen10,
+                        right: AppDimen.dimen10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(AppString.keyPoint),
+                        InkWell(
+                            onTap: () async {
+                              String value = await FlutterClipboard.paste();
+                              controller.setText(value);
+                            },
+                            child: Text(
+                              AppString.paste,
+                              style: Get.theme.textTheme.headlineSmall!
+                                  .copyWith(
+                                      decoration: TextDecoration.underline),
+                            )),
+                      ],
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      Obx(() {
+                        return CommonTextField(
+                          controller: controller.keyPointController,
+                          maxLines: 18,
+                          hintText: AppString.correctionHint,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(
+                                AppConst.lengthText[
+                                    controller.selectedLengh.value.toInt()]),
+                          ],
+                          maxLength: AppConst.lengthText[
+                              controller.selectedLengh.value.toInt()],
+                          style: Get.theme.textTheme.labelSmall,
+                        );
+                      }),
+                      Positioned(
+                          bottom: 8,
+                          left: 8,
+                          child: InkWell(
+                            onTap: () {
+                              Get.delete<MicroController>();
+                              showModalBottomSheet<void>(
+                                context: context,
+                                backgroundColor: Colors.transparent,
+                                builder: (BuildContext context) => MicroView(
+                                  onTap: (String text) {
+                                    controller.keyPointController.text;
+                                  },
+                                ),
+                              );
+                            },
+                            child: AppCommonWidgets.roundShapBtn(
+                                size: AppDimen.dimen40,
+                                child: Icon(Icons.mic, size: AppDimen.dimen26)),
+                          )),
+                    ],
+                  ),
+                  GetBuilder<CorrectionController>(
+                    builder: (corectionController) {
+                      return corectionController.correctionText.isNotEmpty
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                      top: AppDimen.dimen20,
+                                      bottom: AppDimen.dimen10,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(AppString.reviewText),
+                                        ),
+                                        AppCommonWidgets.shareView(
+                                            corectionController.correctionText),
+                                        SizedBox(
+                                          width: AppDimen.dimen8,
+                                        ),
+                                        AppCommonWidgets.copyView(
+                                            corectionController.correctionText),
+                                      ],
+                                    )),
+                                AppCommonWidgets.commonCard(Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.all(AppDimen.dimen20),
+                                  child: Text(
+                                    corectionController.correctionText,
+                                    style: Get.theme.textTheme.labelSmall,
+                                  ),
+                                ))
+                              ],
+                            )
+                          : const SizedBox();
+                    },
+                  ),
                   Obx(
-                    () => SizedBox(
-                      width: AppDimen.dimen26,
-                      height: AppDimen.dimen26,
-                      child: Checkbox(
-                        checkColor: Get.theme.hintColor,
-                        focusColor: Get.theme.primaryColor,
-                        activeColor: Get.theme.primaryColor,
-                        value: controller.isChecked.value,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2)),
-                        onChanged: (bool? value) {
-                          controller.isChecked.value = value!;
-                        },
-                      ),
+                    () => AppCommonWidgets.getLenthOfMail(
+                      controller.selectedLengh.value,
+                      onChanged: (p0) {
+                        controller.selectedLengh.value = p0;
+                        controller.setText(controller.keyPointController.text);
+                      },
                     ),
                   ),
                   SizedBox(
-                    width: AppDimen.dimen10,
+                    height: AppDimen.dimen20,
                   ),
-                  Expanded(
-                      child: Text(
-                    AppString.addEmoji,
-                    style: Get.theme.textTheme.headlineSmall,
-                  ))
+                  Obx(() => InkWell(
+                        onTap: () =>
+                            controller.callGenerateApi(categoryData.slug ?? ''),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: ButtonView(
+                            title: AppString.revise,
+                            height: AppDimen.dimen70,
+                            width: AppDimen.dimen250,
+                            icon: AppCommonWidgets.roundAssetImg(
+                                AppImages.credit,
+                                radius: 10),
+                            subtitle:
+                                (controller.selectedLengh.value.toInt() + 1)
+                                    .toString(),
+                          ),
+                        ),
+                      ))
                 ],
               ),
-              SizedBox(
-                height: AppDimen.dimen20,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: ButtonView(
-                  title: AppString.generate,
-                  height: AppDimen.dimen70,
-                  width: AppDimen.dimen250,
-                  icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
-                      radius: 10),
-                  subtitle: '1',
-                ),
-              )
-            ],
+            ),
           ),
         ),
+        bottomNavigationBar: AdHelper.bannerWidget(),
       ),
     );
   }

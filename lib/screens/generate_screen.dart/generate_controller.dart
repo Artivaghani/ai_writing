@@ -1,5 +1,8 @@
 import 'package:ai_writing/helper/localization.dart';
 import 'package:ai_writing/helper/localization_model.dart';
+import 'package:ai_writing/screens/generate_screen.dart/generate_model.dart';
+import 'package:ai_writing/screens/review_and_send_screen/review_and_send.dart';
+import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class GenerateController extends GetxController {
@@ -36,8 +39,16 @@ class GenerateController extends GetxController {
           ApiParam.isemoji: isChecked.value ? '1' : '0',
         },
       ).then((value) {
-        print('response ${value.toString()}');
         Get.back();
+        GenerateModel data = GenerateModel.fromJson(value);
+
+        Get.find<WritingController>().selectTab = 1;
+        Get.find<WritingController>().getYourList(slug);
+        Get.find<HomeController>().getCredit();
+        Get.off(ReviewAndSendScreen(
+            isFree: false,
+            subject: data.data!.choices?[0].subject ?? '',
+            email: data.data!.choices?[0].text ?? ''));
       }).onError((error, stackTrace) {
         Get.back();
         AppDialog.errorSnackBar(error.toString());

@@ -26,7 +26,7 @@ class WritingController extends GetxController {
   }
 
   getYourList(String? slug) {
-    isLoad = false;
+    isLoad = true;
     update();
     ApiManager.callGet('${ApiUtils.baseUrl}${ApiUtils.yourList}?type=$slug',
             headers: ApiParam.header)
@@ -35,6 +35,19 @@ class WritingController extends GetxController {
       yourList = data.data ?? [];
       isLoad = false;
       update();
+    }).onError((error, stackTrace) {
+      isLoad = false;
+      update();
+    });
+  }
+
+  deleteListItem(String? id,String slug) {
+    isLoad = false;
+    update();
+    ApiManager.callDelete('${ApiUtils.baseUrl}${ApiUtils.deleteItem}?id=$id',
+            headers: ApiParam.header)
+        .then((value) {
+     getYourList(slug);
     }).onError((error, stackTrace) {
       isLoad = false;
       update();

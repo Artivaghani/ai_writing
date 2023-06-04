@@ -1,12 +1,13 @@
-import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'utils/config_packages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
+  await MobileAds.instance.initialize();
   runApp(const MyApp());
 }
 

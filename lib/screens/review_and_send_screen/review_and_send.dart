@@ -47,32 +47,11 @@ class ReviewAndSendScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(child: Text(AppString.email)),
-                    InkWell(
-                      onTap: () {
-                        Share.share(email);
-                      },
-                      child: AppCommonWidgets.roundShapBtn(
-                          size: AppDimen.dimen40,
-                          child: Icon(
-                            Icons.share,
-                            size: AppDimen.dimen20,
-                          )),
-                    ),
+                    AppCommonWidgets.shareView(email),
                     SizedBox(
                       width: AppDimen.dimen8,
                     ),
-                    InkWell(
-                      onTap: () {
-                        FlutterClipboard.copy(email).then((value) =>
-                            AppDialog.successSnackBar(AppString.copy));
-                      },
-                      child: AppCommonWidgets.roundShapBtn(
-                          size: AppDimen.dimen40,
-                          child: Icon(
-                            Icons.copy_outlined,
-                            size: AppDimen.dimen20,
-                          )),
-                    )
+                    AppCommonWidgets.copyView(email),
                   ],
                 ),
               ),

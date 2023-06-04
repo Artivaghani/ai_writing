@@ -1,3 +1,5 @@
+import 'package:ai_writing/helper/localization_model.dart';
+import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class EmailView extends StatelessWidget {
@@ -6,6 +8,7 @@ class EmailView extends StatelessWidget {
   final String? subTitle;
   final String? image;
   final bool isFree;
+  final String? slug;
 
   const EmailView(
       {super.key,
@@ -13,10 +16,17 @@ class EmailView extends StatelessWidget {
       required this.title,
       this.subTitle,
       this.image,
+      this.slug,
       this.isFree = true});
 
   @override
   Widget build(BuildContext context) {
+    ToneModel? element;
+    if (!isFree) {
+      element = AppConst.toneList.firstWhere(
+          (element) => element.name!.toLowerCase() == title.toLowerCase());
+    }
+
     return Padding(
       padding: EdgeInsets.only(top: AppDimen.dimen8),
       child: Card(
@@ -38,7 +48,7 @@ class EmailView extends StatelessWidget {
                           height: AppDimen.dimen30,
                         )
                       : Image.asset(
-                          AppConst.toneList[0].assetpath.toString(),
+                          element!.assetpath.toString(),
                           width: AppDimen.dimen30,
                           height: AppDimen.dimen30,
                         )),
@@ -66,7 +76,17 @@ class EmailView extends StatelessWidget {
                     ),
                   ),
                 ],
-              ))
+              )),
+              Visibility(
+                visible: !isFree,
+                child: IconButton(
+                    onPressed: () => Get.find<WritingController>()
+                        .deleteListItem(id.toString(), slug.toString()),
+                    icon: const Icon(
+                      Icons.delete_forever_rounded,
+                      color: AppColors.redColor,
+                    )),
+              )
             ],
           ),
         ),

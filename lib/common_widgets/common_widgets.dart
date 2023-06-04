@@ -1,4 +1,6 @@
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class AppCommonWidgets {
@@ -30,6 +32,31 @@ class AppCommonWidgets {
       ),
     );
   }
+
+  static shareView(String email) => InkWell(
+        onTap: () {
+          Share.share(email);
+        },
+        child: AppCommonWidgets.roundShapBtn(
+            size: AppDimen.dimen40,
+            child: Icon(
+              Icons.share,
+              size: AppDimen.dimen20,
+            )),
+      );
+
+  static copyView(String email) => InkWell(
+        onTap: () {
+          FlutterClipboard.copy(email)
+              .then((value) => AppDialog.successSnackBar(AppString.copy));
+        },
+        child: AppCommonWidgets.roundShapBtn(
+            size: AppDimen.dimen40,
+            child: Icon(
+              Icons.copy_outlined,
+              size: AppDimen.dimen20,
+            )),
+      );
 
   static roundShapBtn({double? size, Widget? child}) {
     return Container(
