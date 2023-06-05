@@ -1,11 +1,9 @@
-import 'package:ai_writing/helper/ads_helper.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
-
+import 'package:ai_writing/screens/network_screen.dart';
 import '../../utils/config_packages.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
-
   Future<double> whenNotZero(Stream<double> source) async {
     await for (double value in source) {
       if (value > 0) {
@@ -29,11 +27,12 @@ class SplashScreen extends StatelessWidget {
                 const Duration(seconds: 3),
                 () {
                   AdHelper.loadOpenapp(callback: () {
-                    if (StorageHelper().isLoggedIn) {
-                      Get.offUntil(GetPageRoute(page: () => HomeScreen()),
-                          (route) => false);
-                    } else {
+                    if (StorageHelper().isNewUser) {
                       Get.off(LoginScreen());
+                    } else {
+                      Get.offUntil(
+                          GetPageRoute(page: () => NetworkCheckScreen()),
+                          (route) => false);
                     }
                   });
                 },

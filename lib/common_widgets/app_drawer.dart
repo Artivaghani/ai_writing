@@ -149,10 +149,10 @@ class Appdrawer extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: AppDimen.dimen10),
-                child: Text(
-                  'Version : 1.0',
-                  style: Get.theme.textTheme.bodySmall,
-                ),
+                child: Obx(() => Text(
+                      'V${homeController.version.value}',
+                      style: Get.theme.textTheme.bodySmall,
+                    )),
               ),
             ],
           ),

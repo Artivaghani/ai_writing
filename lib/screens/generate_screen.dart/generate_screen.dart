@@ -5,6 +5,7 @@ import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/helper/localization.dart';
 import 'package:ai_writing/helper/localization_model.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -122,7 +123,13 @@ class GenerateScreen extends StatelessWidget {
                 Obx(() => Align(
                       alignment: Alignment.center,
                       child: InkWell(
-                        onTap: () => controller.callGenerateApi(slug),
+                        onTap: () {
+                          if (StorageHelper().isLoggedIn) {
+                            controller.callGenerateApi(slug);
+                          } else {
+                            Get.to(LoginScreen());
+                          }
+                        },
                         child: ButtonView(
                           title: AppString.generate,
                           height: AppDimen.dimen70,

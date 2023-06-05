@@ -1,6 +1,7 @@
+import 'package:ai_writing/common_widgets/btn_view.dart';
+
 import '../utils/config_packages.dart';
 
-// ignore: must_be_immutable
 class NetworkCheckScreen extends StatelessWidget {
   bool? isSplash;
 
@@ -13,32 +14,23 @@ class NetworkCheckScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child: Image.asset(AppImages.noInternet, width: AppDimen.dimen300)),
+            Center(
+                child: Image.asset(AppImages.noInternet,
+                    width: AppDimen.dimen300)),
             SizedBox(height: AppDimen.dimen18),
             Text(
               AppString.noInternet,
-              style: Get.theme.textTheme.headline4,
+              style: Get.theme.textTheme.headlineMedium,
             ),
             SizedBox(height: AppDimen.dimen18),
-            Text(AppString.checkConnection, style: Get.theme.textTheme.headline6),
+            Text(AppString.checkConnection,
+                style: Get.theme.textTheme.bodyMedium),
             SizedBox(height: AppDimen.dimen30),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
-                child: Text(AppString.retry, style: Theme.of(context).textTheme.headline1),
-                onPressed: () {
-                  AppFunctions.checkInternet(isShowMsg: false).then((value) {
-                    if (value) {
-                      if (isSplash ?? false) {
-                        Get.offAll(SplashScreen());
-                      } else {
-                        Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
-                        // Get.offAll(DashBoardScreen());
-                      }
-                    } else {
-                      Get.back();
-                    }
-                  });
-                })
+            ButtonView(
+              title: AppString.retry,
+              height: AppDimen.dimen70,
+              width: AppDimen.dimen250,
+            )
           ],
         ),
       ),

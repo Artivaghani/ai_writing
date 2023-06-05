@@ -2,6 +2,7 @@ import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/screens/network_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AppFunctions {
   // static String timestampToDateTime(String timestamp) {
@@ -10,12 +11,12 @@ class AppFunctions {
   //   return f.format(date).toString();
   // }
 
- static  logout() async {
+  static logout() async {
     StorageHelper().removeUser();
+    await FirebaseAuth.instance.signOut();
     await Get.deleteAll();
     Get.offUntil(GetPageRoute(page: () => LoginScreen()), (route) => false);
   }
-
 
   static Future<bool> checkInternet({bool isShowMsg = true}) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -40,5 +41,4 @@ class AppFunctions {
         (route) => false);
     throw '';
   }
-  
 }

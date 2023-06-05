@@ -6,6 +6,7 @@ import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/screens/correction_screen.dart/correction_controller.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
+import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/services.dart';
@@ -158,8 +159,13 @@ class CorrectionScreen extends StatelessWidget {
                     height: AppDimen.dimen20,
                   ),
                   Obx(() => InkWell(
-                        onTap: () =>
-                            controller.callGenerateApi(categoryData.slug ?? ''),
+                        onTap: () {
+                          if (StorageHelper().isLoggedIn) {
+                            controller.callGenerateApi(categoryData.slug ?? '');
+                          } else {
+                            Get.to(LoginScreen());
+                          }
+                        },
                         child: Align(
                           alignment: Alignment.center,
                           child: ButtonView(

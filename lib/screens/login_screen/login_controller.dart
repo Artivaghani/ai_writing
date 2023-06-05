@@ -61,7 +61,8 @@ class LoginController extends GetxController {
       LoginModel response = LoginModel.fromJson(value);
       StorageHelper().loginData = response.data!;
       StorageHelper().isLoggedIn = true;
-      print('Auth token ${StorageHelper().loginData.authtoken}');
+      StorageHelper().isNewUser = false;
+
       Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
     }).onError((error, stackTrace) {
       Get.back();

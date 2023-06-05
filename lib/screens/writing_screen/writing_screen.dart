@@ -1,5 +1,6 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/helper/ads_helper.dart';
+import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_screen.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
@@ -18,7 +19,9 @@ class WritingScreen extends StatelessWidget {
   StatelessElement createElement() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       writingController.getTempList(categoryData.slug);
-      writingController.getYourList(categoryData.slug);
+      if (StorageHelper().isLoggedIn) {
+        writingController.getYourList(categoryData.slug);
+      }
     });
     return super.createElement();
   }
@@ -33,7 +36,7 @@ class WritingScreen extends StatelessWidget {
         width: double.infinity,
         child: SafeArea(
           child: DefaultTabController(
-            length: 2,
+            length: StorageHelper().isLoggedIn ? 2 : 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -54,10 +57,11 @@ class WritingScreen extends StatelessWidget {
                         icon: Text(categoryData.slug.toString() == Slug.email
                             ? AppString.freeEmail
                             : AppString.freeProposal)),
-                    Tab(
-                        icon: Text(categoryData.slug.toString() == Slug.email
-                            ? AppString.yourEmails
-                            : AppString.yourProposal)),
+                    if (StorageHelper().isLoggedIn)
+                      Tab(
+                          icon: Text(categoryData.slug.toString() == Slug.email
+                              ? AppString.yourEmails
+                              : AppString.yourProposal)),
                   ],
                   onTap: (value) {
                     writingController.selectTab = value;
@@ -156,13 +160,10 @@ class WritingScreen extends StatelessWidget {
       floatingActionButton: GestureDetector(
         onTap: () {
           AdHelper.showInterStitialAd(afterAd: () {
-            if (StorageHelper().isLoggedIn) {
-              Get.to(GenerateScreen(
-                slug: categoryData.slug ?? '',
-              ));
-            } else {
-              Get.to(LoginScreen());
-            }
+            Get.delete<GenerateController>();
+            Get.to(GenerateScreen(
+              slug: categoryData.slug ?? '',
+            ));
           });
         },
         child: ButtonView(

@@ -59,21 +59,26 @@ class HomeScreen extends StatelessWidget {
                           }
                         });
                       },
-                      child: Row(
-                        children: [
-                          Obx(() => Text(
-                                StorageHelper().isLoggedIn
-                                    ? homeController.credit.value.toString()
-                                    : '0',
-                                style: Get.theme.textTheme.headlineLarge,
-                              )),
-                          SizedBox(
-                            width: AppDimen.dimen8,
-                          ),
-                          AppCommonWidgets.roundAssetImg(AppImages.credit,
-                              radius: 16),
-                        ],
-                      ),
+                      child: StorageHelper().isLoggedIn
+                          ? Row(
+                              children: [
+                                Obx(() => Text(
+                                      homeController.credit.value.toString(),
+                                      style: Get.theme.textTheme.headlineLarge,
+                                    )),
+                                SizedBox(
+                                  width: AppDimen.dimen8,
+                                ),
+                                AppCommonWidgets.roundAssetImg(AppImages.credit,
+                                    radius: 16),
+                              ],
+                            )
+                          : Text(
+                              AppString.login,
+                              style: Get.theme.textTheme.headlineMedium!
+                                  .copyWith(
+                                      decoration: TextDecoration.underline),
+                            ),
                     ),
                   ],
                 ),
@@ -120,14 +125,10 @@ class HomeScreen extends StatelessWidget {
                                               categoryData: controller
                                                   .categoryData[index]));
                                         } else {
-                                          if (StorageHelper().isLoggedIn) {
-                                            Get.delete<CorrectionController>();
-                                            Get.to(CorrectionScreen(
-                                                categoryData: controller
-                                                    .categoryData[index]));
-                                          } else {
-                                            Get.to(LoginScreen());
-                                          }
+                                          Get.delete<CorrectionController>();
+                                          Get.to(CorrectionScreen(
+                                              categoryData: controller
+                                                  .categoryData[index]));
                                         }
                                       });
                                     },

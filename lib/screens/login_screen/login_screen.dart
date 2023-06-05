@@ -115,7 +115,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: () => Get.offAll(HomeScreen()),
+                          onTap: () {
+                            StorageHelper().isNewUser = false;
+                            Get.offAll(HomeScreen());
+                          },
                           child: Text(
                             AppString.loginAsGuestUser,
                             style: Get.theme.textTheme.headlineSmall!

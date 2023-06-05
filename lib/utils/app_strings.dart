@@ -67,10 +67,10 @@ class AppString {
       'Hey there! I wanted to share this amazing app I discovered called AI Writing. It\'s a game-changer when it comes to crafting perfect emails and proposal with the help of AI. With this app, you can save a ton of time and effortlessly impress your recipients. Give it a try and experience the power of AI in your email communication!';
   static String requesttimeout = "Your request timeout, Please try again later";
   static String changeTheme = 'Change Theme';
-  static String checkConnection = 'Please check your internet connection';
+  static String checkConnection = 'Check your internet connection, please.';
   static String somethingWrong = 'Something went wrong';
-  static String noInternet = 'Check your internet';
-  static String retry = 'Retry!';
+  static String noInternet = 'There is no internet here.';
+  static String retry = 'Retry';
   static String guestUser = 'Hi, Guest User';
   static String adsErrorMsg = 'Ads are currently not functioning properly. Please try again later.';
 
