@@ -1,5 +1,4 @@
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
-import 'package:ai_writing/screens/network_screen.dart';
 import '../../utils/config_packages.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -30,8 +29,7 @@ class SplashScreen extends StatelessWidget {
                     if (StorageHelper().isNewUser) {
                       Get.off(LoginScreen());
                     } else {
-                      Get.offUntil(
-                          GetPageRoute(page: () => NetworkCheckScreen()),
+                      Get.offUntil(GetPageRoute(page: () => HomeScreen()),
                           (route) => false);
                     }
                   });

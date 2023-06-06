@@ -92,6 +92,7 @@ class SubscriptionScreen extends StatelessWidget {
           ),
         ),
       ),
+    bottomNavigationBar: AdHelper.bannerWidget(),
     );
   }
 

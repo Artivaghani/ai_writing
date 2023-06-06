@@ -20,23 +20,23 @@ class MicroView extends StatelessWidget {
       decoration: AppDecoration.dialogBackroundDecoration(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      padding: EdgeInsets.all(AppDimen.dimen20),
+      padding: EdgeInsets.all(AppDimen.dimen16),
       width: double.infinity,
-      height: AppDimen.dimen300,
+      height: AppDimen.dimen200,
       child: Column(
         children: [
           Image.asset(
             AppImages.logo,
-            width: AppDimen.dimen100,
-            height: AppDimen.dimen100,
+            width: AppDimen.dimen50,
+            height: AppDimen.dimen50,
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+                top: AppDimen.dimen10, bottom: AppDimen.dimen10),
             child: Text(AppString.listerning),
           ),
           SizedBox(
-            height: AppDimen.dimen20,
+            height: AppDimen.dimen10,
           ),
           InkWell(
             onTap: () => microController.stopListening(),
@@ -44,8 +44,8 @@ class MicroView extends StatelessWidget {
               alignment: Alignment.center,
               child: ButtonView(
                 title: AppString.stop,
-                height: AppDimen.dimen70,
-                width: AppDimen.dimen200,
+                height: AppDimen.dimen60,
+                width: AppDimen.dimen150,
               ),
             ),
           )

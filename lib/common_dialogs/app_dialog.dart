@@ -1,4 +1,5 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class AppDialog {
@@ -135,6 +136,69 @@ class AppDialog {
                         ),
                 ],
               ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static creditDialog() {
+    showDialog(
+      context: Get.context!,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0)), //this right here
+          child: Container(
+            decoration: AppDecoration.dialogBackroundDecoration(
+                borderRadius: BorderRadius.circular(15)),
+            padding: EdgeInsets.all(AppDimen.dimen30),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Text(
+                  AppString.creditDialogMsg,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: AppDimen.dimen20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Get.back();
+                          AdHelper.showInterStitialAd(afterAd: () {
+                            Get.to(SubscriptionScreen());
+                          });
+                        },
+                        child: ButtonView(
+                            title: AppString.byMoreCredit,
+                            height: AppDimen.dimen80,
+                            isBorder: true,
+                            color: Get.theme.scaffoldBackgroundColor)),
+                    SizedBox(
+                      height: AppDimen.dimen10,
+                    ),
+                    InkWell(
+                        onTap: () {
+                          Get.back();
+                          AdHelper.showInterStitialAd(afterAd: () {
+                            AdHelper.showRewardedAd(calllBack: () {
+                              Get.find<HomeController>().getCredit();
+                            });
+                          });
+                        },
+                        child: ButtonView(
+                            title: AppString.watchAds,
+                            height: AppDimen.dimen80,
+                            color: Get.theme.primaryColor)),
+                  ],
+                )
+              ],
             ),
           ),
         );

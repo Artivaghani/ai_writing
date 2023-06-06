@@ -61,6 +61,9 @@ class AppString {
   static String listerning = 'Listening...';
   static String exitMsg = 'Are you sure, you want to exit to this application?';
   static String screenExitMsg = 'Are you sure, you want to exit to this screen?';
+  static String creditDialogMsg = 'Earn additional credit by selecting any below option';
+  static String byMoreCredit = 'Buy More credit';
+  static String watchAds = 'Whatch Ad';
   static String loginMsg =
       'Artificial intelligence is the future, and the future is here.';
   static String shareText =
