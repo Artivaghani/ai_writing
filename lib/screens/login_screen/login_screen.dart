@@ -1,4 +1,6 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/screens/about_us_screen/about_us_controller.dart';
+import 'package:ai_writing/screens/about_us_screen/about_us_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -98,6 +100,13 @@ class LoginScreen extends StatelessWidget {
                                   style: Get.theme.textTheme.bodySmall,
                                   children: <TextSpan>[
                                     TextSpan(
+                                      onEnter: (event) {
+                                        Get.delete<AboutUsController>();
+                                        Get.to(AboutUsScreen(
+                                          title: AppString.termAndCon,
+                                          slug: ApiParam.termconditions,
+                                        ));
+                                      },
                                       text: ' ${AppString.termAndCon}',
                                       style: Get.theme.textTheme.bodySmall!
                                           .copyWith(
