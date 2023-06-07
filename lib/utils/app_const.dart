@@ -2,6 +2,8 @@ import 'package:ai_writing/helper/localization_model.dart';
 import 'package:ai_writing/utils/app_strings.dart';
 
 class AppConst {
+  static String apkName = 'Ai Writing';
+  
   static bool isAdShow = true;
   static const double elevation = 2;
   static const double cardRadius = 14;
@@ -47,6 +49,8 @@ class AppConst {
     AppString.optimal,
     AppString.high
   ];
+
+  static List<String> productPlan = ["silver_50", "gold_100", "platinum_200"];
 
   static List<int> lengthText = [250, 500, 750];
 

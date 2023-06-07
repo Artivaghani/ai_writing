@@ -88,7 +88,7 @@ class ApiManager {
         throw rData['message'];
       }
     } else {
-      throw Exception(AppString.somethingWrong);
+      throw Exception(AppString.errorMsg);
     }
   }
 }

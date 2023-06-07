@@ -195,6 +195,10 @@ class AppDialog {
                         child: ButtonView(
                             title: AppString.watchAds,
                             height: AppDimen.dimen80,
+                            icon: Icon(
+                              Icons.movie_filter,
+                              color: Get.theme.cardColor,
+                            ),
                             color: Get.theme.primaryColor)),
                   ],
                 )

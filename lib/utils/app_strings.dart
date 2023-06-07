@@ -71,7 +71,7 @@ class AppString {
   static String requesttimeout = "Your request timeout, Please try again later";
   static String changeTheme = 'Change Theme';
   static String checkConnection = 'Check your internet connection, please.';
-  static String somethingWrong = 'Something went wrong';
+  static String errorMsg = 'Something went wrong, Please try again later';
   static String noInternet = 'There is no internet here.';
   static String retry = 'Retry';
   static String guestUser = 'Hi, Guest User';

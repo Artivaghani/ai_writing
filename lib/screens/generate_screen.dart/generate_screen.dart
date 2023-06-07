@@ -68,7 +68,7 @@ class GenerateScreen extends StatelessWidget {
                               backgroundColor: Colors.transparent,
                               builder: (BuildContext context) => MicroView(
                                 onTap: (String text) {
-                                  controller.keyPointController.text=text;
+                                  controller.keyPointController.text = text;
                                 },
                               ),
                             );

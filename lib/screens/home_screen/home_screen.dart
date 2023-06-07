@@ -1,7 +1,6 @@
 import 'package:ai_writing/screens/correction_screen.dart/correction_controller.dart';
 import 'package:ai_writing/screens/correction_screen.dart/correction_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
-import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/screens/writing_screen/writing_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
@@ -70,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                                   width: AppDimen.dimen8,
                                 ),
                                 AppCommonWidgets.roundAssetImg(AppImages.credit,
-                                    radius: 16),
+                                    radius: 12),
                               ],
                             )
                           : Text(
