@@ -58,7 +58,7 @@ class CreditView extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '20-30-2022',
+                  historyList.createdAt ?? '',
                   style: Get.theme.textTheme.bodySmall,
                 ),
               ],

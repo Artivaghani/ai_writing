@@ -88,13 +88,16 @@ class YourDataList {
 }
 
 class Result {
+  String? id;
   List<Choices>? choices;
 
   Result({
+    this.id,
     this.choices,
   });
 
   Result.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     if (json['choices'] != null) {
       choices = <Choices>[];
       json['choices'].forEach((v) {
@@ -105,7 +108,7 @@ class Result {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-
+    data['id'] = id;
     if (choices != null) {
       data['choices'] = choices!.map((v) => v.toJson()).toList();
     }

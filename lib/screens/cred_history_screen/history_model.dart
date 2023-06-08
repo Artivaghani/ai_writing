@@ -41,6 +41,7 @@ class HistoryDataList {
   int? credit;
   String? type;
   String? mode;
+  String? createdAt;
 
   HistoryDataList(
       {this.id,
@@ -48,7 +49,8 @@ class HistoryDataList {
       this.description,
       this.credit,
       this.type,
-      this.mode});
+      this.mode,
+       this.createdAt});
 
   HistoryDataList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -57,6 +59,7 @@ class HistoryDataList {
     credit = json['credit'];
     type = json['type'];
     mode = json['mode'];
+       createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -67,6 +70,7 @@ class HistoryDataList {
     data['credit'] = credit;
     data['type'] = type;
     data['mode'] = mode;
+    data['created_at'] = createdAt;
     return data;
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ai_writing/common_dialogs/micro_view/micro_controller.dart';
 import 'package:ai_writing/common_dialogs/micro_view/mictro_view.dart';
 import 'package:ai_writing/common_widgets/btn_view.dart';
@@ -27,162 +25,159 @@ class CorrectionScreen extends StatelessWidget {
         return Future.value(true);
       },
       child: Scaffold(
-        body: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Container(
-            decoration: AppDecoration.backroundDecoration(),
-            padding: EdgeInsets.all(AppDimen.dimen20),
-            width: double.infinity,
-            child: SafeArea(
-              child: ListView(
-                children: [
-                  CommonAppBar(
-                    title: AppString.textRevision,
-                    callBack: () {
-                      if (controller.correctionText.isNotEmpty) {
-                        controller.showExitDialog();
-                      } else {
-                        Get.back();
-                      }
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: AppDimen.dimen20,
-                        bottom: AppDimen.dimen10,
-                        right: AppDimen.dimen10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(AppString.keyPoint),
-                        InkWell(
-                            onTap: () async {
-                              String value = await FlutterClipboard.paste();
-                              controller.setText(value);
-                            },
-                            child: Text(
-                              AppString.paste,
-                              style: Get.theme.textTheme.headlineSmall!
-                                  .copyWith(
-                                      decoration: TextDecoration.underline),
-                            )),
-                      ],
-                    ),
-                  ),
-                  Stack(
+        body: Container(
+          decoration: AppDecoration.backroundDecoration(),
+          padding: EdgeInsets.all(AppDimen.dimen20),
+          width: double.infinity,
+          child: SafeArea(
+            child: ListView(
+              children: [
+                CommonAppBar(
+                  title: AppString.textRevision,
+                  callBack: () {
+                    if (controller.correctionText.isNotEmpty) {
+                      controller.showExitDialog();
+                    } else {
+                      Get.back();
+                    }
+                  },
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: AppDimen.dimen20,
+                      bottom: AppDimen.dimen10,
+                      right: AppDimen.dimen10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Obx(() {
-                        return CommonTextField(
-                          controller: controller.keyPointController,
-                          maxLines: 18,
-                          hintText: AppString.correctionHint,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(
-                                AppConst.lengthText[
-                                    controller.selectedLengh.value.toInt()]),
-                          ],
-                          maxLength: AppConst.lengthText[
-                              controller.selectedLengh.value.toInt()],
-                          style: Get.theme.textTheme.labelSmall,
-                        );
-                      }),
-                      Positioned(
-                          bottom: 8,
-                          left: 8,
-                          child: InkWell(
-                            onTap: () {
-                              Get.delete<MicroController>();
-                              showModalBottomSheet<void>(
-                                context: context,
-                                backgroundColor: Colors.transparent,
-                                builder: (BuildContext context) => MicroView(
-                                  onTap: (String text) {
-                                    controller.keyPointController.text=text;
-                                  },
-                                ),
-                              );
-                            },
-                            child: AppCommonWidgets.roundShapBtn(
-                                size: AppDimen.dimen40,
-                                child: Icon(Icons.mic, size: AppDimen.dimen26)),
+                      Text(AppString.keyPoint),
+                      InkWell(
+                          onTap: () async {
+                            String value = await FlutterClipboard.paste();
+                            controller.setText(value);
+                          },
+                          child: Text(
+                            AppString.paste,
+                            style: Get.theme.textTheme.headlineSmall!
+                                .copyWith(
+                                    decoration: TextDecoration.underline),
                           )),
                     ],
                   ),
-                  GetBuilder<CorrectionController>(
-                    builder: (corectionController) {
-                      return corectionController.correctionText.isNotEmpty
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                      top: AppDimen.dimen20,
-                                      bottom: AppDimen.dimen10,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(AppString.reviewText),
-                                        ),
-                                        AppCommonWidgets.shareView(
-                                            corectionController.correctionText),
-                                        SizedBox(
-                                          width: AppDimen.dimen8,
-                                        ),
-                                        AppCommonWidgets.copyView(
-                                            corectionController.correctionText),
-                                      ],
-                                    )),
-                                AppCommonWidgets.commonCard(Container(
-                                  width: double.infinity,
-                                  padding: EdgeInsets.all(AppDimen.dimen20),
-                                  child: Text(
-                                    corectionController.correctionText,
-                                    style: Get.theme.textTheme.labelSmall,
+                ),
+                Stack(
+                  children: [
+                    Obx(() {
+                      return CommonTextField(
+                        controller: controller.keyPointController,
+                        maxLines: 15,
+                        hintText: AppString.correctionHint,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(
+                              AppConst.lengthText[
+                                  controller.selectedLengh.value.toInt()]),
+                        ],
+                        maxLength: AppConst.lengthText[
+                            controller.selectedLengh.value.toInt()],
+                        style: Get.theme.textTheme.labelSmall,
+                      );
+                    }),
+                    Positioned(
+                        bottom: 8,
+                        left: 8,
+                        child: InkWell(
+                          onTap: () {
+                            Get.delete<MicroController>();
+                            showModalBottomSheet<void>(
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (BuildContext context) => MicroView(
+                                onTap: (String text) {
+                                  controller.keyPointController.text = text;
+                                },
+                              ),
+                            );
+                          },
+                          child: AppCommonWidgets.roundShapBtn(
+                              size: AppDimen.dimen40,
+                              child: Icon(Icons.mic, size: AppDimen.dimen26)),
+                        )),
+                  ],
+                ),
+                GetBuilder<CorrectionController>(
+                  builder: (corectionController) {
+                    return corectionController.correctionText.isNotEmpty
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                    top: AppDimen.dimen20,
+                                    bottom: AppDimen.dimen10,
                                   ),
-                                ))
-                              ],
-                            )
-                          : const SizedBox();
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(AppString.reviewText),
+                                      ),
+                                      AppCommonWidgets.shareView(
+                                          corectionController.correctionText),
+                                      SizedBox(
+                                        width: AppDimen.dimen8,
+                                      ),
+                                      AppCommonWidgets.copyView(
+                                          corectionController.correctionText),
+                                    ],
+                                  )),
+                              AppCommonWidgets.commonCard(Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.all(AppDimen.dimen20),
+                                child: Text(
+                                  corectionController.correctionText,
+                                  style: Get.theme.textTheme.labelSmall,
+                                ),
+                              ))
+                            ],
+                          )
+                        : const SizedBox();
+                  },
+                ),
+                Obx(
+                  () => AppCommonWidgets.getLenthOfMail(
+                    controller.selectedLengh.value,
+                    onChanged: (p0) {
+                      controller.selectedLengh.value = p0;
+                      controller.setText(controller.keyPointController.text);
                     },
                   ),
-                  Obx(
-                    () => AppCommonWidgets.getLenthOfMail(
-                      controller.selectedLengh.value,
-                      onChanged: (p0) {
-                        controller.selectedLengh.value = p0;
-                        controller.setText(controller.keyPointController.text);
+                ),
+                SizedBox(
+                  height: AppDimen.dimen20,
+                ),
+                Obx(() => InkWell(
+                      onTap: () {
+                        if (StorageHelper().isLoggedIn) {
+                          controller.callGenerateApi(categoryData.slug ?? '');
+                        } else {
+                          Get.to(LoginScreen());
+                        }
                       },
-                    ),
-                  ),
-                  SizedBox(
-                    height: AppDimen.dimen20,
-                  ),
-                  Obx(() => InkWell(
-                        onTap: () {
-                          if (StorageHelper().isLoggedIn) {
-                            controller.callGenerateApi(categoryData.slug ?? '');
-                          } else {
-                            Get.to(LoginScreen());
-                          }
-                        },
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: ButtonView(
-                            title: AppString.revise,
-                            height: AppDimen.dimen70,
-                            width: AppDimen.dimen250,
-                            icon: AppCommonWidgets.roundAssetImg(
-                                AppImages.credit,
-                                radius: 10),
-                            subtitle:
-                                (controller.selectedLengh.value.toInt() + 1)
-                                    .toString(),
-                          ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ButtonView(
+                          title: AppString.revise,
+                          height: AppDimen.dimen70,
+                          width: AppDimen.dimen250,
+                          icon: AppCommonWidgets.roundAssetImg(
+                              AppImages.credit,
+                              radius: 10),
+                          subtitle:
+                              (controller.selectedLengh.value.toInt() + 1)
+                                  .toString(),
                         ),
-                      ))
-                ],
-              ),
+                      ),
+                    ))
+              ],
             ),
           ),
         ),

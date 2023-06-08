@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  HomeController homeController = Get.put(HomeController(), permanent: true);
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

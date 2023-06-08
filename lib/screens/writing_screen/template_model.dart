@@ -38,16 +38,14 @@ class TempData {
   int? id;
   String? type;
   String? title;
-  String? subject;
   String? content;
 
-  TempData({this.id, this.type, this.title,this.subject, this.content});
+  TempData({this.id, this.type, this.title, this.content});
 
   TempData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     type = json['type'];
     title = json['title'];
-    subject = json['subject'];
     content = json['content'];
   }
 
@@ -56,7 +54,6 @@ class TempData {
     data['id'] = id;
     data['type'] = type;
     data['title'] = title;
-    data['subject'] = subject;
     data['content'] = content;
     return data;
   }

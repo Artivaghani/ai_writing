@@ -1,9 +1,7 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
-import 'package:ai_writing/helper/ads_helper.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
 import 'package:ai_writing/screens/generate_screen.dart/generate_screen.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
-import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/screens/review_and_send_screen/review_and_send.dart';
 import 'package:ai_writing/screens/writing_screen/email_view.dart';
 import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
@@ -122,11 +120,19 @@ class WritingScreen extends StatelessWidget {
                                                         afterAd: () {
                                                       Get.to(
                                                           ReviewAndSendScreen(
+                                                        isFree: false,
+                                                        id: writingController
+                                                            .yourList[index]
+                                                            .result
+                                                            ?.id
+                                                            .toString(),
                                                         subject:
                                                             writingController
                                                                     .yourList[
                                                                         index]
-                                                                    .prompt ??
+                                                                    .result!
+                                                                    .choices?[0]
+                                                                    .subject ??
                                                                 '',
                                                         email: writingController
                                                                 .yourList[index]
@@ -143,7 +149,9 @@ class WritingScreen extends StatelessWidget {
                                                       '',
                                                   subTitle: writingController
                                                           .yourList[index]
-                                                          .prompt ??
+                                                          .result!
+                                                          .choices?[0]
+                                                          .subject ??
                                                       '',
                                                   id: writingController
                                                           .yourList[index].id ??

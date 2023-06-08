@@ -41,13 +41,13 @@ class WritingController extends GetxController {
     });
   }
 
-  deleteListItem(String? id,String slug) {
+  deleteListItem(String? id, String slug) {
     isLoad = false;
     update();
     ApiManager.callDelete('${ApiUtils.baseUrl}${ApiUtils.deleteItem}?id=$id',
             headers: ApiParam.header)
         .then((value) {
-     getYourList(slug);
+      getYourList(slug);
     }).onError((error, stackTrace) {
       isLoad = false;
       update();

@@ -1,4 +1,5 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/helper/subscription_helper.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -53,7 +54,7 @@ class SubscriptionScreen extends StatelessWidget {
                       child: GetBuilder<SubscriptionController>(
                           builder: (controller) => ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: 3,
+                                itemCount: SubScriptionHandler.products.length,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder:
                                     (BuildContext context, int index) =>
@@ -80,11 +81,13 @@ class SubscriptionScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () => SubScriptionHandler.buyProduct(
+                      SubScriptionHandler.products[controller.selectTab]),
                   child: ButtonView(
-                    title: AppString.generate,
+                    title:
+                        '${AppString.continueWith} ${SubScriptionHandler.products[controller.selectTab].title}',
                     height: AppDimen.dimen70,
-                    width: AppDimen.dimen250,
+                    width: AppDimen.dimen300,
                   ),
                 ),
               )
@@ -92,7 +95,7 @@ class SubscriptionScreen extends StatelessWidget {
           ),
         ),
       ),
-    bottomNavigationBar: AdHelper.bannerWidget(),
+      bottomNavigationBar: AdHelper.bannerWidget(),
     );
   }
 
@@ -118,12 +121,12 @@ class SubscriptionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Good'),
+                  Text(SubScriptionHandler.products[index].title),
                   SizedBox(
                     height: AppDimen.dimen8,
                   ),
                   Text(
-                    '20/-',
+                    SubScriptionHandler.products[index].price,
                     style: Get.theme.textTheme.headlineMedium,
                   ),
                 ],
@@ -132,7 +135,7 @@ class SubscriptionScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '20',
+                  SubScriptionHandler.products[index].id.split('_')[1],
                   style: Get.theme.textTheme.headlineMedium,
                 ),
                 SizedBox(

@@ -45,10 +45,14 @@ class GenerateController extends GetxController {
         Get.find<WritingController>().selectTab = 1;
         Get.find<WritingController>().getYourList(slug);
         Get.find<HomeController>().getCredit();
-        Get.off(ReviewAndSendScreen(
-            isFree: false,
-            subject: data.data!.choices?[0].subject ?? '',
-            email: data.data!.choices?[0].text ?? ''));
+
+        AdHelper.showInterStitialAd(afterAd: () {
+          Get.off(ReviewAndSendScreen(
+              isFree: false,
+              id: data.data?.id ?? '',
+              subject: data.data!.choices?[0].subject ?? '',
+              email: data.data!.choices?[0].text ?? ''));
+        });
       }).onError((error, stackTrace) {
         Get.back();
         AppDialog.errorSnackBar(error.toString());

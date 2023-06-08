@@ -74,7 +74,7 @@ class HomeController extends GetxController {
       print(' local v ${value['data']['play_store_version']}');
 
       newVersion.getVersionStatus().then((status) {
-        version.value=status!.localVersion.toString();
+        version.value = status!.localVersion.toString();
         double localVersion =
             double.parse(status!.localVersion.toString().replaceAll('.', ''));
         double appStroreVersion = double.parse(

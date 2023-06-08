@@ -2,6 +2,7 @@ import 'package:ai_writing/utils/config_packages.dart';
 
 class ApiParam {
   static const String name = "name";
+  static const String id = "id";
   static const String email = "email";
   static const String profile = "profile";
   static const String provider = "provider";
@@ -20,6 +21,7 @@ class ApiParam {
   static const String termconditions = "term-conditions";
   static const String refundpolicy = "refund-policy";
   static const String about = "about";
+  static const String reGenerate = "regenerate";
 
 
   static Map<String, String> header = {

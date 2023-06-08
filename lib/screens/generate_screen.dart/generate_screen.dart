@@ -18,131 +18,126 @@ class GenerateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: Container(
-          decoration: AppDecoration.backroundDecoration(),
-          padding: EdgeInsets.all(AppDimen.dimen20),
-          width: double.infinity,
-          child: SafeArea(
-            child: ListView(
-              children: [
-                CommonAppBar(title: AppString.selectPurpose),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: AppDimen.dimen20, bottom: AppDimen.dimen10),
-                  child: Text(AppString.selectLang),
-                ),
-                getLangDropDown(),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: AppDimen.dimen20, bottom: AppDimen.dimen10),
-                  child: Text(AppString.selectTone),
-                ),
-                getToneList(),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: AppDimen.dimen20, bottom: AppDimen.dimen10),
-                  child: Text(AppString.keyPoint),
-                ),
-                Stack(
-                  children: [
-                    CommonTextField(
-                      controller: controller.keyPointController,
-                      maxLines: 6,
-                      hintText: slug == Slug.email
-                          ? AppString.keyPonitHint
-                          : AppString.keyPonitHintProposal,
-                      maxLength: 250,
-                    ),
-                    Positioned(
-                        bottom: 8,
-                        left: 8,
-                        child: InkWell(
-                          onTap: () {
-                            Get.delete<MicroController>();
-                            showModalBottomSheet<void>(
-                              context: context,
-                              backgroundColor: Colors.transparent,
-                              builder: (BuildContext context) => MicroView(
-                                onTap: (String text) {
-                                  controller.keyPointController.text = text;
-                                },
-                              ),
-                            );
-                          },
-                          child: AppCommonWidgets.roundShapBtn(
-                              size: AppDimen.dimen40,
-                              child: Icon(Icons.mic, size: AppDimen.dimen26)),
-                        ))
-                  ],
-                ),
-                Obx(
-                  () => AppCommonWidgets.getLenthOfMail(
-                    controller.selectedLengh.value,
-                    onChanged: (p0) {
-                      controller.selectedLengh.value = p0;
-                    },
+      body: Container(
+        decoration: AppDecoration.backroundDecoration(),
+        padding: EdgeInsets.all(AppDimen.dimen20),
+        width: double.infinity,
+        child: SafeArea(
+          child: ListView(
+            children: [
+              CommonAppBar(title: AppString.selectPurpose),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+                child: Text(AppString.selectLang),
+              ),
+              getLangDropDown(),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+                child: Text(AppString.selectTone),
+              ),
+              getToneList(),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: AppDimen.dimen20, bottom: AppDimen.dimen10),
+                child: Text(AppString.keyPoint),
+              ),
+              Stack(
+                children: [
+                  CommonTextField(
+                    controller: controller.keyPointController,
+                    maxLines: 6,
+                    hintText: slug == Slug.email
+                        ? AppString.keyPonitHint
+                        : AppString.keyPonitHintProposal,
+                    maxLength: 250,
                   ),
-                ),
-                getCriativityLevel(),
-                Row(
-                  children: [
-                    Obx(
-                      () => SizedBox(
-                        width: AppDimen.dimen26,
-                        height: AppDimen.dimen26,
-                        child: Checkbox(
-                          checkColor: Get.theme.hintColor,
-                          focusColor: Get.theme.primaryColor,
-                          activeColor: Get.theme.primaryColor,
-                          value: controller.isChecked.value,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(2)),
-                          onChanged: (bool? value) {
-                            controller.isChecked.value = value!;
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppDimen.dimen10,
-                    ),
-                    Expanded(
-                        child: Text(
-                      AppString.addEmoji,
-                      style: Get.theme.textTheme.headlineSmall,
-                    ))
-                  ],
-                ),
-                SizedBox(
-                  height: AppDimen.dimen30,
-                ),
-                Obx(() => Align(
-                      alignment: Alignment.center,
+                  Positioned(
+                      bottom: 8,
+                      left: 8,
                       child: InkWell(
                         onTap: () {
-                          if (StorageHelper().isLoggedIn) {
-                            controller.callGenerateApi(slug);
-                          } else {
-                            Get.to(LoginScreen());
-                          }
+                          Get.delete<MicroController>();
+                          showModalBottomSheet<void>(
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            builder: (BuildContext context) => MicroView(
+                              onTap: (String text) {
+                                controller.keyPointController.text = text;
+                              },
+                            ),
+                          );
                         },
-                        child: ButtonView(
-                          title: AppString.generate,
-                          height: AppDimen.dimen70,
-                          width: AppDimen.dimen250,
-                          icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
-                              radius: 10),
-                          subtitle: (controller.selectedLengh.value.toInt() + 1)
-                              .toString(),
-                        ),
+                        child: AppCommonWidgets.roundShapBtn(
+                            size: AppDimen.dimen40,
+                            child: Icon(Icons.mic, size: AppDimen.dimen26)),
+                      ))
+                ],
+              ),
+              Obx(
+                () => AppCommonWidgets.getLenthOfMail(
+                  controller.selectedLengh.value,
+                  onChanged: (p0) {
+                    controller.selectedLengh.value = p0;
+                  },
+                ),
+              ),
+              getCriativityLevel(),
+              Row(
+                children: [
+                  Obx(
+                    () => SizedBox(
+                      width: AppDimen.dimen26,
+                      height: AppDimen.dimen26,
+                      child: Checkbox(
+                        checkColor: Get.theme.hintColor,
+                        focusColor: Get.theme.primaryColor,
+                        activeColor: Get.theme.primaryColor,
+                        value: controller.isChecked.value,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2)),
+                        onChanged: (bool? value) {
+                          controller.isChecked.value = value!;
+                        },
                       ),
-                    ))
-              ],
-            ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppDimen.dimen10,
+                  ),
+                  Expanded(
+                      child: Text(
+                    AppString.addEmoji,
+                    style: Get.theme.textTheme.headlineSmall,
+                  ))
+                ],
+              ),
+              SizedBox(
+                height: AppDimen.dimen30,
+              ),
+              Obx(() => Align(
+                    alignment: Alignment.center,
+                    child: InkWell(
+                      onTap: () {
+                        if (StorageHelper().isLoggedIn) {
+                          controller.callGenerateApi(slug);
+                        } else {
+                          Get.to(LoginScreen());
+                        }
+                      },
+                      child: ButtonView(
+                        title: AppString.generate,
+                        height: AppDimen.dimen70,
+                        width: AppDimen.dimen250,
+                        icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
+                            radius: 10),
+                        subtitle: (controller.selectedLengh.value.toInt() + 1)
+                            .toString(),
+                      ),
+                    ),
+                  ))
+            ],
           ),
         ),
       ),
