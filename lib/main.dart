@@ -13,7 +13,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-
+  AdHelper.listenToAppStateChanges();
   runApp(const MyApp());
 }
 

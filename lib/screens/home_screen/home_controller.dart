@@ -29,7 +29,10 @@ class HomeController extends GetxController {
   initData() {
     AppFunctions.commonCheckInternetNavigate().then((value) {
       getCategory();
-      getCredit();
+      if (StorageHelper().isLoggedIn) {
+        getCredit();
+      }
+
       checkVersion();
     });
   }

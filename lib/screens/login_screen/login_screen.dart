@@ -5,7 +5,8 @@ import 'package:ai_writing/screens/login_screen/login_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  final bool isBack;
+  LoginScreen({super.key, this.isBack = true});
 
   LoginController controller = Get.put(LoginController());
 
@@ -23,6 +24,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            if (isBack) const CommonAppBar(title: ''),
             SizedBox(
               height: AppDimen.dimen60,
             ),

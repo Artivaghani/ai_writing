@@ -6,6 +6,20 @@ class AdHelper {
   static const AdRequest request = AdRequest();
   static int isAdCount = 1;
 
+  static listenToAppStateChanges() {
+    AppStateEventNotifier.startListening();
+    AppStateEventNotifier.appStateStream
+        .forEach((state) => _onAppStateChanged(state));
+  }
+
+  static _onAppStateChanged(AppState appState) {
+    if (appState == AppState.foreground) {
+      loadOpenapp(callback: () {
+        Get.back();
+      });
+    }
+  }
+
   static showRewardedAd({required Function calllBack}) {
     AppDialog.showProcess();
     RewardedAd.load(

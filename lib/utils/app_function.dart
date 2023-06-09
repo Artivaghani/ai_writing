@@ -15,7 +15,12 @@ class AppFunctions {
     StorageHelper().removeUser();
     await FirebaseAuth.instance.signOut();
     await Get.deleteAll();
-    Get.offUntil(GetPageRoute(page: () => LoginScreen()), (route) => false);
+    Get.offUntil(
+        GetPageRoute(
+            page: () => LoginScreen(
+                  isBack: false,
+                )),
+        (route) => false);
   }
 
   static Future<bool> checkInternet({bool isShowMsg = true}) async {
