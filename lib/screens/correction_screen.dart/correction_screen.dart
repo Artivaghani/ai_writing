@@ -59,8 +59,7 @@ class CorrectionScreen extends StatelessWidget {
                           child: Text(
                             AppString.paste,
                             style: Get.theme.textTheme.headlineSmall!
-                                .copyWith(
-                                    decoration: TextDecoration.underline),
+                                .copyWith(decoration: TextDecoration.underline),
                           )),
                     ],
                   ),
@@ -73,12 +72,11 @@ class CorrectionScreen extends StatelessWidget {
                         maxLines: 15,
                         hintText: AppString.correctionHint,
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(
-                              AppConst.lengthText[
-                                  controller.selectedLengh.value.toInt()]),
+                          LengthLimitingTextInputFormatter(AppConst.lengthText[
+                              controller.selectedLengh.value.toInt()]),
                         ],
-                        maxLength: AppConst.lengthText[
-                            controller.selectedLengh.value.toInt()],
+                        maxLength: AppConst
+                            .lengthText[controller.selectedLengh.value.toInt()],
                         style: Get.theme.textTheme.labelSmall,
                       );
                     }),
@@ -165,15 +163,17 @@ class CorrectionScreen extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: ButtonView(
-                          title: AppString.revise,
+                          title: (controller.lastText.value !=
+                                      controller.keyPointController.text ||
+                                  controller.correctionText.isEmpty)
+                              ? AppString.revise
+                              : AppString.reRevise,
                           height: AppDimen.dimen70,
                           width: AppDimen.dimen250,
-                          icon: AppCommonWidgets.roundAssetImg(
-                              AppImages.credit,
+                          icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
                               radius: 10),
-                          subtitle:
-                              (controller.selectedLengh.value.toInt() + 1)
-                                  .toString(),
+                          subtitle: (controller.selectedLengh.value.toInt() + 1)
+                              .toString(),
                         ),
                       ),
                     ))

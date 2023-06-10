@@ -7,6 +7,7 @@ class ReviewAndSendScreen extends StatelessWidget {
   final String subject;
   final String email;
   final String? id;
+  final String? length;
   final bool isFree;
 
   ReviewAndSendScreen(
@@ -14,6 +15,7 @@ class ReviewAndSendScreen extends StatelessWidget {
       required this.subject,
       required this.email,
       this.id,
+      this.length,
       this.isFree = true});
 
   ReviewAndSendController reviewAndSendController =
@@ -96,7 +98,7 @@ class ReviewAndSendScreen extends StatelessWidget {
                                   icon: AppCommonWidgets.roundAssetImg(
                                       AppImages.credit,
                                       radius: 10),
-                                  subtitle: '1',
+                                  subtitle: (AppConst.length.indexOf(length ?? '')+1).toString(),
                                 ),
                               ),
                             ),

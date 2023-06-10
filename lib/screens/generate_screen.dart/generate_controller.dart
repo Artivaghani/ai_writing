@@ -50,6 +50,7 @@ class GenerateController extends GetxController {
           Get.off(ReviewAndSendScreen(
               isFree: false,
               id: data.data?.id ?? '',
+              length: AppConst.length[selectedLengh.value.toInt()],
               subject: data.data!.choices?[0].subject ?? '',
               email: data.data!.choices?[0].text ?? ''));
         });

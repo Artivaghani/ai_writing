@@ -126,6 +126,10 @@ class WritingScreen extends StatelessWidget {
                                                             .result
                                                             ?.id
                                                             .toString(),
+                                                        length:
+                                                            writingController
+                                                                .yourList[index]
+                                                                .length,
                                                         subject:
                                                             writingController
                                                                     .yourList[

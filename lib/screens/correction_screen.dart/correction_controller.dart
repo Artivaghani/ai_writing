@@ -4,6 +4,7 @@ import 'package:ai_writing/utils/config_packages.dart';
 class CorrectionController extends GetxController {
   TextEditingController keyPointController = TextEditingController();
   String correctionText = '';
+  RxString lastText = ''.obs;
   RxDouble selectedLengh = 0.0.obs;
 
   callGenerateApi(String slug) {
@@ -15,11 +16,15 @@ class CorrectionController extends GetxController {
         ApiUtils.baseUrl + ApiUtils.generateApi,
         headers: ApiParam.header,
         body: {
-          ApiParam.action: slug,
+          ApiParam.action: (lastText.value != keyPointController.text ||
+                  correctionText.isEmpty)
+              ? slug
+              : ApiParam.reGenerate,
           ApiParam.prompt: keyPointController.text,
           ApiParam.length: AppConst.length[selectedLengh.value.toInt()]
         },
       ).then((value) {
+        lastText.value = keyPointController.text;
         Get.back();
         GenerateModel data = GenerateModel.fromJson(value);
         correctionText = data.data!.choices?[0].text ?? '';

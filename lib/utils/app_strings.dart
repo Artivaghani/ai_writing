@@ -15,7 +15,7 @@ class AppString {
   static String email = 'Email';
   static String aiemail = 'Ai Email';
   static String aiProposal = 'Ai Proposal';
-  static String selectPurpose = 'Select Purpose';
+  static String selectPurpose = 'Choose a Purpose';
   static String textRevision = 'Text Revision';
   static String selectLang = 'Language';
   static String selectLength = 'Text Length';
@@ -49,6 +49,7 @@ class AppString {
   static String no = 'No';
   static String stop = 'Stop';
   static String revise = 'Revise';
+  static String reRevise = 'Re-Revise';
   static String reviewText = 'Revise Text';
   static String correctionHint = 'To rewrite text, enter or paste it here';
   static String updateavailable = 'Update Available';
