@@ -52,7 +52,8 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         AdHelper.showInterStitialAd(afterAd: () {
                           if (StorageHelper().isLoggedIn) {
-                            AppDialog.creditDialog();
+                            AppDialog.creditDialog(
+                                callBack: () => homeController.getCredit());
                           } else {
                             Get.to(LoginScreen());
                           }

@@ -143,7 +143,7 @@ class AppDialog {
     );
   }
 
-  static creditDialog() {
+  static creditDialog({required Function callBack}) {
     showDialog(
       context: Get.context!,
       builder: (BuildContext context) {
@@ -186,11 +186,7 @@ class AppDialog {
                     InkWell(
                         onTap: () {
                           Get.back();
-                          AdHelper.showInterStitialAd(afterAd: () {
-                            AdHelper.showRewardedAd(calllBack: () {
-                              Get.find<HomeController>().getCredit();
-                            });
-                          });
+                          AdHelper.showRewardedAd(calllBack: callBack);
                         },
                         child: ButtonView(
                             title: AppString.watchAds,
