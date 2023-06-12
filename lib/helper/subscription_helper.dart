@@ -28,34 +28,35 @@ class SubScriptionHandler {
   }
 
   static initStoreInfo({required Function callBack}) async {
-    // connection.queryProductDetails(AppConst.productPlan).then((value) {
-    //   if (value.error == null) {
-    //     products = value.productDetails;
-    //     debugPrint('purchaseList: ${value.productDetails}');
-    //     if (products.isEmpty && !isRecall) {
-    //       Future.delayed(
-    //         const Duration(seconds: 3),
-    //         () {
-    //           initStoreInfo(callBack: callBack);
-    //           isRecall = true;
-    //         },
-    //       );
-    //     } else {
-    //       callBack.call();
-    //     }
-    //   }
-    // }).onError((error, stackTrace) {
-    //   callBack.call();
-    // });
+    connection.queryProductDetails(AppConst.productPlan).then((value) {
+      if (value.error == null) {
+        products = value.productDetails;
+        debugPrint('purchaseList: ${value.productDetails}');
+        if (products.isEmpty && !isRecall) {
+          Future.delayed(
+            const Duration(seconds: 3),
+            () {
+              initStoreInfo(callBack: callBack);
+              isRecall = true;
+            },
+          );
+        } else {
+          callBack.call();
+        }
+      }
+    }).onError((error, stackTrace) {
+      callBack.call();
+    });
   }
 
-  static Future<void> listenToPurchaseUpdated(List<PurchaseDetails> purchaseDetailsList) async {
+  static Future<void> listenToPurchaseUpdated(
+      List<PurchaseDetails> purchaseDetailsList) async {
     print('purchaseDetailsList: $purchaseDetailsList');
     for (final PurchaseDetails purchaseDetails in purchaseDetailsList) {
       print('purchaseDetails: ${purchaseDetails.status}');
       if (purchaseDetails.status == PurchaseStatus.pending) {
-        print('pending process');
-        Get.back();
+        // print('pending process');
+        // Get.back();
       } else {
         if (purchaseDetails.status == PurchaseStatus.error) {
           Get.back();
@@ -63,9 +64,10 @@ class SubScriptionHandler {
         } else if (purchaseDetails.status == PurchaseStatus.purchased) {
           print("purchased id ${purchaseDetails.productID}");
           print("get buy amout id ${purchaseDetails.productID.split('_')[1]}");
-          print('token : ${purchaseDetails.verificationData.serverVerificationData}');
-          print('complete call ${AppConst.apkName}');
-          // buyCredit(prodetail: purchaseDetails);
+          print(
+              'token : ${purchaseDetails.verificationData.serverVerificationData}');
+
+          buyCredit(prodetail: purchaseDetails);
         } else {
           Get.back();
         }
@@ -81,31 +83,23 @@ class SubScriptionHandler {
     connection.buyConsumable(purchaseParam: purchaseParam);
   }
 
-  // static buyCredit({required PurchaseDetails prodetail}) {
-  //   print('call buy credit');
-  //   JWTFunctions().apiEncode({
-  //     ApiParams.appId: StorageHelper().loginData.appid,
-  //     ApiParams.appToken: StorageHelper().loginData.apptoken,
-  //     ApiParams.amount: prodetail.productID.split('_')[1],
-  //     ApiParams.purchasetoken: prodetail.verificationData.serverVerificationData,
-  //     ApiParams.productId: prodetail.productID,
-  //     ApiParams.apkname: AppConst.apkName,
-  //     // ApiParams.amount: prodetail.productID.split('_')[1],
-  //   }).then((token) {
-  //     ApiManager.callPost(ApiUtils.baseUrl + ApiParams.buyCredit, body: {
-  //       ApiParams.PARAM: token,
-  //     }).then((value) {
-  //       Get.back();
-  //       HomeController homeController = Get.find<HomeController>();
-  //       homeController.getCredit();
-  //       Get.back();
-  //       AppDialog.successSnackBar('${AppString.youAreGet.tr} ${prodetail.productID.split('_')[1]} ${AppString.credits.tr} ${AppString.successfully.tr}');
-  //     }).onError((error, stackTrace) {
-  //       Get.back();
-  //       AppDialog.errorSnackBar(error.toString());
-  //     });
-  //   }).onError((error, stackTrace) {
-  //     Get.back();
-  //   });
-  // }
+  static buyCredit({required PurchaseDetails prodetail}) {
+    ApiManager.callPost(
+      ApiUtils.baseUrl + ApiUtils.purchase,
+      headers: ApiParam.header,
+      body: {
+        ApiParam.subscriptionPlan: prodetail.productID,
+        ApiParam.purchaseToken:
+            prodetail.verificationData.serverVerificationData,
+      },
+    ).then((value) {
+      Get.back();
+      Get.find<HomeController>().credit.value = value['data']['total_credit'];
+      Get.back();
+      AppDialog.successSnackBar(value['message']);
+    }).onError((error, stackTrace) {
+      Get.back();
+      AppDialog.errorSnackBar(error.toString());
+    });
+  }
 }

@@ -40,56 +40,80 @@ class SubscriptionScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: AppDimen.dimen50),
-                    child: AppCommonWidgets.commonCard(Padding(
-                      padding: EdgeInsets.only(
-                          top: AppDimen.dimen60,
-                          left: AppDimen.dimen20,
-                          right: AppDimen.dimen20,
-                          bottom: AppDimen.dimen20),
-                      child: GetBuilder<SubscriptionController>(
-                          builder: (controller) => ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: SubScriptionHandler.products.length,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder:
-                                    (BuildContext context, int index) =>
-                                        InkWell(
-                                  onTap: () {
-                                    controller.selectTab = index;
-                                    controller.update();
-                                  },
-                                  child: getSubscriptionCard(index),
+              GetBuilder<SubscriptionController>(
+                builder: (controller) => controller.isLoading
+                    ? Padding(
+                        padding: EdgeInsets.only(top: AppDimen.dimen250),
+                        child: AppCommonWidgets.processIntegrator(),
+                      )
+                    : SubScriptionHandler.products.isEmpty
+                        ? Padding(
+                          padding: EdgeInsets.only(top: AppDimen.dimen250),
+                          child: AppCommonWidgets.datanotfoundtext(),
+                        )
+                        : Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(top: AppDimen.dimen50),
+                                    child: AppCommonWidgets.commonCard(Padding(
+                                      padding: EdgeInsets.only(
+                                          top: AppDimen.dimen60,
+                                          left: AppDimen.dimen20,
+                                          right: AppDimen.dimen20,
+                                          bottom: AppDimen.dimen20),
+                                      child: GetBuilder<SubscriptionController>(
+                                          builder: (controller) =>
+                                              ListView.builder(
+                                                shrinkWrap: true,
+                                                itemCount: SubScriptionHandler
+                                                    .products.length,
+                                                physics:
+                                                    const NeverScrollableScrollPhysics(),
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                            int index) =>
+                                                        InkWell(
+                                                  onTap: () {
+                                                    controller.selectTab =
+                                                        index;
+                                                    controller.update();
+                                                  },
+                                                  child: getSubscriptionCard(
+                                                      index),
+                                                ),
+                                              )),
+                                    )),
+                                  ),
+                                  Image.asset(
+                                    AppImages.logo,
+                                    width: AppDimen.dimen100,
+                                    height: AppDimen.dimen100,
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: AppDimen.dimen30,
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: InkWell(
+                                  onTap: () => SubScriptionHandler.buyProduct(
+                                      SubScriptionHandler
+                                          .products[controller.selectTab]),
+                                  child: ButtonView(
+                                    title:
+                                        '${AppString.continueWith} ${SubScriptionHandler.products[controller.selectTab].title.split('(')[0]}',
+                                    height: AppDimen.dimen70,
+                                    width: AppDimen.dimen300,
+                                  ),
                                 ),
-                              )),
-                    )),
-                  ),
-                  Image.asset(
-                    AppImages.logo,
-                    width: AppDimen.dimen100,
-                    height: AppDimen.dimen100,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: AppDimen.dimen30,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () => SubScriptionHandler.buyProduct(
-                      SubScriptionHandler.products[controller.selectTab]),
-                  child: ButtonView(
-                    title:
-                        '${AppString.continueWith} ${SubScriptionHandler.products[controller.selectTab].title}',
-                    height: AppDimen.dimen70,
-                    width: AppDimen.dimen300,
-                  ),
-                ),
+                              )
+                            ],
+                          ),
               )
             ],
           ),
@@ -121,7 +145,7 @@ class SubscriptionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(SubScriptionHandler.products[index].title),
+                  Text(SubScriptionHandler.products[index].title.split('(')[0]),
                   SizedBox(
                     height: AppDimen.dimen8,
                   ),

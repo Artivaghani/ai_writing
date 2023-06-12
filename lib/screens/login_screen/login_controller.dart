@@ -64,6 +64,10 @@ class LoginController extends GetxController {
       StorageHelper().isNewUser = false;
 
       Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
+      bool isRegistered = Get.isRegistered<HomeController>();
+      if (isRegistered) {
+        Get.find<HomeController>().initData();
+      }
     }).onError((error, stackTrace) {
       Get.back();
       AppDialog.errorSnackBar(error.toString());

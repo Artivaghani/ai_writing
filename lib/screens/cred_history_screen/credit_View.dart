@@ -68,7 +68,7 @@ class CreditView extends StatelessWidget {
             ),
             Text(
               historyList.description ?? '',
-              style: Get.theme.textTheme.bodyMedium,
+              style: Get.theme.textTheme.bodySmall,
             ),
           ],
         ),

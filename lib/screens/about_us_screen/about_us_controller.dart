@@ -3,8 +3,9 @@ import 'package:ai_writing/utils/config_packages.dart';
 
 class AboutUsController extends GetxController {
   bool isLoading = true;
-
   GeneralModel? apiData;
+
+
 
   callApi(String apiName) {
     ApiManager.callGet(

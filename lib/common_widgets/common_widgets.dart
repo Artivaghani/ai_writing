@@ -10,7 +10,7 @@ class AppCommonWidgets {
         color: color ?? Get.theme.primaryColor,
       ));
 
-  static datanotfoundtext({String? title}) {
+  static Widget datanotfoundtext({String? title}) {
     return Container(
       // height: AppDimen.screenHeight,
       width: AppDimen.screenWidth,

@@ -91,7 +91,7 @@ class GenerateScreen extends StatelessWidget {
                       width: AppDimen.dimen26,
                       height: AppDimen.dimen26,
                       child: Checkbox(
-                        checkColor: Get.theme.hintColor,
+                        checkColor: Get.theme.cardColor,
                         focusColor: Get.theme.primaryColor,
                         activeColor: Get.theme.primaryColor,
                         value: controller.isChecked.value,
@@ -121,7 +121,7 @@ class GenerateScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         if (StorageHelper().isLoggedIn) {
-                          controller.callGenerateApi(slug);
+                          controller.checkBalance(slug);
                         } else {
                           Get.to(LoginScreen());
                         }

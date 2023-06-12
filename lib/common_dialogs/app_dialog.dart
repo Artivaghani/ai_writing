@@ -1,4 +1,5 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/screens/subscription_screen/subscription_controller.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -172,6 +173,7 @@ class AppDialog {
                         onTap: () {
                           Get.back();
                           AdHelper.showInterStitialAd(afterAd: () {
+                            Get.delete<SubscriptionController>();
                             Get.to(SubscriptionScreen());
                           });
                         },
@@ -183,19 +185,20 @@ class AppDialog {
                     SizedBox(
                       height: AppDimen.dimen10,
                     ),
-                    InkWell(
-                        onTap: () {
-                          Get.back();
-                          AdHelper.showRewardedAd(calllBack: callBack);
-                        },
-                        child: ButtonView(
-                            title: AppString.watchAds,
-                            height: AppDimen.dimen80,
-                            icon: Icon(
-                              Icons.movie_filter,
-                              color: Get.theme.cardColor,
-                            ),
-                            color: Get.theme.primaryColor)),
+                    if (AppConst.isAdShow)
+                      InkWell(
+                          onTap: () {
+                            Get.back();
+                            AdHelper.showRewardedAd(calllBack: callBack);
+                          },
+                          child: ButtonView(
+                              title: AppString.watchAds,
+                              height: AppDimen.dimen80,
+                              icon: Icon(
+                                Icons.movie_filter,
+                                color: Get.theme.cardColor,
+                              ),
+                              color: Get.theme.primaryColor)),
                   ],
                 )
               ],

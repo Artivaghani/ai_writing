@@ -2,21 +2,23 @@ import 'package:ai_writing/helper/localization_model.dart';
 import 'package:ai_writing/utils/app_strings.dart';
 
 class AppConst {
-  static String apkName = 'Ai Writing';
-  
+  static const String appName = 'Ai Writing';
+  static const String apkName = 'com.avcodes.ai_writing';
+
   static bool isAdShow = true;
+
   static const double elevation = 2;
   static const double cardRadius = 14;
   static const double btnRadius = 10;
 
 //Test net
-  static const String androidBannerId =
-      'ca-app-pub-3940256099942544/6300978111';
-  static const String androidInterstrialId =
-      'ca-app-pub-3940256099942544/1033173712';
-  static const String androidRevordeId =
-      'ca-app-pub-3940256099942544/5224354917';
-  static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
+  // static const String androidBannerId =
+  //     'ca-app-pub-3940256099942544/6300978111';
+  // static const String androidInterstrialId =
+  //     'ca-app-pub-3940256099942544/1033173712';
+  // static const String androidRevordeId =
+  //     'ca-app-pub-3610650832315671/3985563928';
+  // static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
 
 //Test net
   static const String iosBannerId = 'ca-app-pub-3940256099942544/6300978111';
@@ -26,16 +28,20 @@ class AppConst {
   static const String iosOpenId = 'ca-app-pub-3940256099942544/3419835294';
 
 //Live
-  // static const String androidBannerId = 'ca-app-pub-7484057413460570/8690020296';
-  // static const String androidInterstrialId = '';
-  // static const String androidRevordeId = '';
-  // static const String androidOpenId = '';
+  static const String androidBannerId =
+      'ca-app-pub-7484057413460570/2113260812';
+  static const String androidInterstrialId =
+      'ca-app-pub-7484057413460570/9656693003';
+  static const String androidRevordeId =
+      'ca-app-pub-7484057413460570/5722113583';
+  static const String androidOpenId = 'ca-app-pub-7484057413460570/3234770792';
 
   static const String androidClientID =
       '484500304504-1pjc2cuqo51suq7ondk5bhsgutljm2f5.apps.googleusercontent.com';
   static const String iosClientID = '';
 
-  static const String playStoreLink = 'https://codeinfluencer.com/';
+  static const String playStoreLink =
+      'https://play.google.com/store/apps/details?id=$apkName';
   static const String appStoreLink = '';
 
   static List<String> length = [
@@ -50,7 +56,7 @@ class AppConst {
     AppString.high
   ];
 
-  static List<String> productPlan = ["silver_50", "gold_100", "platinum_200"];
+  static Set<String> productPlan = {"silver_50", "gold_100", "platinum_200"};
 
   static List<int> lengthText = [250, 500, 750];
 

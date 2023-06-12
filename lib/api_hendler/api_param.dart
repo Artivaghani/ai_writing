@@ -21,7 +21,11 @@ class ApiParam {
   static const String termconditions = "term-conditions";
   static const String refundpolicy = "refund-policy";
   static const String about = "about";
+  static const String isAdsReward = "is_ads_reward";
   static const String reGenerate = "regenerate";
+  static const String subscriptionPlan = "subscription_plan";
+  static const String purchaseToken = "purchase_token";
+  static const String price = "price";
 
 
   static Map<String, String> header = {

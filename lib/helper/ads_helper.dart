@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 class AdHelper {
   static const AdRequest request = AdRequest();
   static int isAdCount = 1;
+  static int adsCount = 2;
 
   static listenToAppStateChanges() {
     AppStateEventNotifier.startListening();
@@ -32,7 +33,7 @@ class AdHelper {
             print('UID ${StorageHelper().loginData.authtoken.toString()}');
             ServerSideVerificationOptions option =
                 ServerSideVerificationOptions(
-                    userId: StorageHelper().loginData.authtoken.toString());
+                    userId: StorageHelper().loginData.id.toString());
             rewardedAd.setServerSideOptions(option);
 
             Get.back();
@@ -116,7 +117,7 @@ class AdHelper {
   }
 
   static Future<void> loadOpenapp({required Function callback}) async {
-    if (AppConst.isAdShow) {
+    if (AppConst.isAdShow && !StorageHelper().isNewUser) {
       await AppOpenAd.load(
           adLoadCallback: AppOpenAdLoadCallback(onAdFailedToLoad: (error) {
             callback.call();
@@ -139,7 +140,7 @@ class AdHelper {
   }
 
   static showInterStitialAd({required Function() afterAd}) {
-    if (isAdCount % 5 == 0) {
+    if (isAdCount % adsCount == 0 && AppConst.isAdShow) {
       AppDialog.showProcess();
       InterstitialAd.load(
         adUnitId: Platform.isAndroid
@@ -167,9 +168,11 @@ class AdHelper {
           },
         ),
       );
-    } else {
+    } else if (AppConst.isAdShow) {
       ++isAdCount;
       print('isAdCount: $isAdCount');
+      afterAd();
+    } else {
       afterAd();
     }
   }

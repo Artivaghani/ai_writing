@@ -10,4 +10,5 @@ class ApiUtils {
   static String credit = "api/v1/getCredits";
   static String deleteItem = "api/v1/deleteTemplate";
   static String creditHistory = "api/v1/credit-history";
+  static String purchase = "api/v1/purchase";
 }

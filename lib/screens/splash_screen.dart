@@ -27,7 +27,9 @@ class SplashScreen extends StatelessWidget {
                 () {
                   AdHelper.loadOpenapp(callback: () {
                     if (StorageHelper().isNewUser) {
-                      Get.off(LoginScreen(isBack: false,));
+                      Get.off(LoginScreen(
+                        isBack: false,
+                      ));
                     } else {
                       Get.offUntil(GetPageRoute(page: () => HomeScreen()),
                           (route) => false);

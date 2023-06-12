@@ -88,8 +88,10 @@ class ReviewAndSendScreen extends StatelessWidget {
                             child: Visibility(
                               visible: !isFree,
                               child: InkWell(
-                                onTap: () =>
-                                    controller.callGenerateApi(id ?? ''),
+                                onTap: () => controller.checkBalance(
+                                    id ?? '',
+                                    (AppConst.length.indexOf(length ?? '') +
+                                        1)),
                                 child: ButtonView(
                                   color: Get.theme.cardColor,
                                   title: AppString.reGenerate,
@@ -98,7 +100,10 @@ class ReviewAndSendScreen extends StatelessWidget {
                                   icon: AppCommonWidgets.roundAssetImg(
                                       AppImages.credit,
                                       radius: 10),
-                                  subtitle: (AppConst.length.indexOf(length ?? '')+1).toString(),
+                                  subtitle:
+                                      (AppConst.length.indexOf(length ?? '') +
+                                              1)
+                                          .toString(),
                                 ),
                               ),
                             ),

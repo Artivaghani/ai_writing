@@ -155,7 +155,7 @@ class CorrectionScreen extends StatelessWidget {
                 Obx(() => InkWell(
                       onTap: () {
                         if (StorageHelper().isLoggedIn) {
-                          controller.callGenerateApi(categoryData.slug ?? '');
+                          controller.checkBalance(categoryData.slug ?? '');
                         } else {
                           Get.to(LoginScreen());
                         }
@@ -163,11 +163,11 @@ class CorrectionScreen extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: ButtonView(
-                          title: (controller.lastText.value !=
-                                      controller.keyPointController.text ||
-                                  controller.correctionText.isEmpty)
-                              ? AppString.revise
-                              : AppString.reRevise,
+                          title: (controller.lastText.value ==
+                                      controller.keyPointController.text &&
+                                  controller.correctionText.isNotEmpty)
+                              ? AppString.reRevise
+                              : AppString.revise,
                           height: AppDimen.dimen70,
                           width: AppDimen.dimen250,
                           icon: AppCommonWidgets.roundAssetImg(AppImages.credit,

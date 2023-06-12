@@ -7,7 +7,6 @@ class AboutUsScreen extends StatelessWidget {
   final String title;
 
   AboutUsScreen({super.key, required this.slug, required this.title});
-
   AboutUsController aboutController = Get.put(AboutUsController());
 
   @override
@@ -40,21 +39,30 @@ class AboutUsScreen extends StatelessWidget {
                               : controller.apiData == null
                                   ? AppCommonWidgets.datanotfoundtext()
                                   : ListView(
-                                    children: [
-                                      HtmlWidget(
-                                          controller.apiData?.data?.content ?? '',
+                                      children: [
+                                        HtmlWidget(
+                                          controller.apiData?.data?.content ??
+                                              '',
                                           textStyle:
                                               Get.theme.textTheme.headlineSmall,
                                         ),
-                                    ],
-                                  ),
+                                      ],
+                                    ),
                         )),
               ),
+              if (slug == ApiParam.about)
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: AppDimen.dimen10),
+                  child: Text(
+                    'V${Get.find<HomeController>().version}',
+                    style: Get.theme.textTheme.bodySmall,
+                  ),
+                )
             ],
           ),
         ),
       ),
-    bottomNavigationBar: AdHelper.bannerWidget(),
+      bottomNavigationBar: AdHelper.bannerWidget(),
     );
   }
 }

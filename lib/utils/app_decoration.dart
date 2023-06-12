@@ -17,7 +17,7 @@ class AppDecoration {
     );
   }
 
-  static backroundDecoration({BorderRadiusGeometry? borderRadius}) =>
+  static  backroundDecoration({BorderRadiusGeometry? borderRadius}) =>
       BoxDecoration(
         color: Get.theme.scaffoldBackgroundColor,
         borderRadius: borderRadius,

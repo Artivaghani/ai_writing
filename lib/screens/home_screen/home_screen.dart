@@ -9,8 +9,8 @@ import 'package:flutter/services.dart';
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
-  HomeController homeController = Get.put(HomeController());
+  HomeController homeController = Get.put(HomeController(), permanent: true);
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
       },
       child: Scaffold(
         drawer: Appdrawer(),
-        key: homeController.scaffoldKey,
+        key: scaffoldKey,
         body: Container(
           decoration: AppDecoration.backroundDecoration(),
           padding: EdgeInsets.all(AppDimen.dimen22),
@@ -40,8 +40,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () =>
-                          homeController.scaffoldKey.currentState!.openDrawer(),
+                      onTap: () => scaffoldKey.currentState!.openDrawer(),
                       child: AppCommonWidgets.roundShapBtn(
                           child: Icon(
                         Icons.menu_sharp,
@@ -52,8 +51,14 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         AdHelper.showInterStitialAd(afterAd: () {
                           if (StorageHelper().isLoggedIn) {
-                            AppDialog.creditDialog(
-                                callBack: () => homeController.getCredit());
+                            AppDialog.creditDialog(callBack: () {
+                              Future.delayed(
+                                const Duration(seconds: 3),
+                                () {
+                                  homeController.getCredit();
+                                },
+                              );
+                            });
                           } else {
                             Get.to(LoginScreen());
                           }
@@ -141,7 +146,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: AdHelper.bannerWidget(),
+        bottomNavigationBar: GetBuilder<HomeController>(
+          builder: (controller) => AdHelper.bannerWidget(),
+        ),
       ),
     );
   }

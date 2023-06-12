@@ -96,30 +96,32 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(
                                 height: AppDimen.dimen30,
                               ),
-                              RichText(
-                                text: TextSpan(
-                                  text: AppString.loginWarning,
-                                  style: Get.theme.textTheme.bodySmall,
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      onEnter: (event) {
-                                        Get.delete<AboutUsController>();
-                                        Get.to(AboutUsScreen(
-                                          title: AppString.termAndCon,
-                                          slug: ApiParam.termconditions,
-                                        ));
-                                      },
-                                      text: ' ${AppString.termAndCon}',
-                                      style: Get.theme.textTheme.bodySmall!
-                                          .copyWith(
-                                              color: Get.theme.primaryColor,
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                    TextSpan(
-                                      text: ' ${AppString.loginWarning1}',
-                                      style: Get.theme.textTheme.bodySmall!,
-                                    ),
-                                  ],
+                              InkWell(
+                                onTap: () {
+                                  Get.delete<AboutUsController>();
+                                  Get.to(AboutUsScreen(
+                                    title: AppString.termAndCon,
+                                    slug: ApiParam.termconditions,
+                                  ));
+                                },
+                                child: RichText(
+                                  text: TextSpan(
+                                    text: AppString.loginWarning,
+                                    style: Get.theme.textTheme.bodySmall,
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: ' ${AppString.termAndCon}',
+                                        style: Get.theme.textTheme.bodySmall!
+                                            .copyWith(
+                                                color: Get.theme.primaryColor,
+                                                fontWeight: FontWeight.bold),
+                                      ),
+                                      TextSpan(
+                                        text: ' ${AppString.loginWarning1}',
+                                        style: Get.theme.textTheme.bodySmall!,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

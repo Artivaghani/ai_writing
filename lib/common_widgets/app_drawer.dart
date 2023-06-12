@@ -4,6 +4,7 @@ import 'package:ai_writing/screens/cred_history_screen/history_controller.dart';
 import 'package:ai_writing/screens/cred_history_screen/history_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -147,12 +148,52 @@ class Appdrawer extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: AppDimen.dimen10),
-                child: Obx(() => Text(
-                      'V${homeController.version.value}',
-                      style: Get.theme.textTheme.bodySmall,
-                    )),
+              Obx(
+                () => FlutterSwitch(
+                  width: AppDimen.dimen100,
+                  height: AppDimen.dimen50,
+                  toggleSize: AppDimen.dimen45,
+                  value: homeController.themeStatus.value,
+                  borderRadius: AppDimen.dimen50,
+                  padding: 2.0,
+                  activeToggleColor: Get.theme.primaryColor,
+                  inactiveToggleColor: Get.theme.cardColor,
+                  activeSwitchBorder: Border.all(
+                    color: Get.theme.primaryColor,
+                    width: 1.0,
+                  ),
+                  inactiveSwitchBorder: Border.all(
+                    color: Get.theme.primaryColor,
+                    width: 1.0,
+                  ),
+                  activeColor: Get.theme.cardColor,
+                  inactiveColor: Get.theme.primaryColor,
+                  activeIcon: Icon(
+                    Icons.nightlight_round,
+                    color: Get.theme.cardColor,
+                  ),
+                  inactiveIcon: Icon(
+                    Icons.wb_sunny,
+                    color: Get.theme.primaryColor,
+                  ),
+                  onToggle: (val) async {
+                    homeController.themeStatus.value = val;
+                    StorageHelper().saveTheme = val;
+                    if (val) {
+                      Get.changeThemeMode(ThemeMode.dark);
+                    } else {
+                      Get.changeThemeMode(ThemeMode.light);
+                    }
+
+                    Future.delayed(
+                      const Duration(milliseconds: 500),
+                      () {
+                        Get.offUntil(GetPageRoute(page: () => HomeScreen()),
+                            (route) => false);
+                      },
+                    );
+                  },
+                ),
               ),
             ],
           ),

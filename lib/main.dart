@@ -1,3 +1,6 @@
+import 'package:ai_writing/helper/analytics_helper.dart';
+import 'package:ai_writing/helper/crash_helper.dart';
+import 'package:ai_writing/helper/subscription_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,7 +12,9 @@ Future<void> main() async {
   await GetStorage.init();
   await Firebase.initializeApp();
   await MobileAds.instance.initialize();
-
+  SubScriptionHandler.init();
+  AnalyticsHelper.initAnalytics();
+  CrashHelper.initCrashlytics();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

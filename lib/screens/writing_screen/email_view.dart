@@ -71,7 +71,8 @@ class EmailView extends StatelessWidget {
                       padding: EdgeInsets.only(top: AppDimen.dimen6),
                       child: Text(
                         subTitle ?? '',
-                        style: Get.theme.textTheme.bodyMedium,
+                        maxLines: 2,
+                        style: Get.theme.textTheme.bodySmall,
                       ),
                     ),
                   ),

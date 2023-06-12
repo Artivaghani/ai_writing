@@ -8,10 +8,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
   bool isLoading = true;
-  bool status = false;
   RxInt credit = 0.obs;
-  RxString version = '1.0.0'.obs;
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  String version = '1.0.0';
+  RxBool themeStatus = true.obs;
+
   List<CategoryData> categoryData = [];
 
   final newVersion = NewVersionPlus(
@@ -21,7 +21,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    status = StorageHelper().getTheme ?? Get.isDarkMode;
+    themeStatus.value = StorageHelper().getTheme ?? Get.isDarkMode;
     super.onInit();
     initData();
   }
@@ -29,11 +29,10 @@ class HomeController extends GetxController {
   initData() {
     AppFunctions.commonCheckInternetNavigate().then((value) {
       getCategory();
+      checkVersion();
       if (StorageHelper().isLoggedIn) {
         getCredit();
       }
-
-      checkVersion();
     });
   }
 
@@ -63,7 +62,9 @@ class HomeController extends GetxController {
     ).then((value) {
       CreditModel data = CreditModel.fromJson(value);
       credit.value = data.data!.totalCredit ?? 0;
-      print('credits :${credit.value}');
+      AdHelper.adsCount = data.data?.adsCount ?? 5;
+      print(
+          'After Login ads count ${AdHelper.adsCount} is credit ${credit.value}');
     }).onError((error, stackTrace) {
       print('error in credit :${error.toString()}');
       AppDialog.errorSnackBar(error.toString());
@@ -76,29 +77,44 @@ class HomeController extends GetxController {
     ).then((value) {
       print(' local v ${value['data']['play_store_version']}');
 
+      if (!StorageHelper().isLoggedIn) {
+        AdHelper.adsCount = value['data']['ads_count'] ?? 5;
+      }
+
+      AppConst.isAdShow = value['data']['is_ads'] == 1 ? true : false;
+      update();
+      print(' ads count ${AdHelper.adsCount} is adShow ${AppConst.isAdShow}');
+
       newVersion.getVersionStatus().then((status) {
-        version.value = status!.localVersion.toString();
+        version = status!.localVersion.toString();
+
         double localVersion =
-            double.parse(status!.localVersion.toString().replaceAll('.', ''));
+            double.parse(status.localVersion.toString().replaceAll('.', ''));
         double appStroreVersion = double.parse(
             value['data']['app_store_version'].toString().replaceAll('.', ''));
         double playStroreVersion = double.parse(
             value['data']['play_store_version'].toString().replaceAll('.', ''));
-        if ((Platform.isAndroid && (localVersion >= playStroreVersion)) ||
-            (Platform.isIOS && (localVersion >= appStroreVersion))) {
-          AppDialog.showCommonDialog(
-              title: AppString.updateavailable,
-              subTitle: AppString.updateMsg,
-              btnTitle2: AppString.update,
-              calbback: () {
-                if (Platform.isAndroid) {
-                  launch(AppConst.playStoreLink);
-                } else {
-                  launch(AppConst.appStoreLink);
-                }
-              });
+
+        if ((Platform.isAndroid && (localVersion <= playStroreVersion))) {
+          showVersionDialog();
+        } else if ((Platform.isIOS && (localVersion <= appStroreVersion))) {
+          showVersionDialog();
         }
       });
     }).onError((error, stackTrace) {});
+  }
+
+  showVersionDialog() {
+    AppDialog.showCommonDialog(
+        title: AppString.updateavailable,
+        subTitle: AppString.updateMsg,
+        btnTitle2: AppString.update,
+        calbback: () {
+          if (Platform.isAndroid) {
+            launch(AppConst.playStoreLink);
+          } else {
+            launch(AppConst.appStoreLink);
+          }
+        });
   }
 }
