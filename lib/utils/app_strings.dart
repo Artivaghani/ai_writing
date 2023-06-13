@@ -83,5 +83,5 @@ class AppString {
   static String keyPonitHint =
       'Write your key points here \n\nEx. Hi Paras, Let\'s have a quick call and discuss our idea in detail.';
   static String keyPonitHintProposal =
-      'Write your key points here \n\nEx. I have 5 year of experience in flutter and developed lost of app like ai writing etc.';
+      'Write your key points here \n\nEx. We are providing mobile application services.';
 }

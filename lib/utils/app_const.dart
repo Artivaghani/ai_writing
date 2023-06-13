@@ -56,9 +56,9 @@ class AppConst {
     AppString.high
   ];
 
-  static Set<String> productPlan = {"silver_50", "gold_100", "platinum_200"};
+  static Set<String> productPlan = {"silver_50", "gold_100", "platinum_201"};
 
-  static List<int> lengthText = [250, 500, 750];
+  static List<int> lengthText = [300, 600, 900];
 
   static List<ToneModel> toneList = [
     ToneModel(name: 'Appreciative', assetpath: 'assets/tone/ico_2.png'),

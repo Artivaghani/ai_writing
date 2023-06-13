@@ -15,9 +15,7 @@ class AdHelper {
 
   static _onAppStateChanged(AppState appState) {
     if (appState == AppState.foreground) {
-      loadOpenapp(callback: () {
-        Get.back();
-      });
+      loadOpenapp(callback: () {});
     }
   }
 

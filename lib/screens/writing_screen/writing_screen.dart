@@ -88,18 +88,18 @@ class WritingScreen extends StatelessWidget {
                                                             writingController
                                                                     .tempList[
                                                                         index]
-                                                                    .title ??
+                                                                    .title?.trim() ??
                                                                 '',
                                                         email: writingController
                                                                 .tempList[index]
-                                                                .content ??
+                                                                .content?.trim() ??
                                                             '',
                                                       ));
                                                     }),
                                                 child: EmailView(
                                                   title: writingController
                                                           .tempList[index]
-                                                          .title ??
+                                                          .title?.trim() ??
                                                       '',
                                                   image: ApiUtils.baseUrl +
                                                       (categoryData.image ??
@@ -136,13 +136,13 @@ class WritingScreen extends StatelessWidget {
                                                                         index]
                                                                     .result!
                                                                     .choices?[0]
-                                                                    .subject ??
+                                                                    .subject?.trim() ??
                                                                 '',
                                                         email: writingController
                                                                 .yourList[index]
                                                                 .result!
                                                                 .choices?[0]
-                                                                .text ??
+                                                                .text?.trim() ??
                                                             '',
                                                       ));
                                                     }),
@@ -155,7 +155,7 @@ class WritingScreen extends StatelessWidget {
                                                           .yourList[index]
                                                           .result!
                                                           .choices?[0]
-                                                          .subject ??
+                                                          .subject?.trim() ??
                                                       '',
                                                   id: writingController
                                                           .yourList[index].id ??

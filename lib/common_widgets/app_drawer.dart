@@ -91,7 +91,7 @@ class Appdrawer extends StatelessWidget {
                       AdHelper.showInterStitialAd(afterAd: () {
                         final Uri emailLaunchUri = Uri(
                           scheme: 'mailto',
-                          path: 'info@codeinfluencer.com',
+                          path: 'skycodeslab01@gmail.com',
                         );
                         launchUrl(emailLaunchUri);
                       });

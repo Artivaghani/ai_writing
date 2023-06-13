@@ -7,7 +7,7 @@ class CorrectionController extends GetxController {
   String correctionText = '';
   String id = '';
   RxString lastText = ''.obs;
-  RxDouble selectedLengh = 0.0.obs;
+  RxDouble selectedLengh = 1.0.obs;
   HomeController homeController = Get.find<HomeController>();
 
   checkBalance(String slug) {
@@ -36,7 +36,6 @@ class CorrectionController extends GetxController {
   }
 
   callGenerateApi(String slug, {bool isAdShow = false}) {
-    
     ApiManager.callPost(
       ApiUtils.baseUrl + ApiUtils.generateApi,
       headers: ApiParam.header,
@@ -54,7 +53,7 @@ class CorrectionController extends GetxController {
       lastText.value = keyPointController.text;
       Get.back();
       GenerateModel data = GenerateModel.fromJson(value);
-      correctionText = data.data!.choices?[0].text ?? '';
+      correctionText = data.data!.choices?[0].text?.trim() ?? '';
       id = data.data!.id.toString();
       update();
       Get.find<HomeController>().getCredit();
