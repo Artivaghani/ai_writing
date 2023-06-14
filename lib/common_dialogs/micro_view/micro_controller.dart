@@ -11,7 +11,6 @@ class MicroController extends GetxController {
     await speechToText.listen(
       onResult: (result) {
         lastWords = result.recognizedWords;
-        print('last worlds $lastWords');
         onTap.call(lastWords);
         update();
       },

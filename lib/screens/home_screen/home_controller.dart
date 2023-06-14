@@ -63,10 +63,7 @@ class HomeController extends GetxController {
       CreditModel data = CreditModel.fromJson(value);
       credit.value = data.data!.totalCredit ?? 0;
       AdHelper.adsCount = data.data?.adsCount ?? 5;
-      print(
-          'After Login ads count ${AdHelper.adsCount} is credit ${credit.value}');
     }).onError((error, stackTrace) {
-      print('error in credit :${error.toString()}');
       AppDialog.errorSnackBar(error.toString());
     });
   }
@@ -75,7 +72,6 @@ class HomeController extends GetxController {
     ApiManager.callGet(
       '${ApiUtils.baseUrl}${ApiUtils.generalApi}?type=${ApiParam.appversion}',
     ).then((value) {
-      print(' local v ${value['data']['play_store_version']}');
 
       if (!StorageHelper().isLoggedIn) {
         AdHelper.adsCount = value['data']['ads_count'] ?? 5;
@@ -83,7 +79,6 @@ class HomeController extends GetxController {
 
       AppConst.isAdShow = value['data']['is_ads'] == 1 ? true : false;
       update();
-      print(' ads count ${AdHelper.adsCount} is adShow ${AppConst.isAdShow}');
 
       newVersion.getVersionStatus().then((status) {
         version = status!.localVersion.toString();

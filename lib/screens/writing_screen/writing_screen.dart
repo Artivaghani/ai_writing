@@ -26,7 +26,6 @@ class WritingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('token ${StorageHelper().loginData.authtoken}');
     return Scaffold(
       body: Container(
         decoration: AppDecoration.backroundDecoration(),

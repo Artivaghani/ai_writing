@@ -11,7 +11,6 @@ class LoginController extends GetxController {
 
   login() async {
     AppDialog.showProcess();
-
     final GoogleSignIn googleSignIn = GoogleSignIn(
         clientId: Platform.isAndroid
             ? AppConst.androidClientID
@@ -31,18 +30,22 @@ class LoginController extends GetxController {
                 .onError((error, stackTrace) => callLoginApi('nope'));
           }).onError((error, stackTrace) {
             Get.back();
-            debugPrint(error.toString());
+            print(error.toString());
+            AppDialog.errorSnackBar(AppString.errorMsg);
           });
         }).onError((error, stackTrace) {
           Get.back();
-          debugPrint(error.toString());
+          print(error.toString());
+          AppDialog.errorSnackBar(AppString.errorMsg);
         });
       } else {
         Get.back();
+        AppDialog.errorSnackBar(AppString.errorMsg);
       }
     }).onError((error, stackTrace) {
       Get.back();
-      debugPrint(error.toString());
+      print(error.toString());
+      AppDialog.errorSnackBar(AppString.errorMsg);
     });
   }
 

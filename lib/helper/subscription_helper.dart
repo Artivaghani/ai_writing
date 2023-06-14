@@ -13,16 +13,13 @@ class SubScriptionHandler {
   static init() async {
     Stream purchaseUpdated = InAppPurchase.instance.purchaseStream;
     subscription = purchaseUpdated.listen((purchaseDetailsList) {
-      print('on Data: $purchaseUpdated');
       AppDialog.showProcess();
       listenToPurchaseUpdated(purchaseDetailsList);
     }, onDone: () {
       Get.back();
-      print('on Done: $purchaseUpdated');
       subscription!.cancel();
     }, onError: (error) {
       Get.back();
-      print('on Error: $purchaseUpdated');
       AppDialog.errorSnackBar(AppString.errorMsg.tr);
     });
   }
@@ -30,8 +27,8 @@ class SubScriptionHandler {
   static initStoreInfo({required Function callBack}) async {
     connection.queryProductDetails(AppConst.productPlan).then((value) {
       if (value.error == null) {
+        value.productDetails.sort((a, b) => a.rawPrice.compareTo(b.rawPrice));
         products = value.productDetails;
-        debugPrint('purchaseList: ${value.productDetails}');
         if (products.isEmpty && !isRecall) {
           Future.delayed(
             const Duration(seconds: 3),
@@ -51,22 +48,15 @@ class SubScriptionHandler {
 
   static Future<void> listenToPurchaseUpdated(
       List<PurchaseDetails> purchaseDetailsList) async {
-    print('purchaseDetailsList: $purchaseDetailsList');
     for (final PurchaseDetails purchaseDetails in purchaseDetailsList) {
-      print('purchaseDetails: ${purchaseDetails.status}');
       if (purchaseDetails.status == PurchaseStatus.pending) {
-        // print('pending process');
         // Get.back();
       } else {
         if (purchaseDetails.status == PurchaseStatus.error) {
           Get.back();
           AppDialog.errorSnackBar(AppString.errorMsg.tr);
         } else if (purchaseDetails.status == PurchaseStatus.purchased) {
-          print("purchased id ${purchaseDetails.productID}");
-          print("get buy amout id ${purchaseDetails.productID.split('_')[1]}");
-          print(
-              'token : ${purchaseDetails.verificationData.serverVerificationData}');
-
+          print(purchaseDetails.productID.toString());
           buyCredit(prodetail: purchaseDetails);
         } else {
           Get.back();

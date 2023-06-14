@@ -56,7 +56,7 @@ class AppConst {
     AppString.high
   ];
 
-  static Set<String> productPlan = {"silver_50", "gold_100", "platinum_201"};
+  static Set<String> productPlan = {"silver.50", "gold.100", "platinum.200"};
 
   static List<int> lengthText = [300, 600, 900];
 

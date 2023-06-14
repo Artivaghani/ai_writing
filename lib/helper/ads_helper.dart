@@ -28,7 +28,6 @@ class AdHelper {
         request: request,
         rewardedAdLoadCallback: RewardedAdLoadCallback(
           onAdLoaded: (RewardedAd rewardedAd) {
-            print('UID ${StorageHelper().loginData.authtoken.toString()}');
             ServerSideVerificationOptions option =
                 ServerSideVerificationOptions(
                     userId: StorageHelper().loginData.id.toString());
@@ -37,14 +36,12 @@ class AdHelper {
             Get.back();
             rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
               onAdShowedFullScreenContent: (RewardedAd ad) =>
-                  debugPrint('ad onAdShowedFullScreenContent.'),
+                  debugPrint('as show'),
               onAdDismissedFullScreenContent: (RewardedAd ad) {
-                debugPrint('$ad onAdDismissedFullScreenContent.');
                 ad.dispose();
               },
               onAdFailedToShowFullScreenContent:
                   (RewardedAd ad, AdError error) {
-                debugPrint('$ad onAdFailedToShowFullScreenContent: $error');
                 ad.dispose();
 
                 AppDialog.errorSnackBar(AppString.adsErrorMsg);
@@ -55,13 +52,11 @@ class AdHelper {
             rewardedAd.show(
                 onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
               calllBack.call();
-              debugPrint(
-                  '$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+
               ad.dispose();
             });
           },
           onAdFailedToLoad: (LoadAdError error) {
-            debugPrint('RewardedAd failed to load: $error');
             Get.back();
             AppDialog.errorSnackBar(AppString.adsErrorMsg);
           },
@@ -168,7 +163,6 @@ class AdHelper {
       );
     } else if (AppConst.isAdShow) {
       ++isAdCount;
-      print('isAdCount: $isAdCount');
       afterAd();
     } else {
       afterAd();

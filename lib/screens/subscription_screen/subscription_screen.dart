@@ -159,7 +159,7 @@ class SubscriptionScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  SubScriptionHandler.products[index].id.split('_')[1],
+                  SubScriptionHandler.products[index].id.split('.')[1],
                   style: Get.theme.textTheme.headlineMedium,
                 ),
                 SizedBox(
