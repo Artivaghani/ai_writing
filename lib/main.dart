@@ -1,5 +1,6 @@
 import 'package:ai_writing/helper/analytics_helper.dart';
 import 'package:ai_writing/helper/crash_helper.dart';
+import 'package:ai_writing/helper/link_helper.dart';
 import 'package:ai_writing/helper/subscription_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +19,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  DynamicLinkHandler().initDynamicLinks();
   AdHelper.listenToAppStateChanges();
   runApp(const MyApp());
 }

@@ -1,5 +1,5 @@
-import 'package:ai_writing/screens/correction_screen.dart/correction_controller.dart';
-import 'package:ai_writing/screens/correction_screen.dart/correction_screen.dart';
+import 'package:ai_writing/screens/correction_screen/correction_controller.dart';
+import 'package:ai_writing/screens/correction_screen/correction_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/screens/writing_screen/writing_screen.dart';
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                                             controller.categoryData[index]));
                               }),
                 ),
-              ],
+               ],
             ),
           ),
         ),

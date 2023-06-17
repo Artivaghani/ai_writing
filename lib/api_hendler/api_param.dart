@@ -26,6 +26,7 @@ class ApiParam {
   static const String subscriptionPlan = "subscription_plan";
   static const String purchaseToken = "purchase_token";
   static const String price = "price";
+  static const String referralCode = "referral_code";
 
 
   static Map<String, String> header = {

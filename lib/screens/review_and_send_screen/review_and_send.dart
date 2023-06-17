@@ -58,7 +58,7 @@ class ReviewAndSendScreen extends StatelessWidget {
                             top: AppDimen.dimen20, bottom: AppDimen.dimen10),
                         child: Row(
                           children: [
-                            Expanded(child: Text(AppString.email)),
+                            Expanded(child: Text(AppString.content)),
                             AppCommonWidgets.shareView(email),
                             SizedBox(
                               width: AppDimen.dimen8,

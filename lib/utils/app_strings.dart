@@ -12,7 +12,7 @@ class AppString {
   static String yourEmails = 'Your Emails';
   static String freeProposal = 'Free Proposals';
   static String yourProposal = 'Your Proposals';
-  static String email = 'Email';
+  static String content = 'Content';
   static String aiemail = 'Ai Email';
   static String aiProposal = 'Ai Proposal';
   static String selectPurpose = 'Choose a Purpose';
@@ -29,13 +29,14 @@ class AppString {
   static String short = 'Short';
   static String medium = 'Medium';
   static String long = 'Long';
-  static String none = 'None';
+  static String none = 'Normal';
   static String optimal = 'Optimal';
   static String high = 'High';
   static String send = 'Send';
   static String subject = 'Subject';
   static String creditHistory = 'Credit History';
   static String aboutUs = 'About Us';
+  static String referafriend = 'Refer a Friend';
   static String contactus = 'Contact Us';
   static String privacyPolicy = 'Privacy Policy';
   static String refundPolicy = 'Refund Policy';
@@ -59,10 +60,13 @@ class AppString {
   static String amazing = 'Amazing';
   static String pro = 'Pro';
   static String loginAsGuestUser = 'Login As Guest User';
+  static String referMsg = 'Invite a friend, \nand receive 10 credits.';
   static String listerning = 'Listening...';
   static String exitMsg = 'Are you sure, you want to exit to this application?';
-  static String screenExitMsg = 'Are you sure, you want to exit to this screen?';
-  static String creditDialogMsg = 'Earn additional credit by selecting any below option';
+  static String screenExitMsg =
+      'Are you sure, you want to exit to this screen?';
+  static String creditDialogMsg =
+      'Earn additional credit by selecting any below option';
   static String byMoreCredit = 'Buy More credit';
   static String continueWith = 'Continue With';
   static String watchAds = 'Whatch Ad';
@@ -77,7 +81,8 @@ class AppString {
   static String noInternet = 'There is no internet here.';
   static String retry = 'Retry';
   static String guestUser = 'Hi, Guest User';
-  static String adsErrorMsg = 'Ads are currently not functioning properly. Please try again later.';
+  static String adsErrorMsg =
+      'Ads are currently not functioning properly. Please try again later.';
 
   static String keyPointRequired = 'Key points are required';
   static String keyPonitHint =

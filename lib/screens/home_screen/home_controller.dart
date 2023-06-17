@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/screens/home_screen/credit_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
@@ -72,7 +71,6 @@ class HomeController extends GetxController {
     ApiManager.callGet(
       '${ApiUtils.baseUrl}${ApiUtils.generalApi}?type=${ApiParam.appversion}',
     ).then((value) {
-
       if (!StorageHelper().isLoggedIn) {
         AdHelper.adsCount = value['data']['ads_count'] ?? 5;
       }

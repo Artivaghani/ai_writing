@@ -2,7 +2,7 @@ import 'package:ai_writing/common_dialogs/micro_view/micro_controller.dart';
 import 'package:ai_writing/common_dialogs/micro_view/mictro_view.dart';
 import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/common_widgets/common_text_field.dart';
-import 'package:ai_writing/screens/correction_screen.dart/correction_controller.dart';
+import 'package:ai_writing/screens/correction_screen/correction_controller.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
@@ -78,6 +78,11 @@ class CorrectionScreen extends StatelessWidget {
                         maxLength: AppConst
                             .lengthText[controller.selectedLengh.value.toInt()],
                         style: Get.theme.textTheme.labelSmall,
+                        onChanged: (p0) {
+                          if (controller.lastText != p0) {
+                            controller.update();
+                          }
+                        },
                       );
                     }),
                     Positioned(
@@ -89,6 +94,7 @@ class CorrectionScreen extends StatelessWidget {
                             showModalBottomSheet<void>(
                               context: context,
                               backgroundColor: Colors.transparent,
+                              barrierColor: Colors.transparent,
                               builder: (BuildContext context) => MicroView(
                                 onTap: (String text) {
                                   controller.keyPointController.text = text;
@@ -152,31 +158,35 @@ class CorrectionScreen extends StatelessWidget {
                 SizedBox(
                   height: AppDimen.dimen20,
                 ),
-                Obx(() => InkWell(
-                      onTap: () {
-                        if (StorageHelper().isLoggedIn) {
-                          controller.checkBalance(categoryData.slug ?? '');
-                        } else {
-                          Get.to(LoginScreen());
-                        }
-                      },
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: ButtonView(
-                          title: (controller.lastText.value ==
-                                      controller.keyPointController.text &&
-                                  controller.correctionText.isNotEmpty)
-                              ? AppString.reRevise
-                              : AppString.revise,
-                          height: AppDimen.dimen70,
-                          width: AppDimen.dimen250,
-                          icon: AppCommonWidgets.roundAssetImg(AppImages.credit,
-                              radius: 10),
-                          subtitle: (controller.selectedLengh.value.toInt() + 1)
-                              .toString(),
-                        ),
-                      ),
-                    ))
+                GetBuilder<CorrectionController>(
+                    builder: (controller) => InkWell(
+                          onTap: () {
+                            FocusScope.of(context).unfocus();
+                            if (StorageHelper().isLoggedIn) {
+                              controller.checkBalance(categoryData.slug ?? '');
+                            } else {
+                              Get.to(LoginScreen());
+                            }
+                          },
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: ButtonView(
+                              title: (controller.lastText ==
+                                          controller.keyPointController.text &&
+                                      controller.correctionText.isNotEmpty)
+                                  ? AppString.reRevise
+                                  : AppString.revise,
+                              height: AppDimen.dimen70,
+                              width: AppDimen.dimen250,
+                              icon: AppCommonWidgets.roundAssetImg(
+                                  AppImages.credit,
+                                  radius: 10),
+                              subtitle:
+                                  (controller.selectedLengh.value.toInt() + 1)
+                                      .toString(),
+                            ),
+                          ),
+                        ))
               ],
             ),
           ),

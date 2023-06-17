@@ -37,6 +37,7 @@ class LoginData {
   String? deviceToken;
   String? deviceType;
   String? authtoken;
+  String? referralCode;
 
   LoginData(
       {this.id,
@@ -47,6 +48,7 @@ class LoginData {
       this.profile,
       this.deviceToken,
       this.deviceType,
+      this.referralCode,
       this.authtoken});
 
   LoginData.fromJson(Map<String, dynamic> json) {
@@ -58,6 +60,7 @@ class LoginData {
     profile = json['profile'];
     deviceToken = json['device_token'];
     deviceType = json['device_type'];
+    referralCode = json['referral_code'];
     authtoken = json['authToken'];
   }
 
@@ -71,6 +74,7 @@ class LoginData {
     data['profile'] = profile;
     data['device_token'] = deviceToken;
     data['device_type'] = deviceType;
+    data['referral_code'] = referralCode;
     data['authToken'] = authtoken;
     return data;
   }

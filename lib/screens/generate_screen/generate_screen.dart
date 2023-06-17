@@ -4,7 +4,7 @@ import 'package:ai_writing/common_widgets/btn_view.dart';
 import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/helper/localization.dart';
 import 'package:ai_writing/helper/localization_model.dart';
-import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
+import 'package:ai_writing/screens/generate_screen/generate_controller.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -62,6 +62,7 @@ class GenerateScreen extends StatelessWidget {
                           showModalBottomSheet<void>(
                             context: context,
                             backgroundColor: Colors.transparent,
+                            barrierColor: Colors.transparent,
                             builder: (BuildContext context) => MicroView(
                               onTap: (String text) {
                                 controller.keyPointController.text = text;
@@ -120,6 +121,7 @@ class GenerateScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
+                        FocusScope.of(context).unfocus();
                         if (StorageHelper().isLoggedIn) {
                           controller.checkBalance(slug);
                         } else {

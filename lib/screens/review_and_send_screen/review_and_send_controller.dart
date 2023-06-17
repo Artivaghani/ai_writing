@@ -1,4 +1,4 @@
-import 'package:ai_writing/screens/generate_screen.dart/generate_model.dart';
+import 'package:ai_writing/screens/generate_screen/generate_model.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
@@ -10,7 +10,7 @@ class ReviewAndSendController extends GetxController {
   checkBalance(String id, int lengh) {
     if ((homeController.credit.value.toDouble() + 1) == lengh) {
       AppDialog.creditDialog(callBack: () {
-         AppDialog.showProcess();
+        AppDialog.showProcess();
         Future.delayed(
           const Duration(seconds: 3),
           () {
@@ -23,13 +23,12 @@ class ReviewAndSendController extends GetxController {
         Get.to(SubscriptionScreen());
       });
     } else {
-       AppDialog.showProcess();
+      AppDialog.showProcess();
       callGenerateApi(id);
     }
   }
 
   callGenerateApi(String id, {bool isAdShow = false}) {
-   
     ApiManager.callPost(
       ApiUtils.baseUrl + ApiUtils.generateApi,
       headers: ApiParam.header,
@@ -44,6 +43,8 @@ class ReviewAndSendController extends GetxController {
         GenerateModel data = GenerateModel.fromJson(value);
         subject = data.data!.choices?[0].subject ?? '';
         email = data.data!.choices?[0].text ?? '';
+
+        Get.find<HomeController>().getCredit();
         update();
       });
     }).onError((error, stackTrace) {

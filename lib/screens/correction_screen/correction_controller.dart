@@ -1,27 +1,14 @@
-import 'package:ai_writing/helper/localization.dart';
-import 'package:ai_writing/helper/localization_model.dart';
-import 'package:ai_writing/screens/generate_screen.dart/generate_model.dart';
-import 'package:ai_writing/screens/review_and_send_screen/review_and_send.dart';
+import 'package:ai_writing/screens/generate_screen/generate_model.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
-import 'package:ai_writing/screens/writing_screen/writing_controller.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 
-class GenerateController extends GetxController {
-  RxInt selectTab = 0.obs;
-  RxBool isChecked = false.obs;
-  RxDouble selectedLengh = 1.0.obs;
-  RxDouble selectedLevel = 1.0.obs;
-
-  LanguageModel selectedLang = LocalizationHelper.langList[0];
-  ToneModel selectedTone = AppConst.toneList[0];
+class CorrectionController extends GetxController {
   TextEditingController keyPointController = TextEditingController();
+  String correctionText = '';
+  String id = '';
+  String lastText = '';
+  RxDouble selectedLengh = 1.0.obs;
   HomeController homeController = Get.find<HomeController>();
-
-  @override
-  void onInit() {
-    update();
-    super.onInit();
-  }
 
   checkBalance(String slug) {
     if (keyPointController.text.isEmpty) {
@@ -53,34 +40,46 @@ class GenerateController extends GetxController {
       ApiUtils.baseUrl + ApiUtils.generateApi,
       headers: ApiParam.header,
       body: {
-        ApiParam.action: slug,
+        ApiParam.action: (lastText == keyPointController.text &&
+                correctionText.isNotEmpty)
+            ? ApiParam.reGenerate
+            : slug,
+        ApiParam.id: id,
         ApiParam.prompt: keyPointController.text,
-        ApiParam.tone: selectedTone.name.toString(),
         ApiParam.length: AppConst.length[selectedLengh.value.toInt()],
-        ApiParam.level: AppConst.level[selectedLevel.value.toInt()],
-        ApiParam.lang: selectedLang.name.toString(),
-        ApiParam.isemoji: isChecked.value ? '1' : '0',
         ApiParam.isAdsReward: isAdShow ? '1' : '0',
       },
     ).then((value) {
+      lastText = keyPointController.text;
       Get.back();
       GenerateModel data = GenerateModel.fromJson(value);
-
-      Get.find<WritingController>().selectTab = 1;
-      Get.find<WritingController>().getYourList(slug);
+      correctionText = data.data!.choices?[0].text?.trim() ?? '';
+      id = data.data!.id.toString();
+      update();
       Get.find<HomeController>().getCredit();
-
-      AdHelper.showInterStitialAd(afterAd: () {
-        Get.off(ReviewAndSendScreen(
-            isFree: false,
-            id: data.data?.id ?? '',
-            length: AppConst.length[selectedLengh.value.toInt()],
-            subject: data.data!.choices?[0].subject ?? '',
-            email: data.data!.choices?[0].text ?? ''));
-      });
     }).onError((error, stackTrace) {
       Get.back();
       AppDialog.errorSnackBar(error.toString());
     });
+  }
+
+  showExitDialog() {
+    return AppDialog.showCommonDialog(
+        title: AppString.exit,
+        subTitle: AppString.screenExitMsg,
+        btnTitle2: AppString.yes,
+        btnTitle1: AppString.no,
+        calbback: () {
+          Get.back();
+        });
+  }
+
+  setText(String text) {
+    if (text.length > AppConst.lengthText[selectedLengh.value.toInt()]) {
+      keyPointController.text =
+          text.substring(0, AppConst.lengthText[selectedLengh.value.toInt()]);
+    } else {
+      keyPointController.text = text;
+    }
   }
 }

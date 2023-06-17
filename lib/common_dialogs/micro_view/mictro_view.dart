@@ -22,33 +22,19 @@ class MicroView extends StatelessWidget {
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       padding: EdgeInsets.all(AppDimen.dimen16),
       width: double.infinity,
-      height: AppDimen.dimen200,
+      height: AppDimen.dimen150,
       child: Column(
         children: [
           Image.asset(
-            AppImages.logo,
-            width: AppDimen.dimen50,
-            height: AppDimen.dimen50,
+            AppImages.stopGIF,
+            width: AppDimen.dimen70,
+            height: AppDimen.dimen70,
           ),
           Padding(
             padding: EdgeInsets.only(
                 top: AppDimen.dimen10, bottom: AppDimen.dimen10),
             child: Text(AppString.listerning),
           ),
-          SizedBox(
-            height: AppDimen.dimen10,
-          ),
-          InkWell(
-            onTap: () => microController.stopListening(),
-            child: Align(
-              alignment: Alignment.center,
-              child: ButtonView(
-                title: AppString.stop,
-                height: AppDimen.dimen60,
-                width: AppDimen.dimen150,
-              ),
-            ),
-          )
         ],
       ),
     );

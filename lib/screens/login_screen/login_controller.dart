@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ai_writing/helper/link_helper.dart';
 import 'package:ai_writing/screens/login_screen/login_model.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,6 +51,7 @@ class LoginController extends GetxController {
   }
 
   callLoginApi(String token) {
+    print('ref ${referCode}');
     ApiManager.callPost(
       ApiUtils.baseUrl + ApiUtils.socialLogin,
       body: {
@@ -59,13 +61,14 @@ class LoginController extends GetxController {
         ApiParam.provider: 'Gmail',
         ApiParam.devicetoken: token,
         ApiParam.deviceType: Platform.isAndroid ? '0' : '1',
+        ApiParam.referralCode: referCode,
       },
     ).then((value) {
       LoginModel response = LoginModel.fromJson(value);
       StorageHelper().loginData = response.data!;
       StorageHelper().isLoggedIn = true;
       StorageHelper().isNewUser = false;
-
+      print(response.data!.referralCode.toString());
       Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
       bool isRegistered = Get.isRegistered<HomeController>();
       if (isRegistered) {

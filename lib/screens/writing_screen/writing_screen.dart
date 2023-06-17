@@ -1,6 +1,6 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
-import 'package:ai_writing/screens/generate_screen.dart/generate_controller.dart';
-import 'package:ai_writing/screens/generate_screen.dart/generate_screen.dart';
+import 'package:ai_writing/screens/generate_screen/generate_controller.dart';
+import 'package:ai_writing/screens/generate_screen/generate_screen.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
 import 'package:ai_writing/screens/review_and_send_screen/review_and_send.dart';
 import 'package:ai_writing/screens/writing_screen/email_view.dart';

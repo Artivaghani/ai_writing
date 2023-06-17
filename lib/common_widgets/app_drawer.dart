@@ -1,3 +1,4 @@
+import 'package:ai_writing/helper/link_helper.dart';
 import 'package:ai_writing/screens/about_us_screen/about_us_controller.dart';
 import 'package:ai_writing/screens/about_us_screen/about_us_screen.dart';
 import 'package:ai_writing/screens/cred_history_screen/history_controller.dart';
@@ -145,6 +146,47 @@ class Appdrawer extends StatelessWidget {
                         child: getListView(
                             AppString.logout, Icons.logout_rounded,
                             onTap: () => AppFunctions.logout())),
+                    SizedBox(
+                      height: AppDimen.dimen20,
+                    ),
+                    if (StorageHelper().isLoggedIn)
+                      InkWell(
+                        onTap: () =>
+                            DynamicLinkHandler().createDynamicLinkAndShare(),
+                        child: AppCommonWidgets.commonCard(Row(
+                          children: [
+                            Image.asset(
+                              AppImages.refer,
+                              width: AppDimen.dimen100,
+                              height: AppDimen.dimen100,
+                            ),
+                            SizedBox(
+                              width: AppDimen.dimen10,
+                            ),
+                            Wrap(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppString.referafriend,
+                                      style: Get.theme.textTheme.headlineSmall,
+                                    ),
+                                    SizedBox(
+                                      height: AppDimen.dimen8,
+                                    ),
+                                    Text(
+                                      AppString.referMsg,
+                                      style: Get.theme.textTheme.bodySmall,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
+                      )
                   ],
                 ),
               ),
