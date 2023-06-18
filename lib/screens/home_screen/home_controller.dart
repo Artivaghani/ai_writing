@@ -88,9 +88,9 @@ class HomeController extends GetxController {
         double playStroreVersion = double.parse(
             value['data']['play_store_version'].toString().replaceAll('.', ''));
 
-        if ((Platform.isAndroid && (localVersion <= playStroreVersion))) {
+        if ((Platform.isAndroid && (localVersion < playStroreVersion))) {
           showVersionDialog();
-        } else if ((Platform.isIOS && (localVersion <= appStroreVersion))) {
+        } else if ((Platform.isIOS && (localVersion < appStroreVersion))) {
           showVersionDialog();
         }
       });
