@@ -15,7 +15,6 @@ class DynamicLinkHandler {
       if (deepLink.isEmpty) return;
       handleDeepLink(path);
     }).onError((error) {
-      print(error.message);
     });
     initUniLinks();
   }
@@ -32,13 +31,12 @@ class DynamicLinkHandler {
 
   Future<void> createDynamicLinkAndShare() async {
     AppDialog.showProcess();
-    print(StorageHelper().loginData.referralCode);
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://aiwriting.page.link',
 
       link: Uri.parse('$dynamicLink/${StorageHelper().loginData.referralCode}'),
       androidParameters: const AndroidParameters(
-        packageName: 'com.avcodes.ai_writing',
+        packageName: AppConst.apkName,
         minimumVersion: 0,
       ),
       // iosParameters: const IOSParameters(

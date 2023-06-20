@@ -60,7 +60,7 @@ class ApiManager {
   static Future<Map<String, dynamic>> callPost(String url,
       {Map<String, String>? headers, Map<String, String>? body}) async {
     bool isNet = await AppFunctions.checkInternet(isShowMsg: false);
-   print('param ${body}');
+   
     if (isNet) {
       try {
         Map<String, dynamic> finalresponse;
@@ -82,7 +82,7 @@ class ApiManager {
   static Map<String, dynamic> checkResponse(http.Response response) {
     if (response.statusCode == 200) {
       Map<String, dynamic> rData = json.decode(response.body);
-      print('response ${rData}');
+     
       if (rData['status']) {
         return rData;
       } else {

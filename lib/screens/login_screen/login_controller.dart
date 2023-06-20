@@ -31,12 +31,10 @@ class LoginController extends GetxController {
                 .onError((error, stackTrace) => callLoginApi('nope'));
           }).onError((error, stackTrace) {
             Get.back();
-            print(error.toString());
             AppDialog.errorSnackBar(AppString.errorMsg);
           });
         }).onError((error, stackTrace) {
           Get.back();
-          print(error.toString());
           AppDialog.errorSnackBar(AppString.errorMsg);
         });
       } else {
@@ -45,13 +43,12 @@ class LoginController extends GetxController {
       }
     }).onError((error, stackTrace) {
       Get.back();
-      print(error.toString());
       AppDialog.errorSnackBar(AppString.errorMsg);
     });
   }
 
   callLoginApi(String token) {
-    print('ref ${referCode}');
+   
     ApiManager.callPost(
       ApiUtils.baseUrl + ApiUtils.socialLogin,
       body: {
@@ -68,7 +65,6 @@ class LoginController extends GetxController {
       StorageHelper().loginData = response.data!;
       StorageHelper().isLoggedIn = true;
       StorageHelper().isNewUser = false;
-      print(response.data!.referralCode.toString());
       Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
       bool isRegistered = Get.isRegistered<HomeController>();
       if (isRegistered) {

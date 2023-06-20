@@ -56,7 +56,7 @@ class SubScriptionHandler {
           Get.back();
           AppDialog.errorSnackBar(AppString.errorMsg.tr);
         } else if (purchaseDetails.status == PurchaseStatus.purchased) {
-          print(purchaseDetails.productID.toString());
+         
           buyCredit(prodetail: purchaseDetails);
         } else {
           Get.back();

@@ -40,7 +40,7 @@ class AppString {
   static String contactus = 'Contact Us';
   static String privacyPolicy = 'Privacy Policy';
   static String refundPolicy = 'Refund Policy';
-  static String shareThisApp = 'Share This App';
+  static String shareThisApp = 'Share App';
   static String rateThisApp = 'Rate This App';
   static String logout = 'Logout';
   static String reviewAndSend = 'Review And Send';
@@ -60,7 +60,7 @@ class AppString {
   static String amazing = 'Amazing';
   static String pro = 'Pro';
   static String loginAsGuestUser = 'Login As Guest User';
-  static String referMsg = 'Invite a friend, \nand receive 10 credits.';
+  static String referMsg = 'Invite a friend, \nand receive 5 credits.';
   static String listerning = 'Listening...';
   static String exitMsg = 'Are you sure, you want to exit to this application?';
   static String screenExitMsg =
@@ -82,7 +82,7 @@ class AppString {
   static String retry = 'Retry';
   static String guestUser = 'Hi, Guest User';
   static String adsErrorMsg =
-      'Ads are currently not functioning properly. Please try again later.';
+      'Perhaps your limit for now has been reached, so try again later and receive credit from ads after 5 hours.';
 
   static String keyPointRequired = 'Key points are required';
   static String keyPonitHint =

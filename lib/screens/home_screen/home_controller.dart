@@ -14,8 +14,8 @@ class HomeController extends GetxController {
   List<CategoryData> categoryData = [];
 
   final newVersion = NewVersionPlus(
-    iOSId: 'com.disney.disneyplus',
-    androidId: 'com.avcodes.ai_writing',
+    iOSId: AppConst.apkName,
+    androidId: AppConst.apkName,
   );
 
   @override

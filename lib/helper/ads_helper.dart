@@ -35,8 +35,7 @@ class AdHelper {
 
             Get.back();
             rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
-              onAdShowedFullScreenContent: (RewardedAd ad) =>
-                  debugPrint('as show'),
+              onAdShowedFullScreenContent: (RewardedAd ad) {},
               onAdDismissedFullScreenContent: (RewardedAd ad) {
                 ad.dispose();
               },

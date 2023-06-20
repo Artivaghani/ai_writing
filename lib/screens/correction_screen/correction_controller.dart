@@ -7,7 +7,7 @@ class CorrectionController extends GetxController {
   String correctionText = '';
   String id = '';
   String lastText = '';
-  RxDouble selectedLengh = 1.0.obs;
+  RxDouble selectedLengh = 0.0.obs;
   HomeController homeController = Get.find<HomeController>();
 
   checkBalance(String slug) {
