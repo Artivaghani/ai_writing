@@ -29,7 +29,7 @@ class ApiParam {
   static const String referralCode = "referral_code";
 
 
-  static Map<String, String> header = {
+  static Map<String, String> get header => {
     // 'Content-Type': 'application/json',
     // 'Accept': 'application/json',
     'Authorization': 'Bearer ${StorageHelper().loginData.authtoken}',

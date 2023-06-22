@@ -29,9 +29,6 @@ class HomeController extends GetxController {
     AppFunctions.commonCheckInternetNavigate().then((value) {
       getCategory();
       checkVersion();
-      if (StorageHelper().isLoggedIn) {
-        getCredit();
-      }
     });
   }
 
@@ -52,6 +49,9 @@ class HomeController extends GetxController {
       update();
       AppDialog.errorSnackBar(error.toString());
     });
+    if (StorageHelper().isLoggedIn) {
+      getCredit();
+    }
   }
 
   getCredit() {

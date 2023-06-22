@@ -25,18 +25,19 @@ class CreditModel {
 
 class CreditData {
   int? totalCredit;
- int? adsCount;
+  int? adsCount;
+
   CreditData({this.totalCredit, this.adsCount});
 
   CreditData.fromJson(Map<String, dynamic> json) {
     totalCredit = json['total_credit'];
-     adsCount = json['ads_count'];
+    adsCount = json['ads_count'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['total_credit'] = totalCredit;
-     data['ads_count'] = adsCount;
+    data['ads_count'] = adsCount;
     return data;
   }
 }
