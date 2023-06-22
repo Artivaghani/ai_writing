@@ -51,13 +51,16 @@ class AdHelper {
             rewardedAd.show(
                 onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
               calllBack.call();
-
               ad.dispose();
             });
           },
           onAdFailedToLoad: (LoadAdError error) {
             Get.back();
-            AppDialog.errorSnackBar(AppString.adsErrorMsg);
+            AppDialog.showCommonDialog(
+                title: AppString.appname,
+                subTitle: AppString.adsErrorMsg,
+                btnTitle2: AppString.ok,
+                calbback: () {});
           },
         ));
   }

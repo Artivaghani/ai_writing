@@ -144,8 +144,14 @@ class Appdrawer extends StatelessWidget {
                     Visibility(
                         visible: StorageHelper().isLoggedIn,
                         child: getListView(
-                            AppString.logout, Icons.logout_rounded,
-                            onTap: () => AppFunctions.logout())),
+                            AppString.logout, Icons.logout_rounded, onTap: () {
+                          AppDialog.showCommonDialog(
+                              title: AppString.logout,
+                              subTitle: AppString.logoutMsg,
+                              btnTitle1: AppString.no,
+                              btnTitle2: AppString.yes,
+                              calbback: () => AppFunctions.logout());
+                        })),
                     SizedBox(
                       height: AppDimen.dimen20,
                     ),

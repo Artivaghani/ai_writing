@@ -48,6 +48,7 @@ class AppString {
   static String exit = 'Exit';
   static String yes = 'Yes';
   static String no = 'No';
+  static String ok = 'Ok';
   static String stop = 'Stop';
   static String revise = 'Revise';
   static String reRevise = 'Re-Revise';
@@ -85,6 +86,7 @@ class AppString {
       'Perhaps your limit for now has been reached, so try again later and receive credit from ads after 5 hours.';
 
   static String keyPointRequired = 'Key points are required';
+  static String logoutMsg = 'Do you really want to logout?';
   static String keyPonitHint =
       'Write your key points here \n\nEx. Hi Paras, Let\'s have a quick call and discuss our idea in detail.';
   static String keyPonitHintProposal =
