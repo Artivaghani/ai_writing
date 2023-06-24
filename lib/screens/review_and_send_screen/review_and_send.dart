@@ -33,6 +33,14 @@ class ReviewAndSendScreen extends StatelessWidget {
               initState: (state) {
                 reviewAndSendController.email = email;
                 reviewAndSendController.subject = subject;
+                if (!isFree) {
+                  Future.delayed(
+                    const Duration(seconds: 5),
+                    () {
+                      reviewAndSendController.checkReview();
+                    },
+                  );
+                }
               },
               builder: (controller) => ListView(
                     children: [

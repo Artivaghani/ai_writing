@@ -65,11 +65,9 @@ class GenerateController extends GetxController {
     ).then((value) {
       Get.back();
       GenerateModel data = GenerateModel.fromJson(value);
-
       Get.find<WritingController>().selectTab = 1;
       Get.find<WritingController>().getYourList(slug);
       Get.find<HomeController>().getCredit();
-
       AdHelper.showInterStitialAd(afterAd: () {
         Get.off(ReviewAndSendScreen(
             isFree: false,

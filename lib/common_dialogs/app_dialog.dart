@@ -1,4 +1,5 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/common_widgets/native_ads_view/native_ads.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_controller.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
@@ -49,6 +50,7 @@ class AppDialog {
       {required String? title,
       required String subTitle,
       String? btnTitle1,
+      bool isAddShow = false,
       required String btnTitle2,
       required Function calbback}) {
     showDialog(
@@ -135,6 +137,12 @@ class AppDialog {
                             const Expanded(flex: 1, child: Spacer()),
                           ],
                         ),
+                  // if (isAddShow)
+                  //   NativeAdsView(
+                  //     tag: 'popup',
+                  //     hight: AppDimen.dimen250,
+                  //     isShort: false,
+                  //   ).paddingOnly(top: AppDimen.dimen10)
                 ],
               ),
             ),

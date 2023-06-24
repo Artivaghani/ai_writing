@@ -1,11 +1,13 @@
 import 'package:ai_writing/screens/generate_screen/generate_model.dart';
 import 'package:ai_writing/screens/subscription_screen/subscription_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class ReviewAndSendController extends GetxController {
   String subject = '';
   String email = '';
   HomeController homeController = Get.find<HomeController>();
+  final InAppReview inAppReview = InAppReview.instance;
 
   checkBalance(String id, int lengh) {
     if ((homeController.credit.value.toDouble() + 1) == lengh) {
@@ -51,5 +53,11 @@ class ReviewAndSendController extends GetxController {
       Get.back();
       AppDialog.errorSnackBar(error.toString());
     });
+  }
+
+  Future<void> checkReview() async {
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+    }
   }
 }

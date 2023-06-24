@@ -1,3 +1,4 @@
+import 'package:ai_writing/common_widgets/native_ads_view/native_ads.dart';
 import 'package:ai_writing/screens/correction_screen/correction_controller.dart';
 import 'package:ai_writing/screens/correction_screen/correction_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
@@ -142,7 +143,12 @@ class HomeScreen extends StatelessWidget {
                                             controller.categoryData[index]));
                               }),
                 ),
-               ],
+                NativeAdsView(
+                  tag: 'Home',
+                  hight: AppDimen.dimen270,
+                  isShort: false,
+                ).paddingOnly(top: AppDimen.dimen10)
+              ],
             ),
           ),
         ),

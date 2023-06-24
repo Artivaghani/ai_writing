@@ -235,7 +235,8 @@ class Appdrawer extends StatelessWidget {
 
                     Future.delayed(
                       const Duration(milliseconds: 500),
-                      () {
+                      () async {
+                        await Get.deleteAll();
                         Get.offUntil(GetPageRoute(page: () => HomeScreen()),
                             (route) => false);
                       },

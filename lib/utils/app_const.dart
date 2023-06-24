@@ -6,6 +6,7 @@ class AppConst {
   static const String apkName = 'com.avcodes.ai_writing';
 
   static bool isAdShow = true;
+  static int isShowCount = 6;
 
   static const double elevation = 2;
   static const double cardRadius = 14;
@@ -26,6 +27,7 @@ class AppConst {
       'ca-app-pub-3940256099942544/1033173712';
   static const String iosRevordeId = 'ca-app-pub-3940256099942544/5224354917';
   static const String iosOpenId = 'ca-app-pub-3940256099942544/3419835294';
+  static const String iosNativeId = 'ca-app-pub-3940256099942544/2247696110';
 
 //Live
   static const String androidBannerId =
@@ -35,6 +37,8 @@ class AppConst {
   static const String androidRevordeId =
       'ca-app-pub-7484057413460570/5722113583';
   static const String androidOpenId = 'ca-app-pub-7484057413460570/3234770792';
+  static const String androidNativeId =
+      'ca-app-pub-7484057413460570/8304780981';
 
   static const String androidClientID =
       '484500304504-1pjc2cuqo51suq7ondk5bhsgutljm2f5.apps.googleusercontent.com';

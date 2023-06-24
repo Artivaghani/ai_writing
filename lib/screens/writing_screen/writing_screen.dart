@@ -1,4 +1,5 @@
 import 'package:ai_writing/common_widgets/btn_view.dart';
+import 'package:ai_writing/common_widgets/native_ads_view/native_ads.dart';
 import 'package:ai_writing/screens/generate_screen/generate_controller.dart';
 import 'package:ai_writing/screens/generate_screen/generate_screen.dart';
 import 'package:ai_writing/screens/home_screen/category_model.dart';
@@ -76,7 +77,8 @@ class WritingScreen extends StatelessWidget {
                                     : ListView.builder(
                                         itemCount:
                                             writingController.tempList.length,
-                                        itemBuilder: (context, index) =>
+                                        itemBuilder: (context, index) => Column(
+                                          children: [
                                             InkWell(
                                                 onTap: () =>
                                                     AdHelper.showInterStitialAd(
@@ -87,23 +89,32 @@ class WritingScreen extends StatelessWidget {
                                                             writingController
                                                                     .tempList[
                                                                         index]
-                                                                    .title?.trim() ??
+                                                                    .title
+                                                                    ?.trim() ??
                                                                 '',
                                                         email: writingController
                                                                 .tempList[index]
-                                                                .content?.trim() ??
+                                                                .content
+                                                                ?.trim() ??
                                                             '',
                                                       ));
                                                     }),
                                                 child: EmailView(
                                                   title: writingController
-                                                          .tempList[index]
-                                                          .title?.trim() ??
+                                                          .tempList[index].title
+                                                          ?.trim() ??
                                                       '',
                                                   image: ApiUtils.baseUrl +
                                                       (categoryData.image ??
                                                           ''),
                                                 )),
+                                            if ((index+1) % AppConst.isShowCount ==
+                                                0)
+                                              NativeAdsView(
+                                                tag: 'free$index',
+                                              )
+                                          ],
+                                        ),
                                       )
                             : writingController.isLoad
                                 ? AppCommonWidgets.processIntegrator()
@@ -112,7 +123,8 @@ class WritingScreen extends StatelessWidget {
                                     : ListView.builder(
                                         itemCount:
                                             writingController.yourList.length,
-                                        itemBuilder: (context, index) =>
+                                        itemBuilder: (context, index) => Column(
+                                          children: [
                                             InkWell(
                                                 onTap: () =>
                                                     AdHelper.showInterStitialAd(
@@ -135,13 +147,15 @@ class WritingScreen extends StatelessWidget {
                                                                         index]
                                                                     .result!
                                                                     .choices?[0]
-                                                                    .subject?.trim() ??
+                                                                    .subject
+                                                                    ?.trim() ??
                                                                 '',
                                                         email: writingController
                                                                 .yourList[index]
                                                                 .result!
                                                                 .choices?[0]
-                                                                .text?.trim() ??
+                                                                .text
+                                                                ?.trim() ??
                                                             '',
                                                       ));
                                                     }),
@@ -154,7 +168,8 @@ class WritingScreen extends StatelessWidget {
                                                           .yourList[index]
                                                           .result!
                                                           .choices?[0]
-                                                          .subject?.trim() ??
+                                                          .subject
+                                                          ?.trim() ??
                                                       '',
                                                   id: writingController
                                                           .yourList[index].id ??
@@ -162,6 +177,13 @@ class WritingScreen extends StatelessWidget {
                                                   isFree: false,
                                                   slug: categoryData.slug ?? '',
                                                 )),
+                                            if ((index+1) % AppConst.isShowCount ==
+                                                0)
+                                              NativeAdsView(
+                                                tag: 'paid$index',
+                                              )
+                                          ],
+                                        ),
                                       )))
               ],
             ),
