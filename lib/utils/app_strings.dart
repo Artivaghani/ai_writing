@@ -71,6 +71,7 @@ class AppString {
   static String byMoreCredit = 'Buy More credit';
   static String continueWith = 'Continue With';
   static String watchAds = 'Whatch Ad';
+  static String adTimeMsg = 'Ad will begin in : ';
   static String loginMsg =
       'Artificial intelligence is the future, and the future is here.';
   static String shareText =
@@ -83,7 +84,7 @@ class AppString {
   static String retry = 'Retry';
   static String guestUser = 'Hi, Guest User';
   static String adsErrorMsg =
-      'Perhaps your limit for now has been reached, so try again later and receive credit from ads after 5 hours.';
+      'Ads are currently not functioning properly. Please try again later.';
 
   static String keyPointRequired = 'Key points are required';
   static String logoutMsg = 'Do you really want to logout?';

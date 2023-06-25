@@ -153,6 +153,7 @@ class AppDialog {
   }
 
   static creditDialog({required Function callBack}) {
+    Get.find<HomeController>().getAdTime();
     showDialog(
       context: Get.context!,
       builder: (BuildContext context) {
@@ -193,20 +194,43 @@ class AppDialog {
                     SizedBox(
                       height: AppDimen.dimen10,
                     ),
-                    if (AppConst.isAdShow)
-                      InkWell(
-                          onTap: () {
-                            Get.back();
-                            AdHelper.showRewardedAd(calllBack: callBack);
-                          },
-                          child: ButtonView(
-                              title: AppString.watchAds,
-                              height: AppDimen.dimen80,
-                              icon: Icon(
-                                Icons.movie_filter,
-                                color: Get.theme.cardColor,
-                              ),
-                              color: Get.theme.primaryColor)),
+                    GetBuilder<HomeController>(
+                      builder: (controller) => Column(
+                        children: [
+                          (AppConst.isAdShow &&
+                                  StorageHelper().getAdDate.isEmpty)
+                              ? InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                    AdHelper.showRewardedAd(
+                                        calllBack: callBack);
+                                  },
+                                  child: ButtonView(
+                                      title: AppString.watchAds,
+                                      height: AppDimen.dimen80,
+                                      icon: Icon(
+                                        Icons.movie_filter,
+                                        color: Get.theme.cardColor,
+                                      ),
+                                      color: Get.theme.primaryColor))
+                              : RichText(
+                                  text: TextSpan(
+                                    text: AppString.adTimeMsg,
+                                    style: Get.theme.textTheme.bodySmall,
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text:
+                                              '${controller.differnt.inHours} : ${(controller.differnt.inMinutes % 60)} : ${(controller.differnt.inSeconds % 60)}',
+                                          style: Get
+                                              .theme.textTheme.headlineSmall!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                )
+                        ],
+                      ),
+                    ),
                   ],
                 )
               ],

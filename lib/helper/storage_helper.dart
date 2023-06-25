@@ -19,6 +19,9 @@ class StorageHelper {
   set isNewUser(bool value) => storage.write("isNew", value);
   bool get isNewUser => storage.read('isNew') ?? true;
 
+  set saveAdDate(String value) => storage.write("adDate", value);
+  String get getAdDate => storage.read('adDate') ?? '';
+
   set loginData(LoginData data) =>
       storage.write("loginData", json.encode(data));
 

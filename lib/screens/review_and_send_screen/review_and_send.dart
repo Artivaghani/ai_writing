@@ -35,7 +35,7 @@ class ReviewAndSendScreen extends StatelessWidget {
                 reviewAndSendController.subject = subject;
                 if (!isFree) {
                   Future.delayed(
-                    const Duration(seconds: 5),
+                    const Duration(seconds: 3),
                     () {
                       reviewAndSendController.checkReview();
                     },

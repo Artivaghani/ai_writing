@@ -32,7 +32,11 @@ class HomeScreen extends StatelessWidget {
         key: scaffoldKey,
         body: Container(
           decoration: AppDecoration.backroundDecoration(),
-          padding: EdgeInsets.all(AppDimen.dimen22),
+          padding: EdgeInsets.only(
+              top: AppDimen.dimen22,
+              left: AppDimen.dimen22,
+              right: AppDimen.dimen22,
+              bottom: AppDimen.dimen10),
           height: AppDimen.screenHeight,
           child: SafeArea(
             child: ListView(
@@ -152,9 +156,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: GetBuilder<HomeController>(
-          builder: (controller) => AdHelper.bannerWidget(),
-        ),
+        bottomNavigationBar: AdHelper.bannerWidget(),
       ),
     );
   }

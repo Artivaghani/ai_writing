@@ -7,6 +7,7 @@ class AppConst {
 
   static bool isAdShow = true;
   static int isShowCount = 6;
+  static int isAdDiff = 5;
 
   static const double elevation = 2;
   static const double cardRadius = 14;
@@ -18,8 +19,10 @@ class AppConst {
   // static const String androidInterstrialId =
   //     'ca-app-pub-3940256099942544/1033173712';
   // static const String androidRevordeId =
-  //     'ca-app-pub-3610650832315671/3985563928';
+  //     'ca-app-pub-3940256099942544/5354046379';
   // static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
+  // static const String androidNativeId =
+  //     'ca-app-pub-7484057413460570/8304780981';
 
 //Test net
   static const String iosBannerId = 'ca-app-pub-3940256099942544/6300978111';

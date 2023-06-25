@@ -50,17 +50,14 @@ class AdHelper {
             rewardedAd.setImmersiveMode(true);
             rewardedAd.show(
                 onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+              StorageHelper().saveAdDate = DateTime.now().toString();
               calllBack.call();
               ad.dispose();
             });
           },
           onAdFailedToLoad: (LoadAdError error) {
             Get.back();
-            AppDialog.showCommonDialog(
-                title: AppString.appname,
-                subTitle: AppString.adsErrorMsg,
-                btnTitle2: AppString.ok,
-                calbback: () {});
+            AppDialog.errorSnackBar(AppString.adsErrorMsg);
           },
         ));
   }

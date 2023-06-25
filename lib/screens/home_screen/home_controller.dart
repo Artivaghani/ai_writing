@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   RxInt credit = 0.obs;
   String version = '1.0.0';
   RxBool themeStatus = true.obs;
+  Duration differnt = const Duration();
 
   List<CategoryData> categoryData = [];
 
@@ -23,6 +24,33 @@ class HomeController extends GetxController {
     themeStatus.value = StorageHelper().getTheme ?? Get.isDarkMode;
     super.onInit();
     initData();
+  }
+
+  getAdTime() {
+    if (StorageHelper().getAdDate.isNotEmpty) {
+      DateTime oldDate = DateTime.parse(StorageHelper().getAdDate);
+      DateTime newDate = oldDate.add(const Duration(hours: 5));
+
+      checkAdTime(newDate);
+    }
+  }
+
+  checkAdTime(DateTime newDate) {
+    differnt = newDate.difference(DateTime.now());
+    update();
+    bool isAfter = newDate.isAfter(DateTime.now());
+    print(isAfter);
+    if (isAfter) {
+      Future.delayed(
+        const Duration(seconds: 1),
+        () {
+          checkAdTime(newDate);
+        },
+      );
+    } else {
+      StorageHelper().saveAdDate = '';
+      update();
+    }
   }
 
   initData() {
