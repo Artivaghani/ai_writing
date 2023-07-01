@@ -16,6 +16,7 @@ class AppString {
   static String aiemail = 'Ai Email';
   static String aiProposal = 'Ai Proposal';
   static String selectPurpose = 'Choose a Purpose';
+  static String selectPropmt = 'Choose a Prompt';
   static String textRevision = 'Text Revision';
   static String selectLang = 'Language';
   static String selectLength = 'Text Length';
@@ -89,7 +90,7 @@ class AppString {
   static String keyPointRequired = 'Key points are required';
   static String logoutMsg = 'Do you really want to logout?';
   static String keyPonitHint =
-      'Write your key points here \n\nEx. Hi Paras, Let\'s have a quick call and discuss our idea in detail.';
+      'Write your key points here \n\nEx. Hi John, Let\'s have a quick call and discuss our idea in detail.';
   static String keyPonitHintProposal =
       'Write your key points here \n\nEx. We are providing mobile application services.';
 }

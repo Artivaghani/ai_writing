@@ -5,6 +5,7 @@ import 'package:ai_writing/common_widgets/common_text_field.dart';
 import 'package:ai_writing/helper/localization.dart';
 import 'package:ai_writing/helper/localization_model.dart';
 import 'package:ai_writing/screens/generate_screen/generate_controller.dart';
+import 'package:ai_writing/screens/generate_screen/prompt_screen/prompt_screen.dart';
 import 'package:ai_writing/screens/login_screen/login_screen.dart';
 import 'package:ai_writing/utils/config_packages.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -41,7 +42,14 @@ class GenerateScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(
                     top: AppDimen.dimen20, bottom: AppDimen.dimen10),
-                child: Text(AppString.keyPoint),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(AppString.keyPoint),
+                    InkWell(onTap: ()=>Get.to(const PromtScreen()),
+                    child: Text(AppString.selectPropmt,style: Get.theme.textTheme.headlineSmall!.copyWith(decoration: TextDecoration.underline) ,)),
+                  ],
+                ),
               ),
               Stack(
                 children: [

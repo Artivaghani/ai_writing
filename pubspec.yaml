@@ -38,6 +38,7 @@ dependencies:
   firebase_crashlytics: ^3.3.2
   firebase_dynamic_links: ^5.3.3
   in_app_review: ^2.0.6
+  cloud_firestore: ^4.8.2
 
 flutter_launcher_icons:
   android: "ic_launcher"

@@ -14,8 +14,8 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await MobileAds.instance.initialize();
   SubScriptionHandler.init();
-  AnalyticsHelper.initAnalytics();
-  CrashHelper.initCrashlytics();
+  // AnalyticsHelper.initAnalytics();
+  // CrashHelper.initCrashlytics();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

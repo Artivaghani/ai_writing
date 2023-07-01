@@ -97,7 +97,7 @@ class CorrectionScreen extends StatelessWidget {
                               barrierColor: Colors.transparent,
                               builder: (BuildContext context) => MicroView(
                                 onTap: (String text) {
-                                  controller.keyPointController.text = text;
+                                  controller.setText(text);
                                 },
                               ),
                             );

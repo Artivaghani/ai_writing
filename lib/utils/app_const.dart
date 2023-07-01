@@ -5,7 +5,7 @@ class AppConst {
   static const String appName = 'Ai Writing';
   static const String apkName = 'com.avcodes.ai_writing';
 
-  static bool isAdShow = true;
+  static bool isAdShow = false;
   static int isShowCount = 6;
   static int isAdDiff = 5;
 

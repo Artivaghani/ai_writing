@@ -40,10 +40,10 @@ class CorrectionController extends GetxController {
       ApiUtils.baseUrl + ApiUtils.generateApi,
       headers: ApiParam.header,
       body: {
-        ApiParam.action: (lastText == keyPointController.text &&
-                correctionText.isNotEmpty)
-            ? ApiParam.reGenerate
-            : slug,
+        ApiParam.action:
+            (lastText == keyPointController.text && correctionText.isNotEmpty)
+                ? ApiParam.reGenerate
+                : slug,
         ApiParam.id: id,
         ApiParam.prompt: keyPointController.text,
         ApiParam.length: AppConst.length[selectedLengh.value.toInt()],
