@@ -46,8 +46,13 @@ class GenerateScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(AppString.keyPoint),
-                    InkWell(onTap: ()=>Get.to(const PromtScreen()),
-                    child: Text(AppString.selectPropmt,style: Get.theme.textTheme.headlineSmall!.copyWith(decoration: TextDecoration.underline) ,)),
+                    InkWell(
+                        onTap: () => Get.to( PromtScreen()),
+                        child: Text(
+                          AppString.selectPropmt,
+                          style: Get.theme.textTheme.headlineSmall!
+                              .copyWith(decoration: TextDecoration.underline),
+                        )),
                   ],
                 ),
               ),

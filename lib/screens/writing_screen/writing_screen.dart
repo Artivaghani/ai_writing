@@ -50,6 +50,7 @@ class WritingScreen extends StatelessWidget {
                   labelStyle: Get.theme.textTheme.headlineMedium,
                   unselectedLabelStyle: Get.theme.textTheme.bodyLarge,
                   labelColor: Get.theme.textTheme.headlineMedium!.color,
+                  isScrollable: StorageHelper().isLoggedIn ? false : true,
                   tabs: [
                     Tab(
                         icon: Text(categoryData.slug.toString() == Slug.email
@@ -108,7 +109,8 @@ class WritingScreen extends StatelessWidget {
                                                       (categoryData.image ??
                                                           ''),
                                                 )),
-                                            if ((index+1) % AppConst.isShowCount ==
+                                            if ((index + 1) %
+                                                    AppConst.isShowCount ==
                                                 0)
                                               NativeAdsView(
                                                 tag: 'free$index',
@@ -177,7 +179,8 @@ class WritingScreen extends StatelessWidget {
                                                   isFree: false,
                                                   slug: categoryData.slug ?? '',
                                                 )),
-                                            if ((index+1) % AppConst.isShowCount ==
+                                            if ((index + 1) %
+                                                    AppConst.isShowCount ==
                                                 0)
                                               NativeAdsView(
                                                 tag: 'paid$index',

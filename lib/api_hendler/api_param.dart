@@ -42,3 +42,10 @@ class Slug {
   static const String speechText = "speech-to-text";
   static const String grammerly = "grammerly";
 }
+
+
+class FirebaseParam
+{
+  static const String pCategory = "prompt_category";
+  static const String prompts = "prompts";
+}

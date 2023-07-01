@@ -5,7 +5,7 @@ class AppConst {
   static const String appName = 'Ai Writing';
   static const String apkName = 'com.avcodes.ai_writing';
 
-  static bool isAdShow = false;
+  static bool isAdShow = true;
   static int isShowCount = 6;
   static int isAdDiff = 5;
 
@@ -14,15 +14,15 @@ class AppConst {
   static const double btnRadius = 10;
 
 //Test net
-  // static const String androidBannerId =
-  //     'ca-app-pub-3940256099942544/6300978111';
-  // static const String androidInterstrialId =
-  //     'ca-app-pub-3940256099942544/1033173712';
-  // static const String androidRevordeId =
-  //     'ca-app-pub-3940256099942544/5354046379';
-  // static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
-  // static const String androidNativeId =
-  //     'ca-app-pub-7484057413460570/8304780981';
+  static const String androidBannerId =
+      'ca-app-pub-3940256099942544/6300978111';
+  static const String androidInterstrialId =
+      'ca-app-pub-3940256099942544/1033173712';
+  static const String androidRevordeId =
+      'ca-app-pub-3940256099942544/5354046379';
+  static const String androidOpenId = 'ca-app-pub-3940256099942544/3419835294';
+  static const String androidNativeId =
+      '	ca-app-pub-3940256099942544/2247696110';
 
 //Test net
   static const String iosBannerId = 'ca-app-pub-3940256099942544/6300978111';
@@ -33,15 +33,15 @@ class AppConst {
   static const String iosNativeId = 'ca-app-pub-3940256099942544/2247696110';
 
 //Live
-  static const String androidBannerId =
-      'ca-app-pub-7484057413460570/2113260812';
-  static const String androidInterstrialId =
-      'ca-app-pub-7484057413460570/9656693003';
-  static const String androidRevordeId =
-      'ca-app-pub-7484057413460570/5722113583';
-  static const String androidOpenId = 'ca-app-pub-7484057413460570/3234770792';
-  static const String androidNativeId =
-      'ca-app-pub-7484057413460570/8304780981';
+  // static const String androidBannerId =
+  //     'ca-app-pub-7484057413460570/2113260812';
+  // static const String androidInterstrialId =
+  //     'ca-app-pub-7484057413460570/9656693003';
+  // static const String androidRevordeId =
+  //     'ca-app-pub-7484057413460570/5722113583';
+  // static const String androidOpenId = 'ca-app-pub-7484057413460570/3234770792';
+  // static const String androidNativeId =
+  //     'ca-app-pub-7484057413460570/8304780981';
 
   static const String androidClientID =
       '484500304504-1pjc2cuqo51suq7ondk5bhsgutljm2f5.apps.googleusercontent.com';
