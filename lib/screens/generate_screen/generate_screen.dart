@@ -47,7 +47,9 @@ class GenerateScreen extends StatelessWidget {
                   children: [
                     Text(AppString.keyPoint),
                     InkWell(
-                        onTap: () => Get.to( PromtScreen()),
+                        onTap: () => Get.to(PromtScreen(
+                              slug: slug,
+                            )),
                         child: Text(
                           AppString.selectPropmt,
                           style: Get.theme.textTheme.headlineSmall!

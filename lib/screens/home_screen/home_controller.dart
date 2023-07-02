@@ -103,7 +103,8 @@ class HomeController extends GetxController {
         AdHelper.adsCount = value['data']['ads_count'] ?? 5;
       }
 
-      AppConst.isAdShow = value['data']['is_ads'] == 1 ? true : false;
+      // AppConst.isAdShow = value['data']['is_ads'] == 1 ? true : false;
+      AppConst.isAdShow = false;
       update();
 
       newVersion.getVersionStatus().then((status) {

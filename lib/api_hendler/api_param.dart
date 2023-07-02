@@ -48,4 +48,6 @@ class FirebaseParam
 {
   static const String pCategory = "prompt_category";
   static const String prompts = "prompts";
+  static const String proposalPrompts = "proposal_prompts";
+  static const String proposalCategory = "Proposal_Category";
 }

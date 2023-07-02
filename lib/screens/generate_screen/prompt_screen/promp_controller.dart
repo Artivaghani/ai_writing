@@ -9,23 +9,22 @@ class PrompController extends GetxController {
   List<PromptList> copyPromptList = <PromptList>[];
   int selectedTab = 0;
 
-  @override
-  void onInit() {
-    super.onInit();
-    getData();
-  }
-
-  void getData() {
+  void getData(String slug) {
     FirebaseFirestore.instance
-        .collection(FirebaseParam.pCategory)
+        .collection(slug == Slug.email
+            ? FirebaseParam.pCategory
+            : FirebaseParam.proposalCategory)
         .get()
         .then((value) {
       for (var element in value.docs) {
         categoryList
             .add(CategoryList(name: element.data()['name'], id: element.id));
       }
+      categoryList.sort(((a, b) => a.name!.compareTo(b.name ?? '')));
       FirebaseFirestore.instance
-          .collection(FirebaseParam.prompts)
+          .collection(slug == Slug.email
+              ? FirebaseParam.prompts
+              : FirebaseParam.proposalPrompts)
           .get()
           .then((promtsValue) {
         for (var element in promtsValue.docs) {

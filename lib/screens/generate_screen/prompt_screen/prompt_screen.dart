@@ -3,13 +3,21 @@ import 'package:ai_writing/screens/generate_screen/generate_controller.dart';
 import 'package:ai_writing/screens/generate_screen/prompt_screen/promp_controller.dart';
 import 'package:ai_writing/screens/generate_screen/prompt_screen/prompt_view.dart';
 import 'package:ai_writing/utils/config_packages.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PromtScreen extends StatelessWidget {
-  PromtScreen({super.key});
+  final String slug;
+  PromtScreen({super.key, required this.slug});
 
   PrompController prompController = Get.put(
     PrompController(),
   );
+
+  @override
+  StatelessElement createElement() {
+    prompController.getData(slug);
+    return super.createElement();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +66,13 @@ class PromtScreen extends StatelessWidget {
                                       : null),
                         ),
                       )),
+              SizedBox(
+                height: AppDimen.dimen8,
+              ),
+              AdHelper.bannerWidget(),
+              SizedBox(
+                height: AppDimen.dimen6,
+              ),
               Expanded(
                   child: GetBuilder<PrompController>(
                 builder: (controller) => controller.isloading
@@ -70,7 +85,11 @@ class PromtScreen extends StatelessWidget {
                               children: [
                                 InkWell(
                                     onTap: () {
-                                      Get.find<GenerateController>().keyPointController.text=controller.promptList[index].subTitle.toString();
+                                      Get.find<GenerateController>()
+                                              .keyPointController
+                                              .text =
+                                          controller.promptList[index].subTitle
+                                              .toString();
                                       Get.back();
                                     },
                                     child: PromptView(
@@ -78,7 +97,8 @@ class PromtScreen extends StatelessWidget {
                                             controller.promptList[index])),
                                 if ((index + 1) % AppConst.isShowCount == 0)
                                   NativeAdsView(
-                                    tag: 'prompt$index',
+                                    tag:
+                                        '${controller.promptList[index].catId}$index',
                                   )
                               ],
                             ),
@@ -88,13 +108,21 @@ class PromtScreen extends StatelessWidget {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //   FirebaseFirestore.instance.collection(FirebaseParam.prompts).add({
-      //     'cat_id':'cwif01CRZvUDU6jU3Xir',
-      //     'title': 'Request for information',
-      //     'subTitle': 'Request for information',
-      //   });
-      // }),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        // FirebaseFirestore.instance
+        //     .collection(FirebaseParam.proposalCategory)
+        //     .add({
+        //   'name': 'Sales Proposal',
+        // });
+        FirebaseFirestore.instance
+            .collection(FirebaseParam.proposalPrompts)
+            .add({
+          'cat_id': '022GdJm03sSPBA3Vpf9z',
+          'title': 'Sales Proposal for New Software Implementation',
+          'subTitle':
+              'Implement new software, including a plan to train users, troubleshoot problems, and ensure success.',
+        });
+      }),
     );
   }
 }
