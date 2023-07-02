@@ -108,21 +108,20 @@ class PromtScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        // FirebaseFirestore.instance
-        //     .collection(FirebaseParam.proposalCategory)
-        //     .add({
-        //   'name': 'Sales Proposal',
-        // });
-        FirebaseFirestore.instance
-            .collection(FirebaseParam.proposalPrompts)
-            .add({
-          'cat_id': '022GdJm03sSPBA3Vpf9z',
-          'title': 'Sales Proposal for New Software Implementation',
-          'subTitle':
-              'Implement new software, including a plan to train users, troubleshoot problems, and ensure success.',
-        });
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   // FirebaseFirestore.instance
+      //   //     .collection(FirebaseParam.proposalCategory)
+      //   //     .add({
+      //   //   'name': 'Sales Proposal',
+      //   // });
+      //   FirebaseFirestore.instance
+      //       .collection(FirebaseParam.proposalPrompts)
+      //       .add({
+      //     'cat_id': 'hd3EWf6z4ULQXQcJhDLr',
+      //     'title': 'Finance',
+      //     'subTitle': 'New risk management strategy to mitigate losses',
+      //   });
+      // }),
     );
   }
 }

@@ -81,6 +81,12 @@ class GenerateScreen extends StatelessWidget {
                             builder: (BuildContext context) => MicroView(
                               onTap: (String text) {
                                 controller.keyPointController.text = text;
+                                if (text.length > 250) {
+                                  controller.keyPointController.text =
+                                      text.substring(0, 250);
+                                } else {
+                                  controller.keyPointController.text = text;
+                                }
                               },
                             ),
                           );

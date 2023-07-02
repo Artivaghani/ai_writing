@@ -10,6 +10,9 @@ class PrompController extends GetxController {
   int selectedTab = 0;
 
   void getData(String slug) {
+    categoryList = [];
+    promptList = [];
+    copyPromptList = [];
     FirebaseFirestore.instance
         .collection(slug == Slug.email
             ? FirebaseParam.pCategory
