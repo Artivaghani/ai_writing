@@ -48,7 +48,6 @@ class LoginController extends GetxController {
   }
 
   callLoginApi(String token) {
-   
     ApiManager.callPost(
       ApiUtils.baseUrl + ApiUtils.socialLogin,
       body: {
@@ -60,11 +59,12 @@ class LoginController extends GetxController {
         ApiParam.deviceType: Platform.isAndroid ? '0' : '1',
         ApiParam.referralCode: referCode,
       },
-    ).then((value) {
+    ).then((value) async {
       LoginModel response = LoginModel.fromJson(value);
       StorageHelper().loginData = response.data!;
       StorageHelper().isLoggedIn = true;
       StorageHelper().isNewUser = false;
+      await Get.deleteAll();
       Get.offUntil(GetPageRoute(page: () => HomeScreen()), (route) => false);
       bool isRegistered = Get.isRegistered<HomeController>();
       if (isRegistered) {

@@ -89,13 +89,11 @@ class Appdrawer extends StatelessWidget {
                       });
                     }),
                     getListView(AppString.contactus, Icons.call, onTap: () {
-                      AdHelper.showInterStitialAd(afterAd: () {
-                        final Uri emailLaunchUri = Uri(
+                      final Uri emailLaunchUri = Uri(
                           scheme: 'mailto',
                           path: 'skycodeslab01@gmail.com',
                         );
                         launchUrl(emailLaunchUri);
-                      });
                     }),
                     getListView(
                         AppString.privacyPolicy, Icons.privacy_tip_rounded,
@@ -131,15 +129,11 @@ class Appdrawer extends StatelessWidget {
                       });
                     }),
                     getListView(AppString.shareThisApp, Icons.share, onTap: () {
-                      AdHelper.showInterStitialAd(afterAd: () {
-                        Share.share(
+                       Share.share(
                             '${AppString.shareText} ${AppConst.playStoreLink}');
-                      });
                     }),
                     getListView(AppString.rateThisApp, Icons.star, onTap: () {
-                      AdHelper.showInterStitialAd(afterAd: () {
-                        launch(AppConst.playStoreLink);
-                      });
+                       launch(AppConst.playStoreLink);
                     }),
                     Visibility(
                         visible: StorageHelper().isLoggedIn,

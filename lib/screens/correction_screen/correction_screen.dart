@@ -152,6 +152,7 @@ class CorrectionScreen extends StatelessWidget {
                     onChanged: (p0) {
                       controller.selectedLengh.value = p0;
                       controller.setText(controller.keyPointController.text);
+                      controller.update();
                     },
                   ),
                 ),
